@@ -28,7 +28,7 @@ An Application to keep track of personal growth progress .
 
 * **Programming language:** Java Spring.
 * **Architecture:** Microservices architecture,
-* **Database:** MySQL.
+* **Database:** SQLCloud.
 * Docker.
 * Google cloud platform.
 * JSON Web Token.
