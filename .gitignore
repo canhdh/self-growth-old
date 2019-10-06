@@ -1,36 +1,58 @@
-*.java.hsp
-*.sonarj
-*.sw*
-.DS_Store
-.settings
-.springBeans
-bin
-build.sh
-integration-repo
-ivy-cache
-jxl.log
-jmx.log
-derby.log
-spring-test/test-output/
+# built application files
+*.apk
+*.ap_
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+.idea/
 .gradle
-argfile*
-pom.xml
-activemq-data/
-
-classes/
+/*/local.properties
+/*/out
+/*/*/build
+/*/*/production
+*.iml
+*.iws
+*.ipr
+*~
+*.swp
+/.idea/workspace.xml
+/.idea/libraries
 /build
-buildSrc/build
-/spring-*/build
-/spring-core/kotlin-coroutines/build
-/framework-bom/build
-/integration-tests/build
-/src/asciidoc/build
-target/
+/captures
+/typing-indicator/build
 
-# Eclipse artifacts, including WTP generated manifests
-.classpath
-.project
-spring-*/src/main/java/META-INF/MANIFEST.MF
+# Gradle generated files
+.gradle/
+
+# Signing files
+.signing/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
 # IDEA artifacts and output dirs
 *.iml
@@ -41,3 +63,8 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF
