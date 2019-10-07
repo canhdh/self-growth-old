@@ -1,10 +1,12 @@
 package com.selfgrowth.model.keyResult;
 
+import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.step.Step;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class KeyResult {
     private int keyResultID;
@@ -26,6 +28,7 @@ public class KeyResult {
         this.steps = builder.steps;
     }
     public static Builder getBuilder(){return new Builder();}
+
     public int getKeyResultID() {
         return keyResultID;
     }
@@ -120,5 +123,43 @@ public class KeyResult {
             return build;
 
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o){
+            return  true;
+        }
+        if (o == null || (o.getClass() != this.getClass())) return false;
+        KeyResult other = (KeyResult)o;
+        return Objects.equals(other.comletionPoint,this.comletionPoint) &&
+                Objects.equals(other.dueDate,this.dueDate) &&
+                Objects.equals(other.keyResultID,this.keyResultID) &&
+                Objects.equals(other.owner,this.owner) &&
+                Objects.equals(other.steps,this.steps) &&
+                Objects.equals(other.title,this.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner,
+                comletionPoint,
+                dueDate,
+                keyResultID,
+                owner,
+                steps,
+                title);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("key result id",keyResultID)
+                .add("title",title)
+                .add("due date",dueDate)
+                .add("owner",owner)
+                .add("completion point",comletionPoint)
+                .add("steps",steps)
+                .toString();
     }
 }
