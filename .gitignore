@@ -9,24 +9,6 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 
-# Android Studio
-.idea/
-.gradle
-/*/local.properties
-/*/out
-/*/*/build
-/*/*/production
-*.iml
-*.iws
-*.ipr
-*~
-*.swp
-/.idea/workspace.xml
-/.idea/libraries
-/build
-/captures
-/typing-indicator/build
-
 # Gradle generated files
 .gradle/
 
@@ -53,16 +35,6 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-
-# IDEA artifacts and output dirs
-*.iml
-*.ipr
-*.iws
-.idea
-out
-test-output
-atlassian-ide-plugin.xml
-.gradletasknamecache
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
