@@ -1,5 +1,6 @@
 package com.selfgrowth.model.okr;
 
+import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
@@ -140,19 +141,49 @@ public class OKR{
             OKR build = new OKR(this);
             return build;
         }
+    }
+    @Override
+    public boolean equals(final Object object){
+        if (this == object){
+            return true;
+        }
 
-//        @Override
-//        public boolean equals(final Object object){
-//            if (this == object){
-//                return true;
-//            }
-//
-//            if (object == null || this.getClass() != object.getClass()){
-//                return false;
-//            }
-//
-//            OKR other = (OKR) object;
-//            return Object.equals()
-//        }
+        if (object == null || this.getClass() != object.getClass()){
+            return false;
+        }
+
+        OKR other = (OKR) object;
+
+        return Object.equals(okrID, other.okrID) &&
+                Object.equals(objective, other.objective) &&
+                Object.equals(okrType, other.okrType) &&
+                Object.equals(dueDate, other.dueDate) &&
+                Object.equals(owner, other.owner) &&
+                Object.equals(keyResult, other.keyResults) &&
+                Object.equals(completionPoint, other.completionPoint);
+    }
+
+    @Override
+    public int hashCode(){
+        return Object.hash(okrID,
+                objective,
+                okrType,
+                dueDate,
+                owner,
+                keyResults,
+                completionPoint);
+    }
+
+    @Override
+    public String toString(){
+        return MoreObject.toStringHelper(this)
+                .add("orkID",okrID)
+                .add("objective",objective)
+                .add("okrType",okrType)
+                .add("dueDate",dueDate)
+                .add("owner",owner)
+                .add("keyResults",keyResults)
+                .add("completionPoint",completionPoint)
+                .toString;
     }
 }
