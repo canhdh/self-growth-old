@@ -7,7 +7,7 @@ import com.selfgrowth.model.okrtype.OKRType;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Object;
+import java.util.Objects;
 
 public class OKR{
     private int okrID;
@@ -22,14 +22,14 @@ public class OKR{
 
     }
 
-    public OKR(int okrID, String objective, OKRType okrType, Calendar dueDate, Onwer owner, List<KeyResult> keyResults, double completionPoint){
-        this.okrID = okrID;
-        this.objective = objective;
-        this.okrType = okrType;
-        this.dueDate = dueDate;
-        this.owner = owner;
-        this.keyResults = keyResults;
-        this.completionPoint = completionPoint;
+    public OKR(Builder builder){
+        this.okrID = builder.okrID;
+        this.objective = builder.objective;
+        this.okrType = builder.okrType;
+        this.dueDate = builder.dueDate;
+        this.owner = builder.owner;
+        this.keyResults = builder.keyResults;
+        this.completionPoint = builder.completionPoint;
     }
 
     public int getOkrID() {
@@ -90,7 +90,7 @@ public class OKR{
 
     public static Builder getBuilder() { return new Builder();}
 
-    private static class Builder(){
+    private static class Builder{
         private int okrID;
         private String objective;
         private OKRType okrType;
@@ -154,18 +154,18 @@ public class OKR{
 
         OKR other = (OKR) object;
 
-        return Object.equals(okrID, other.okrID) &&
-                Object.equals(objective, other.objective) &&
-                Object.equals(okrType, other.okrType) &&
-                Object.equals(dueDate, other.dueDate) &&
-                Object.equals(owner, other.owner) &&
-                Object.equals(keyResult, other.keyResults) &&
-                Object.equals(completionPoint, other.completionPoint);
+        return Objects.equals(okrID, other.okrID) &&
+                Objects.equals(objective, other.objective) &&
+                Objects.equals(okrType, other.okrType) &&
+                Objects.equals(dueDate, other.dueDate) &&
+                Objects.equals(owner, other.owner) &&
+                Objects.equals(keyResults, other.keyResults) &&
+                Objects.equals(completionPoint, other.completionPoint);
     }
 
     @Override
     public int hashCode(){
-        return Object.hash(okrID,
+        return Objects.hash(okrID,
                 objective,
                 okrType,
                 dueDate,
@@ -176,7 +176,7 @@ public class OKR{
 
     @Override
     public String toString(){
-        return MoreObject.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("orkID",okrID)
                 .add("objective",objective)
                 .add("okrType",okrType)
@@ -184,6 +184,6 @@ public class OKR{
                 .add("owner",owner)
                 .add("keyResults",keyResults)
                 .add("completionPoint",completionPoint)
-                .toString;
+                .toString();
     }
 }
