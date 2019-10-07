@@ -1,0 +1,124 @@
+package com.selfgrowth.model.keyResult;
+
+import com.selfgrowth.model.owner.Owner;
+import com.selfgrowth.model.step.Step;
+
+import java.util.Calendar;
+import java.util.List;
+
+public class KeyResult {
+    private int keyResultID;
+    private String title;
+    private Calendar dueDate;
+    private Owner owner;
+    private double comletionPoint;
+    private List<Step> steps;
+
+    public KeyResult() {
+    }
+
+    public KeyResult(Builder builder){
+        this.keyResultID = builder.keyResultID;
+        this.title = builder.title;
+        this.dueDate = builder.dueDate;
+        this.owner = builder.owner;
+        this.comletionPoint = builder.comletionPoint;
+        this.steps = builder.steps;
+    }
+    public static Builder getBuilder(){return new Builder();}
+    public int getKeyResultID() {
+        return keyResultID;
+    }
+
+    public void setKeyResultID(int keyResultID) {
+        this.keyResultID = keyResultID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Calendar getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Calendar dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public double getComletionPoint() {
+        return comletionPoint;
+    }
+
+    public void setComletionPoint(double comletionPoint) {
+        this.comletionPoint = comletionPoint;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
+    }
+
+    public static class Builder{
+        private int keyResultID;
+        private String title;
+        private Calendar dueDate;
+        private Owner owner;
+        private double comletionPoint;
+        private List<Step> steps;
+
+        public Builder() {
+        }
+
+        public Builder KeyResultID(int keyResultID){
+            this.keyResultID = keyResultID;
+            return  this;
+        }
+
+        public Builder Title(String title){
+            this.title = title;
+            return this;
+        }
+
+        public Builder Duedate(Calendar dueDate){
+            this.dueDate = dueDate;
+            return  this;
+        }
+
+        public Builder Owner(Owner owner){
+            this.owner = owner;
+            return this;
+        }
+
+        public Builder CompletionPoint(double comletionPoint){
+            this.comletionPoint = comletionPoint;
+            return this;
+        }
+
+        public Builder Steps(List<Step> steps){
+            this.steps = steps;
+            return this;
+        }
+
+        public KeyResult build(){
+            KeyResult build = new KeyResult(this);
+            return build;
+
+        }
+    }
+}
