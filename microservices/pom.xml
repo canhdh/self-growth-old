@@ -9,8 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.selfgrowth.microservices</groupId>
     <artifactId>microservices</artifactId>
-    <packaging>pom</packaging>
+    <version>1.0</version>
+    <packaging>jar</packaging>
     <modules>
         <module>core</module>
     </modules>
