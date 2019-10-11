@@ -3,13 +3,23 @@ package com.selfgrowth.model.owner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "owner")
 public class Owner {
+    @Id
+    @GeneratedValue
+    @Column(name = "ownerID", nullable = false)
     @JsonProperty("ownerID_Owner")
     private int ownerID;
+
+    @Column(name = "name", length = 45, nullable = false)
     @JsonProperty("name")
     private String name;
+
+    @Column(name = "email",length = 45, nullable = false)
     @JsonProperty("email")
     private String email;
 

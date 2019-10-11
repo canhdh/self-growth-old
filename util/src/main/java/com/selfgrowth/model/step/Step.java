@@ -3,12 +3,24 @@ package com.selfgrowth.model.step;
 import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.owner.Owner;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "step")
 public class Step {
+    @Id
+    @GeneratedValue
+    @Column(name = "stepID", nullable = false)
     private int stepID;
+
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "isComplete", nullable = false)
     private boolean isComplete;
 
     public Step() {

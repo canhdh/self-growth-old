@@ -4,15 +4,28 @@ import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.step.Step;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "key_result")
 public class KeyResult {
+    @Id
+    @GeneratedValue
+    @Column(name = "keyResultID", nullable = false)
     private int keyResultID;
+
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "dueDate", nullable = false)
     private Date dueDate;
+
+    @Column(name = "completionPoint", nullable = false)
     private double comletionPoint;
+
     private List<Step> steps;
 
     public KeyResult() {
