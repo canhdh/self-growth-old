@@ -74,6 +74,11 @@
             <version>2.2.0.RELEASE</version>
         </dependency>
 
+        <!--mysql connect dependency-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

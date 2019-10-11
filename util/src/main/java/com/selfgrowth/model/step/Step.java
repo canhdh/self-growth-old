@@ -10,7 +10,6 @@ public class Step {
     private String title;
     private String description;
     private boolean isComplete;
-    private Owner owner;
 
     public Step() {
     }
@@ -20,7 +19,6 @@ public class Step {
         this.title = builder.title;
         this.description = builder.description;
         this.isComplete = builder.isComplete;
-        this.owner = builder.owner;
     }
 
     public static Builder getBuilder(){return new Builder();}
@@ -57,20 +55,11 @@ public class Step {
         isComplete = complete;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
     public static class Builder{
         private int stepID;
         private String title;
         private String description;
         private boolean isComplete;
-        private Owner owner;
 
         public Builder() {
         }
@@ -95,11 +84,6 @@ public class Step {
             return this;
         }
 
-        public Builder Owner(Owner owner){
-            this.owner = owner;
-            return  this;
-        }
-
         public Step build(){
             Step build = new Step(this);
             return build;
@@ -114,8 +98,7 @@ public class Step {
         return Objects.equals(stepID,other.stepID) &&
                 Objects.equals(title,other.title) &&
                 Objects.equals(description,other.description) &&
-                Objects.equals(isComplete,other.isComplete) &&
-                Objects.equals(owner,other.owner);
+                Objects.equals(isComplete,other.isComplete);
     }
 
     @Override
@@ -123,8 +106,7 @@ public class Step {
         return Objects.hash(stepID,
                 title,
                 description,
-                isComplete,
-                owner);
+                isComplete);
     }
 
     @Override
@@ -134,7 +116,6 @@ public class Step {
                 .add("title",title)
                 .add("description",description)
                 .add("is_complete",isComplete)
-                .add("owner",owner)
                 .toString();
     }
 }

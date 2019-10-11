@@ -5,7 +5,7 @@ import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ public class OKR{
     private int okrID;
     private String objective;
     private OKRType okrType;
-    private Calendar dueDate;
+    private Date dueDate;
     private Owner owner;
     private List<KeyResult> keyResults;
     private double completionPoint;
@@ -56,11 +56,11 @@ public class OKR{
         this.okrType = okrType;
     }
 
-    public Calendar getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Calendar dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -94,7 +94,7 @@ public class OKR{
         private int okrID;
         private String objective;
         private OKRType okrType;
-        private Calendar dueDate;
+        private Date dueDate;
         private Owner owner;
         private List<KeyResult> keyResults;
         private double completionPoint;
@@ -117,7 +117,7 @@ public class OKR{
             return this;
         }
 
-        public Builder dueDate(Calendar dueDate){
+        public Builder dueDate(Date dueDate){
             this.dueDate = dueDate;
             return this;
         }
@@ -127,7 +127,7 @@ public class OKR{
             return this;
         }
 
-        public Builder keyResult(List<KeyResult> keyResult){
+        public Builder keyResult(List<KeyResult> keyResults){
             this.keyResults = keyResults;
             return this;
         }

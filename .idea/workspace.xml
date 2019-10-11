@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85cd1c1d-6050-4a7f-883d-0589b896090f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/dao/OKRDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/OKRServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/OKRServiceHibernateApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/controller/OKRController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/controller/OKRController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/step/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/step/Step.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +61,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="OKRServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.selfgrowth.core.okrs.OKRServiceApplication" />
+    <configuration name="OKRServiceHibernateApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.selfgrowth.core.okrs.OKRServiceHibernateApplication" />
       <module name="okrs-services" />
       <extension name="coverage">
         <pattern>
@@ -68,7 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OKRServiceApplication" />
+        <item itemvalue="Application.OKRServiceHibernateApplication" />
       </list>
     </recent_temporary>
   </component>
