@@ -3,11 +3,10 @@ package com.selfgrowth.core.okrs.service;
 import com.selfgrowth.model.okr.OKR;
 import com.selfgrowth.model.okrtype.OKRType;
 import com.selfgrowth.model.owner.Owner;
+import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class OKRServiceIml implements OKRService {

@@ -19,10 +19,10 @@ public interface OKRService {
     List<OKR> findOKRByDueDate(Calendar dueDate);
 
     List<OKR> findOKRByType(OKRType okrType);
-
-    List<OKR> findOKRByOwner(Owner owner);
-
-    List<OKR> findOKRByCompletionPoint(double completionPoint);
+//
+//    List<OKR> findOKRByOwner(Owner owner);
+//
+//    List<OKR> findOKRByCompletionPoint(double completionPoint);
 
     OKR update(OKR okr);
 
