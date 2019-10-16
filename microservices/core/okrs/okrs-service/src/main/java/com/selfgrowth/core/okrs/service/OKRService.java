@@ -1,6 +1,7 @@
 package com.selfgrowth.core.okrs.service;
 
 import com.selfgrowth.model.okr.OKR;
+import com.selfgrowth.model.okr.OKRDto;
 import com.selfgrowth.model.okrtype.OKRType;
 import com.selfgrowth.model.owner.Owner;
 
@@ -10,21 +11,22 @@ import java.util.List;
 
 public interface OKRService {
 
-    OKR create(OKR okr);
+    OKRDto create(OKRDto okrDto);
 
-    OKR findOKRById(int okrID);
+    OKR findOKRById(int okrDtoId);
 
-    List<OKR> findAll();
+    List<OKRDto> findAll();
 
-    List<OKR> findOKRByDueDate(Calendar dueDate);
+    OKRDto findOne(int okrDtoId);
 
-    List<OKR> findOKRByType(OKRType okrType);
-//
-//    List<OKR> findOKRByOwner(Owner owner);
-//
-//    List<OKR> findOKRByCompletionPoint(double completionPoint);
+    /**List<OKR> findOKRByDueDate(Calendar dueDate);
 
-    OKR update(OKR okr);
+    * List<OKR> findOKRByType(OKRType okrType);
 
-    OKR delete(int okrID);
+    * List<OKR> findOKRByOwner(Owner owner);
+    * List<OKR> findOKRByCompletionPoint(double completionPoint);
+    */
+    OKRDto update(OKRDto user);
+
+    OKRDto delete(int okrId);
 }

@@ -1,65 +1,41 @@
 package com.selfgrowth.core.okrs.repository;
 
-
 import com.selfgrowth.model.okr.OKR;
-import com.selfgrowth.model.okrtype.OKRType;
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.Calendar;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
-public interface OKRRepository extends CrudRepository<OKR, Integer>{
+public interface OKRRepository extends PagingAndSortingRepository<OKR, String> {
     /**
-     * Save a new OKR entity to database
-     * @param saved the information of saved OKR entry
-     * @return the information of saved OKR entry
+     * Deletes a user entry from the database.
+     *
+     * @param deleted The deleted user entry.
      */
-    OKR save(OKR saved);
+    void delete(OKR deleted);
 
     /**
-     * Find an OKR follow id
-     * @param id the identification of OKR
-     * @return the information of found OKR from database
-     */
-    OKR findOne(Integer id);
-
-    /**
-     * Find an OKR follow due date
-     * @param dueDate deadline of OKR
-     * @return the information of found OKR from database
-     */
-    OKR findOneByDueDate(Calendar dueDate);
-
-    /**
-     * Find an OKR follow okr type of okr
-     * @param okrType type of okr
-     * @return the information of found OKR from database
-     */
-    OKR findOneByType(OKRType okrType);
-
-    /**
-     * find all OKRs from database
-     * @return all OKRs that are found from database
+     * Finds all OKR entries from the database.
+     *
+     * @return The information of all OKR entries that are found from the database.
      */
     List<OKR> findAll();
 
     /**
-     * change information of an OKR
-     * @param okr the information of an OKR from database
-     * @return this information of this updated OKR
+     * Finds the information of a single OKR entry.
+     *
+     * @param id The id of the requested user entry.
+     * @return The information of the found OKR entry
      */
-    OKR update (OKR okr);
+    OKR findOne(int id);
 
     /**
-     * delete an OKR is from database
-     * @param okr an OKR is from database
+     * r
+     * Saves a new OKR entry to the database.
+     *
+     * @param saved The information of the saved OKR entry.
+     * @return The information of the saved OKR entry.
      */
-    void delete(OKR okr);
+    OKR save(OKR saved);
 
-    /**
-     * check an OKR exists or not
-     * @param integer id of OKR user want to check
-     * @return true if OKR exists or false if not
-     */
-    boolean existsById(Integer integer);
+    List<OKR> findOKRById(int okrId);
+    //List<OKR> findByType()
 }

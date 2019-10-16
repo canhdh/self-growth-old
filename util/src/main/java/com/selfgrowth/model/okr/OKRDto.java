@@ -1,50 +1,42 @@
 package com.selfgrowth.model.okr;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
-import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
+import com.selfgrowth.model.owner.Owner;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "OKR")
-public class OKR{
-    @Id
-    @GeneratedValue
-    @Column(name = "okrID", nullable = false)
+public class OKRDto {
+    @JsonProperty("okr_id")
     private int okrID;
-
-    @Column(name = "objective", length = 100,nullable = false)
+    @JsonProperty("objective")
     private String objective;
-
+    @JsonProperty("okr_type")
     private OKRType okrType;
-
-    @Column(name = "dueDate", nullable = false)
+    @JsonProperty("due_date")
     private Date dueDate;
-
+    @JsonProperty("owner")
     private Owner owner;
-
+    @JsonProperty("list_keyresult")
     private List<KeyResult> keyResults;
-
-    @Column(name = "completionPoint", nullable = false)
+    @JsonProperty("component_poinr")
     private double completionPoint;
 
-    public OKR(){
-
+    public OKRDto(){
     }
 
-    public OKR(Builder builder){
-        this.okrID = builder.okrID;
-        this.objective = builder.objective;
-        this.okrType = builder.okrType;
-        this.dueDate = builder.dueDate;
-        this.owner = builder.owner;
-        this.keyResults = builder.keyResults;
-        this.completionPoint = builder.completionPoint;
+    public OKRDto(int okrID, String objective, OKRType okrType, Date dueDate, Owner owner, List<KeyResult> keyResults, double completionPoint) {
+        this.okrID = okrID;
+        this.objective = objective;
+        this.okrType = okrType;
+        this.dueDate = dueDate;
+        this.owner = owner;
+        this.keyResults = keyResults;
+        this.completionPoint = completionPoint;
     }
 
     public int getOkrID() {
@@ -103,8 +95,6 @@ public class OKR{
         this.completionPoint = completionPoint;
     }
 
-    public static Builder getBuilder() { return new Builder();}
-
     public static class Builder{
         private int okrID;
         private String objective;
@@ -117,46 +107,47 @@ public class OKR{
         private Builder(){
         }
 
-        public Builder okrID(int okrID){
+        public OKRDto.Builder okrID(int okrID){
             this.okrID = okrID;
             return this;
         }
 
-        public Builder objective(String objective){
+        public OKRDto.Builder objective(String objective){
             this.objective = objective;
             return this;
         }
 
-        public Builder okrType(OKRType okrType){
+        public OKRDto.Builder okrType(OKRType okrType){
             this.okrType = okrType;
             return this;
         }
 
-        public Builder dueDate(Date dueDate){
+        public OKRDto.Builder dueDate(Date dueDate){
             this.dueDate = dueDate;
             return this;
         }
 
-        public Builder owner(Owner owner){
+        public OKRDto.Builder owner(Owner owner){
             this.owner = owner;
             return this;
         }
 
-        public Builder keyResult(List<KeyResult> keyResults){
+        public OKRDto.Builder keyResult(List<KeyResult> keyResult){
             this.keyResults = keyResults;
             return this;
         }
 
-        public Builder completionPoint(double completionPoint){
+        public OKRDto.Builder completionPoint(double completionPoint){
             this.completionPoint = completionPoint;
             return this;
         }
 
-        public OKR build(){
-            OKR build = new OKR(this);
+        public OKRDto build(){
+            OKRDto build = new OKRDto();
             return build;
         }
     }
+
     @Override
     public boolean equals(final Object object){
         if (this == object){
@@ -167,7 +158,7 @@ public class OKR{
             return false;
         }
 
-        OKR other = (OKR) object;
+        OKRDto other = (OKRDto) object;
 
         return Objects.equals(okrID, other.okrID) &&
                 Objects.equals(objective, other.objective) &&

@@ -7,16 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="util" />
-        <module name="microservices" />
         <module name="core" />
         <module name="okrs-services" />
+        <module name="microservices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core" target="1.5" />
       <module name="microservices" target="1.5" />
       <module name="okrs" target="1.5" />
-      <module name="okrs-services" target="11" />
+      <module name="okrs-services" target="8" />
       <module name="self-growth" target="1.5" />
       <module name="util" target="7" />
     </bytecodeTargetLevel>

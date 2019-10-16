@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85cd1c1d-6050-4a7f-883d-0589b896090f" name="Default Changelist" comment="">
+
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -12,16 +13,25 @@
       <change beforePath="$PROJECT_DIR$/util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/util/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okrtype/OKRType.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okrtype/OKRType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/owner/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/owner/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/step/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/step/Step.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/util.iml" beforeDir="false" afterPath="$PROJECT_DIR$/util/util.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKRDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKRDto.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,9 +54,18 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.selfgrowth.core.okrs.repository" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.selfgrowth.core.okrs.controller" />
+      <recent name="com.selfgrowth.core.okrs.repository" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -99,34 +118,8 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>
