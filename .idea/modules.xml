@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/microservices/core/core.iml" filepath="$PROJECT_DIR$/microservices/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/microservices.iml" filepath="$PROJECT_DIR$/microservices/microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/core/okrs/okrs.iml" filepath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" filepath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/self-growth.iml" filepath="$PROJECT_DIR$/self-growth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/util.iml" filepath="$PROJECT_DIR$/util/util.iml" />
+    </modules>
+  </component>
+</project>
