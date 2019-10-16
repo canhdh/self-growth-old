@@ -90,7 +90,7 @@ public class OKR{
 
     public static Builder getBuilder() { return new Builder();}
 
-    private static class Builder{
+    public static class Builder{
         private int okrID;
         private String objective;
         private OKRType okrType;
