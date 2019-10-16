@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="85cd1c1d-6050-4a7f-883d-0589b896090f" name="Default Changelist" comment="">
-
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresultservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/repository/KeyResultRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/service/KeyResultService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/service/KeyResultServiceIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResultDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/OKRServiceHibernateApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/OKRServiceHibernateApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/dao/OKRDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/dao/OKRDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/model/DataOKR.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/src/main/java/com/selfgrowth/core/okrs/model/DataOKR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/util/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKRDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKRDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/okrs-services.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/microservices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/microservices.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/self-growth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/self-growth.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +33,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -51,12 +56,17 @@
     </option>
   </component>
   <component name="ProjectId" id="1RtvUZqnpazIIozk7UzZOIBPqbe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -104,7 +114,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="474f41fc-d186-42d4-9914-f3e330f9a604" name="Default Changelist" comment="" />
+      <changelist id="85cd1c1d-6050-4a7f-883d-0589b896090f" name="Default Changelist" comment="" />
       <created>1570496950101</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -124,5 +134,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

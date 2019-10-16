@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>okrs-service</module>
+        <module>keyresult-service</module>
     </modules>
 
 
