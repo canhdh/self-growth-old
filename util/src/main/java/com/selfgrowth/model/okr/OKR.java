@@ -6,7 +6,6 @@ import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -72,7 +71,7 @@ public class OKR{
         this.okrType = okrType;
     }
 
-    public Calendar getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 

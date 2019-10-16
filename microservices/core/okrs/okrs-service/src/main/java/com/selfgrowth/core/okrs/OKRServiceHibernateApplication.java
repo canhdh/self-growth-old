@@ -15,7 +15,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-import com.selfgrowth.model.*;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -39,10 +38,10 @@ public class OKRServiceHibernateApplication {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         //See: application:properties
-        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+        dataSource.setDriverClassName(env.getProperty(""));
         dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.name"));
-        dataSource.setPassword(env.getProperty("spring.datasource.name"));
+        dataSource.setUsername(env.getProperty("non-root-01"));
+        dataSource.setPassword(env.getProperty("password"));
 
         System.out.println("## geDatasource: " + dataSource);
 

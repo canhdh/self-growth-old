@@ -6,7 +6,6 @@ import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
 import com.selfgrowth.model.owner.Owner;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +18,7 @@ public class OKRDto {
     @JsonProperty("okr_type")
     private OKRType okrType;
     @JsonProperty("due_date")
-    private Calendar dueDate;
+    private Date dueDate;
     @JsonProperty("owner")
     private Owner owner;
     @JsonProperty("list_keyresult")
@@ -30,7 +29,7 @@ public class OKRDto {
     public OKRDto(){
     }
 
-    public OKRDto(int okrID, String objective, OKRType okrType, Calendar dueDate, Owner owner, List<KeyResult> keyResults, double completionPoint) {
+    public OKRDto(int okrID, String objective, OKRType okrType, Date dueDate, Owner owner, List<KeyResult> keyResults, double completionPoint) {
         this.okrID = okrID;
         this.objective = objective;
         this.okrType = okrType;
@@ -68,7 +67,7 @@ public class OKRDto {
         return dueDate;
     }
 
-    public void setDueDate(Calendar dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -100,7 +99,7 @@ public class OKRDto {
         private int okrID;
         private String objective;
         private OKRType okrType;
-        private Calendar dueDate;
+        private Date dueDate;
         private Owner owner;
         private List<KeyResult> keyResults;
         private double completionPoint;
@@ -123,7 +122,7 @@ public class OKRDto {
             return this;
         }
 
-        public OKRDto.Builder dueDate(Calendar dueDate){
+        public OKRDto.Builder dueDate(Date dueDate){
             this.dueDate = dueDate;
             return this;
         }
