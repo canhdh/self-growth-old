@@ -5,17 +5,33 @@ import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.okrtype.OKRType;
 
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "OKR")
 public class OKR{
+    @Id
+    @GeneratedValue
+    @Column(name = "okrID", nullable = false)
     private int okrID;
+
+    @Column(name = "objective", length = 100,nullable = false)
     private String objective;
+
     private OKRType okrType;
-    private Calendar dueDate;
+
+    @Column(name = "dueDate", nullable = false)
+    private Date dueDate;
+
     private Owner owner;
+
     private List<KeyResult> keyResults;
+
+    @Column(name = "completionPoint", nullable = false)
     private double completionPoint;
 
     public OKR(){
@@ -60,7 +76,7 @@ public class OKR{
         return dueDate;
     }
 
-    public void setDueDate(Calendar dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -94,7 +110,7 @@ public class OKR{
         private int okrID;
         private String objective;
         private OKRType okrType;
-        private Calendar dueDate;
+        private Date dueDate;
         private Owner owner;
         private List<KeyResult> keyResults;
         private double completionPoint;
@@ -117,7 +133,7 @@ public class OKR{
             return this;
         }
 
-        public Builder dueDate(Calendar dueDate){
+        public Builder dueDate(Date dueDate){
             this.dueDate = dueDate;
             return this;
         }
@@ -127,7 +143,7 @@ public class OKR{
             return this;
         }
 
-        public Builder keyResult(List<KeyResult> keyResult){
+        public Builder keyResult(List<KeyResult> keyResults){
             this.keyResults = keyResults;
             return this;
         }

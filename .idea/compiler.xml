@@ -16,7 +16,11 @@
       <module name="core" target="1.5" />
       <module name="microservices" target="1.5" />
       <module name="okrs" target="1.5" />
+<<<<<<< HEAD
       <module name="okrs-services" target="8" />
+=======
+      <module name="okrs-services" target="11" />
+>>>>>>> 969dbfcc6f555748ceffa7a02bed9faafa4374c6
       <module name="self-growth" target="1.5" />
       <module name="util" target="7" />
     </bytecodeTargetLevel>

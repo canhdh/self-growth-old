@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class OKRController {
     public ResponseEntity<?> findAll() {
         List<OKRDto> okrDtoList = mOKRService.findAll();
         List<Integer> integers = new ArrayList<>();
-        for (OKRDto okrDto : okrDtoList){
+        for (OKRDto okrDto : okrDtoList) {
             integers.add(okrDto.getOkrID());
         }
         return new ResponseEntity<>(integers, HttpStatus.OK);

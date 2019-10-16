@@ -4,16 +4,28 @@ import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.step.Step;
 
-import java.util.Calendar;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "key_result")
 public class KeyResult {
+    @Id
+    @GeneratedValue
+    @Column(name = "keyResultID", nullable = false)
     private int keyResultID;
+
+    @Column(name = "title", nullable = false)
     private String title;
-    private Calendar dueDate;
-    private Owner owner;
+
+    @Column(name = "dueDate", nullable = false)
+    private Date dueDate;
+
+    @Column(name = "completionPoint", nullable = false)
     private double comletionPoint;
+
     private List<Step> steps;
 
     public KeyResult() {
@@ -23,7 +35,6 @@ public class KeyResult {
         this.keyResultID = builder.keyResultID;
         this.title = builder.title;
         this.dueDate = builder.dueDate;
-        this.owner = builder.owner;
         this.comletionPoint = builder.comletionPoint;
         this.steps = builder.steps;
     }
@@ -45,20 +56,12 @@ public class KeyResult {
         this.title = title;
     }
 
-    public Calendar getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Calendar dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
     }
 
     public double getComletionPoint() {
@@ -80,8 +83,7 @@ public class KeyResult {
     public static class Builder{
         private int keyResultID;
         private String title;
-        private Calendar dueDate;
-        private Owner owner;
+        private Date dueDate;
         private double comletionPoint;
         private List<Step> steps;
 
@@ -98,14 +100,9 @@ public class KeyResult {
             return this;
         }
 
-        public Builder Duedate(Calendar dueDate){
+        public Builder Duedate(Date dueDate){
             this.dueDate = dueDate;
             return  this;
-        }
-
-        public Builder Owner(Owner owner){
-            this.owner = owner;
-            return this;
         }
 
         public Builder CompletionPoint(double comletionPoint){
@@ -135,18 +132,16 @@ public class KeyResult {
         return Objects.equals(other.comletionPoint,this.comletionPoint) &&
                 Objects.equals(other.dueDate,this.dueDate) &&
                 Objects.equals(other.keyResultID,this.keyResultID) &&
-                Objects.equals(other.owner,this.owner) &&
                 Objects.equals(other.steps,this.steps) &&
                 Objects.equals(other.title,this.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(owner,
+        return Objects.hash(
                 comletionPoint,
                 dueDate,
                 keyResultID,
-                owner,
                 steps,
                 title);
     }
@@ -157,7 +152,6 @@ public class KeyResult {
                 .add("key result id",keyResultID)
                 .add("title",title)
                 .add("due date",dueDate)
-                .add("owner",owner)
                 .add("completion point",comletionPoint)
                 .add("steps",steps)
                 .toString();

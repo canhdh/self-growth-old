@@ -24,7 +24,6 @@ public interface OKRService {
     * List<OKR> findOKRByType(OKRType okrType);
 
     * List<OKR> findOKRByOwner(Owner owner);
-
     * List<OKR> findOKRByCompletionPoint(double completionPoint);
     */
     OKRDto update(OKRDto user);

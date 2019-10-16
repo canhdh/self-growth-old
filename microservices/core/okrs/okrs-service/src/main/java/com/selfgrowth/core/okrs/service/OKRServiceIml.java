@@ -3,14 +3,10 @@ package com.selfgrowth.core.okrs.service;
 import com.selfgrowth.core.okrs.repository.OKRRepository;
 import com.selfgrowth.model.okr.OKR;
 import com.selfgrowth.model.okr.OKRDto;
-import com.selfgrowth.model.okrtype.OKRType;
-import com.selfgrowth.model.owner.Owner;
-
-import java.util.Calendar;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.stream.Collectors.toList;
 
