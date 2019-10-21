@@ -9,6 +9,7 @@
         <module name="util" />
         <module name="core" />
         <module name="microservices" />
+        <module name="keyresult-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

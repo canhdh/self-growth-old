@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAsync
 public class KeyResultApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class,args);
+        SpringApplication.run(KeyResultApplication.class,args);
     }
 
     @Bean
