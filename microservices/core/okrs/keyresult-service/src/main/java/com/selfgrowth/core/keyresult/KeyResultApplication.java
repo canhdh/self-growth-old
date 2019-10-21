@@ -1,5 +1,4 @@
-package com.selfgrowth.core.okrs;
-
+package com.selfgrowth.core.keyresult;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,15 +15,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
-public class OKRServiceHibernateApplication {
+public class KeyResultApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class,args);
     }
+
     @Bean
     public Docket swaggerPersonApi10() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("microservices.core.okrs.okrs-service.src.main.java.com.selfgrowth.core.okrs.controller"))
+                .apis(RequestHandlerSelectors.basePackage("microservices.core.okrs.keyresult-service.src.main.java.com.selfgrowth.core.keyresult.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("1.0").title("User Service API").description("Documentation User API v1.0").build());

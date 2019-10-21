@@ -14,8 +14,8 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>okrs-service</module>
-        <module>keyresult-service</module>
+        <module>okrs-com.selfgrowth.core.keyresult.service</module>
+        <module>keyresult-com.selfgrowth.core.keyresult.service</module>
     </modules>
 
 

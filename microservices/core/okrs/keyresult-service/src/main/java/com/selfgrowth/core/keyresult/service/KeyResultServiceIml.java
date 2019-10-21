@@ -1,4 +1,4 @@
-package service;
+package com.selfgrowth.core.keyresult.service;
 
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.keyResult.KeyResultDto;

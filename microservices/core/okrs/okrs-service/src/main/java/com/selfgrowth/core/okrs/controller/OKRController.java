@@ -20,7 +20,7 @@ public class OKRController {
         this.mOKRService = okrService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    @PostMapping(produces = "application/json")
     public ResponseEntity<?> create (@RequestBody OKRDto okrDto) {
         OKRDto saved = mOKRService.create(okrDto);
         if (saved != null){
@@ -30,22 +30,22 @@ public class OKRController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+    @PutMapping(produces = "application/json")
     public ResponseEntity<?> update (@RequestBody OKRDto okrDto) {
         okrDto = mOKRService.update(okrDto);
-        if(okrDto != null){
+        if(okrDto == null){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE.getReasonPhrase(), HttpStatus.NOT_ACCEPTABLE);
         }else {
             return new ResponseEntity<>(okrDto, HttpStatus.OK);
         }
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE, produces = "applicaton/json")
+    @DeleteMapping(value = "{/id}",produces = "application/json")
     public void delete (@PathVariable int Id) {
         mOKRService.delete(Id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<?> findOKRById (@RequestParam("OKR_Id") int okrId) {
         Page<OKR> okrs = (Page<OKR>) mOKRService.findOKRById(okrId);
         if(okrs != null){
@@ -55,7 +55,7 @@ public class OKRController {
         }
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = "/all", produces = "application/json")
     public ResponseEntity<?> findAll() {
         List<OKRDto> okrDtoList = mOKRService.findAll();
         List<Integer> integers = new ArrayList<>();

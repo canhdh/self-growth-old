@@ -9,13 +9,13 @@
         <module name="util" />
         <module name="core" />
         <module name="microservices" />
-        <module name="keyresultservice" />
-        <module name="okrs-services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="core" target="1.5" />
+      <module name="keyresult-service" target="8" />
+      <module name="keyresultservice" target="8" />
       <module name="microservices" target="1.5" />
+      <module name="okrs-services" target="8" />
       <module name="self-growth" target="1.5" />
       <module name="util" target="7" />
     </bytecodeTargetLevel>
