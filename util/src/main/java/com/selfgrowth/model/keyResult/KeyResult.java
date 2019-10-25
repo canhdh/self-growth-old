@@ -1,33 +1,33 @@
 package com.selfgrowth.model.keyResult;
 
 import com.google.common.base.MoreObjects;
-import com.selfgrowth.model.owner.Owner;
 import com.selfgrowth.model.step.Step;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "key_result")
+@Table(name = "keyresult")
 public class KeyResult {
     @Id
-    @GeneratedValue
-    @Column(name = "keyResultID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",nullable = false)
+    private int id;
+    @Column(name = "keyresultid", nullable = false)
     private int keyResultID;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "dueDate", nullable = false)
+    @Column(name = "duedate", nullable = false)
     private Date dueDate;
 
-    @Column(name = "completionPoint", nullable = false)
+    @Column(name = "completionpoint", nullable = false)
     private double comletionPoint;
-
-    private List<Step> steps;
-
+    @Column(name = "step",nullable = false)
+    private String steps;
     public KeyResult() {
     }
 
@@ -39,6 +39,14 @@ public class KeyResult {
         this.steps = builder.steps;
     }
     public static Builder getBuilder(){return new Builder();}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getKeyResultID() {
         return keyResultID;
@@ -72,11 +80,11 @@ public class KeyResult {
         this.comletionPoint = comletionPoint;
     }
 
-    public List<Step> getSteps() {
+    public String getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(String steps) {
         this.steps = steps;
     }
 
@@ -85,7 +93,7 @@ public class KeyResult {
         private String title;
         private Date dueDate;
         private double comletionPoint;
-        private List<Step> steps;
+        private String steps;
 
         public Builder() {
         }
@@ -110,7 +118,7 @@ public class KeyResult {
             return this;
         }
 
-        public Builder Steps(List<Step> steps){
+        public Builder Steps(String steps){
             this.steps = steps;
             return this;
         }
@@ -118,7 +126,6 @@ public class KeyResult {
         public KeyResult build(){
             KeyResult build = new KeyResult(this);
             return build;
-
         }
     }
 

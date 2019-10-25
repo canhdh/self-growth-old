@@ -10,27 +10,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "OKR")
+//@Entity
+//@Table(name = "OKR")
 public class OKR{
-    @Id
-    @GeneratedValue
-    @Column(name = "okrID", nullable = false)
+//    @Id
+//    @GeneratedValue
+//    @Column(name = "okrID", nullable = false)
     private int okrID;
 
-    @Column(name = "objective", length = 100,nullable = false)
+//    @Column(name = "objective", length = 100,nullable = false)
     private String objective;
 
     private OKRType okrType;
 
-    @Column(name = "dueDate", nullable = false)
+//    @Column(name = "dueDate", nullable = false)
     private Date dueDate;
 
     private Owner owner;
 
     private List<KeyResult> keyResults;
 
-    @Column(name = "completionPoint", nullable = false)
+//    @Column(name = "completionPoint", nullable = false)
     private double completionPoint;
 
     public OKR(){

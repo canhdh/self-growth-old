@@ -1,18 +1,20 @@
-package repository;
+package com.selfgrowth.core.keyresult.repository;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
 import com.selfgrowth.model.keyResult.KeyResult;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface KeyResultRepository extends PagingAndSortingRepository<KeyResult,String> {
+@Repository
+public interface KeyResultRepository extends JpaRepository<KeyResult, Integer> {
     /**
      * Delete a user entry from  the database.
      *
      * @param deleter The deleted user entry.
      */
     void delete(KeyResult deleter);
-
     /**
      * Find all KeyResult entries from the database.
      *
@@ -23,10 +25,10 @@ public interface KeyResultRepository extends PagingAndSortingRepository<KeyResul
     /**
      * Finds the information of a single KeyResult entry.
      *
-     * @param id The id of the requested user entry
+     * @param keyResultID The keyResultID of the requested user entry
      * @return The information of the found KeyResult entry
      */
-    KeyResult findOne(int id);
+    Optional<KeyResult> findByKeyResultID(int keyResultID);
 
     /**
      * r
@@ -37,6 +39,4 @@ public interface KeyResultRepository extends PagingAndSortingRepository<KeyResul
      */
 
     KeyResult save(KeyResult saved);
-
-    List<KeyResult> findKeyResultById(int keyResultId);
 }

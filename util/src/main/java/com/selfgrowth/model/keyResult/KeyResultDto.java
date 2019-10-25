@@ -2,15 +2,11 @@ package com.selfgrowth.model.keyResult;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
-import com.selfgrowth.model.owner.Owner;
-import com.selfgrowth.model.step.Step;
-
-import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 import java.util.Objects;
 
 public class KeyResultDto {
+    private int id;
     @JsonProperty("keyresult_id")
     private int keyResultID;
     @JsonProperty("title")
@@ -20,7 +16,7 @@ public class KeyResultDto {
     @JsonProperty("completion_point")
     private double comletionPoint;
     @JsonProperty("steps")
-    private List<Step> steps;
+    private String steps;
 
     public KeyResultDto() {
     }
@@ -66,11 +62,11 @@ public class KeyResultDto {
         this.comletionPoint = comletionPoint;
     }
 
-    public List<Step> getSteps() {
+    public String getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(String steps) {
         this.steps = steps;
     }
 
@@ -79,7 +75,7 @@ public class KeyResultDto {
         private String title;
         private Date dueDate;
         private double comletionPoint;
-        private List<Step> steps;
+        private String steps;
 
         public Builder() {
         }
@@ -104,7 +100,7 @@ public class KeyResultDto {
             return this;
         }
 
-        public Builder Steps(List<Step> steps){
+        public Builder Steps(String steps){
             this.steps = steps;
             return this;
         }

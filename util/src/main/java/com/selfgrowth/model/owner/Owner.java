@@ -6,20 +6,20 @@ import com.google.common.base.MoreObjects;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "owner")
+//@Entity
+//@Table(name = "owner")
 public class Owner {
-    @Id
-    @GeneratedValue
-    @Column(name = "ownerID", nullable = false)
+//    @Id
+//    @GeneratedValue
+//    @Column(name = "ownerID", nullable = false)
     @JsonProperty("ownerID_Owner")
     private int ownerID;
 
-    @Column(name = "name", length = 45, nullable = false)
+//    @Column(name = "name", length = 45, nullable = false)
     @JsonProperty("name")
     private String name;
 
-    @Column(name = "email",length = 45, nullable = false)
+//    @Column(name = "email",length = 45, nullable = false)
     @JsonProperty("email")
     private String email;
 

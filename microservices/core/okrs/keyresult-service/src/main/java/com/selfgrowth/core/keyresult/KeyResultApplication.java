@@ -1,7 +1,9 @@
 package com.selfgrowth.core.keyresult;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -15,6 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
+@EntityScan("com.selfgrowth.model.keyResult")
+@ComponentScan("com.selfgrowth.core.keyresult")
 public class KeyResultApplication {
     public static void main(String[] args) {
         SpringApplication.run(KeyResultApplication.class,args);
@@ -24,7 +28,7 @@ public class KeyResultApplication {
     public Docket swaggerPersonApi10() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("microservices.core.okrs.keyresult-service.src.main.java.com.selfgrowth.core.keyresult.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.selfgrowth.core.keyresult.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(new ApiInfoBuilder().version("1.0").title("User Service API").description("Documentation User API v1.0").build());
