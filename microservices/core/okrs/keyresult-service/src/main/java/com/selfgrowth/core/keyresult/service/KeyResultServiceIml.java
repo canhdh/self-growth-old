@@ -60,7 +60,7 @@ public class KeyResultServiceIml implements KeyResultService {
     public KeyResultDto delete(int keyResultID) {
         KeyResult deleted = findKeyResultByID(keyResultID);
         if (deleted != null) {
-            repository.deleteById(deleted.getKeyResultID());
+            repository.deleteByKeyResultID(deleted.getKeyResultID());
             return convertToDTO(deleted);
         } else return null;
     }

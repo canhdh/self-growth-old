@@ -41,9 +41,9 @@ public class KeyResultController {
         }
     }
 
-    @DeleteMapping(value = "{/id}",produces = "application/json")
-    public ResponseEntity<?>  delete(@PathVariable int id){
-        KeyResultDto keyResultDto = keyResultServiceIml.delete(id);
+    @DeleteMapping(value = "{/keyResultID}",produces = "application/json")
+    public ResponseEntity<?>  delete(@RequestParam int keyResultID){
+        KeyResultDto keyResultDto = keyResultServiceIml.delete(keyResultID);
         if (keyResultDto !=null) {
             return new ResponseEntity<>(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK);
         }
