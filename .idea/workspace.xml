@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99c1f60c-f443-4ab3-ae65-707d96d2ac5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/core.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresult-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/microservices.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/self-growth.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/util.iml" beforeDir="false" />
-    </list>
+    <list default="true" id="f01e1e03-5070-4553-a725-8cf96f789f48" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
