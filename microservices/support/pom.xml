@@ -12,6 +12,11 @@
     <artifactId>support</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
     <modules>
         <module>discovery-services</module>
         <module>edge-service</module>
