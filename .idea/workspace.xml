@@ -2,31 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c1f60c-f443-4ab3-ae65-707d96d2ac5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/core.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresult-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresult-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresultservice.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/KeyResultApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/KeyResultApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/controller/KeyResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/controller/KeyResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/repository/KeyResultRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/repository/KeyResultRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/service/KeyResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/service/KeyResultService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/service/KeyResultServiceIml.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult/service/KeyResultServiceIml.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/core/okrs/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/microservices.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/microservices.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservices/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/microservices/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/self-growth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/self-growth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/util/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/keyResult/KeyResultDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okr/OKR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okrtype/OKRType.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/okrtype/OKRType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/owner/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/util/src/main/java/com/selfgrowth/model/owner/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/util/util.iml" beforeDir="false" afterPath="$PROJECT_DIR$/util/util.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/core.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/keyresult-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/core/okrs/okrs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservices/microservices.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/self-growth.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/util.iml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +53,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/microservices/core/okrs/keyresult-service/src/main/java/com/selfgrowth/core/keyresult" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
