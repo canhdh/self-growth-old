@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="discovery-services" />
+        <module name="keyresult-service" />
+        <module name="edge-service" />
+        <module name="util" />
+        <module name="support" />
+        <module name="microservices" />
+        <module name="zipkin-server-final" />
+        <module name="core" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="core" target="11" />
+      <module name="demo" target="11" />
+      <module name="discovery-services" target="11" />
+      <module name="edge-service" target="11" />
+      <module name="keyresult-service" target="11" />
+      <module name="microservices" target="11" />
+      <module name="okrs" target="11" />
+      <module name="self-growth" target="11" />
+      <module name="support" target="11" />
+      <module name="util" target="11" />
+      <module name="zipkin-server-final" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="core" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="discovery-services" options="-parameters" />
+      <module name="edge-service" options="-parameters" />
+      <module name="keyresult-service" options="-parameters" />
+      <module name="microservices" options="-parameters" />
+      <module name="support" options="-parameters" />
+      <module name="util" options="-parameters" />
+      <module name="zipkin-server-final" options="-parameters" />
+    </option>
+  </component>
+</project>

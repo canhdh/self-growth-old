@@ -2,22 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>support</artifactId>
-        <groupId>com.k001.java-backend</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>com.selfgrowth.microservices.support</groupId>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.k001.selfgrowth</groupId>
+    <groupId>com.selfgrowth.microservices.support.discovery-services</groupId>
     <artifactId>discovery-services</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
-        <project.build.directory>build</project.build.directory>
     </properties>
 
     <dependencies>
