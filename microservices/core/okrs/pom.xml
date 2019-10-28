@@ -20,6 +20,7 @@
 
     <modules>
         <module>keyresult-service</module>
+        <module>objective-service</module>
     </modules>
 
 

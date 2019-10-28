@@ -15,6 +15,9 @@ public interface KeyResultRepository extends JpaRepository<KeyResult, Integer> {
      * @param deleter The deleted user entry.
      */
     void delete(KeyResult deleter);
+
+    void deleteByKeyResultID(int keyResultID);
+
     /**
      * Find all KeyResult entries from the database.
      *
