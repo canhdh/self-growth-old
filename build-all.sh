@@ -19,10 +19,16 @@ cd .. && cd zipkin-server-final
 # build zipkin-server image
 docker build -t zipkin-server:0.1 .
 
-# switch to keyResultService
+# switch to keyresult service
 cd ../.. && cd core/okrs/keyresult-service
 
-# build key result service
-docker build -t keyresult-service:1.0 .
+# build keyresult service image
+docker build -t keyresult-service:0.1 .
+
+# switch to ojective service
+cd ../ && cd objective-service
+
+# build ojective service image
+docker build -t objective-service:0.1 .
 
 cd ../../../

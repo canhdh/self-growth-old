@@ -21,9 +21,17 @@ services:
     links:
       - service-registry:service-registry
   keyresult-service:
-    image: keyresult-service:1.0
+    image: keyresult-service:0.1
     ports:
       - "8082:8082"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
+  objective-service:
+    image: objective-service:0.1
+    ports:
+      - "8083:8083"
     depends_on:
       - service-registry
     links:
