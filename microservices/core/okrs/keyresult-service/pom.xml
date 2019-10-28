@@ -5,11 +5,14 @@
     <parent>
         <artifactId>okrs</artifactId>
         <groupId>com.selfgrowth.microservices.core.okrs</groupId>
-        <version>1.0</version>
+        <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.selfgrowth.microservices.core.okrs.keyresult-service</groupId>
     <artifactId>keyresult-service</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
         <spring-boot.version>2.1.9.RELEASE</spring-boot.version>
@@ -21,7 +24,7 @@
         <dependency>
             <groupId>com.selfgrowth</groupId>
             <artifactId>util</artifactId>
-            <version>1.0</version>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -109,39 +112,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/libs
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>
-                                com.selfgrowth.core.keyresult.KeyResultApplication
-                            </mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+
         </plugins>
     </build>
 </project>

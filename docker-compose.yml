@@ -20,3 +20,11 @@ services:
       - service-registry
     links:
       - service-registry:service-registry
+  keyresult-service:
+    image: keyresult-service:1.0
+    ports:
+      - "8082:8082"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
