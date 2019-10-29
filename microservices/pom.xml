@@ -12,7 +12,7 @@
     <groupId>com.selfgrowth.microservices</groupId>
     <artifactId>microservices</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>
@@ -21,6 +21,7 @@
     <modules>
         <module>core</module>
         <module>support</module>
+        <module>composite</module>
     </modules>
 
 </project>
