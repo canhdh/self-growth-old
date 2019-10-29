@@ -4,13 +4,14 @@
 	<parent>
 		<groupId>com.selfgrowth.microservices.support</groupId>
 		<artifactId>support</artifactId>
-		<version>1.0</version>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.selfgrowth.microservices.support.zipkin-server-final</groupId>
 	<artifactId>zipkin-server-final</artifactId>
-	<version>1.0</version>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>zipkinserverfinal</name>
 
 	<properties>
@@ -79,39 +80,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>
-								${project.build.directory}/libs
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>libs/</classpathPrefix>
-							<mainClass>
-								com.k001.selfgrowth.zipkinserverfinal.ZipkinserverfinalApplication
-							</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

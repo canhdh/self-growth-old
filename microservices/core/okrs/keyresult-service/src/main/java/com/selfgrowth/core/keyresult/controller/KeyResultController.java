@@ -52,7 +52,7 @@ public class KeyResultController {
 
     @GetMapping(path = "/findByID",produces = "application/json")
     public ResponseEntity<?> findByKeyResultID(@RequestParam("KeyResult_ID") int keyResultID){
-        KeyResult keyResults = keyResultServiceIml.findKeyResultByID(keyResultID);
+        KeyResult keyResults = keyResultServiceIml.findByKeyResultID(keyResultID);
         if (keyResults != null){
             return new ResponseEntity<>(keyResults,HttpStatus.OK);
         } else {

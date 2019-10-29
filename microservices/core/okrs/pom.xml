@@ -5,7 +5,7 @@
     <parent>
         <artifactId>core</artifactId>
         <groupId>com.selfgrowth.microservices.core</groupId>
-        <version>1.0</version>
+        <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,10 +15,12 @@
 
     <groupId>com.selfgrowth.microservices.core.okrs</groupId>
     <artifactId>okrs</artifactId>
-    <version>1.0</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>keyresult-service</module>
+        <module>objective-service</module>
     </modules>
 
 

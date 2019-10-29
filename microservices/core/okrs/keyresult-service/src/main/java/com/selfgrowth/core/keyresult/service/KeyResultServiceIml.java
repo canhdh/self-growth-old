@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -26,7 +24,7 @@ public class KeyResultServiceIml implements KeyResultService {
 
     @Override
     public KeyResultDto create(KeyResultDto keyResultDto) {
-        KeyResult keyResults = findKeyResultByID(keyResultDto.getKeyResultID());
+        KeyResult keyResults = findByKeyResultID(keyResultDto.getKeyResultID());
         if (keyResults == null){
             KeyResult persisted = KeyResult.getBuilder()
                     .KeyResultID(keyResultDto.getKeyResultID())
@@ -44,7 +42,7 @@ public class KeyResultServiceIml implements KeyResultService {
 
     @Override
     public KeyResultDto update(KeyResultDto user) {
-        KeyResult updated = findKeyResultByID(user.getKeyResultID());
+        KeyResult updated = findByKeyResultID(user.getKeyResultID());
         if (updated != null) {
             updated.setKeyResultID(user.getKeyResultID());
             updated.setComletionPoint(user.getComletionPoint());
@@ -58,7 +56,7 @@ public class KeyResultServiceIml implements KeyResultService {
 
     @Override
     public KeyResultDto delete(int keyResultID) {
-        KeyResult deleted = findKeyResultByID(keyResultID);
+        KeyResult deleted = findByKeyResultID(keyResultID);
         if (deleted != null) {
             repository.deleteByKeyResultID(deleted.getKeyResultID());
             return convertToDTO(deleted);
@@ -66,7 +64,7 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
-    public KeyResult findKeyResultByID(int keyResultID) {
+    public KeyResult findByKeyResultID(int keyResultID) {
         KeyResult result = repository.findByKeyResultID(keyResultID).orElse(null);
         return result;
     }
