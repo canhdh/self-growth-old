@@ -4,13 +4,13 @@ import com.k001.selfgroth.registrationactivate.persistence.model.PasswordResetTo
 import com.k001.selfgroth.registrationactivate.persistence.model.VerificationToken;
 import com.k001.selfgroth.registrationactivate.service.IUserService;
 import com.k001.selfgroth.registrationactivate.web.dto.UserDto;
-import org.apache.tomcat.jni.User;
-import org.hibernate.cfg.Environment;
+import com.k001.selfgroth.registrationactivate.persistence.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -96,7 +96,7 @@ public class OnRegistrationCompleteEvent {
                 return "redirect:/badUser.html?lang=" + locale.getLanguage();
             }
 
-            user.setEnabled(true);
+            ((com.k001.selfgroth.registrationactivate.persistence.model.User) user).setEnabled(true);
             userService.saveRegisteredUser((com.k001.selfgroth.registrationactivate.persistence.model.User) user);
             model.addAttribute("message", messages.getMessage("message.accountVerified", null, locale));
             return "redirect:/login.html?lang=" + locale.getLanguage();
