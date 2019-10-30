@@ -4,18 +4,18 @@ services:
     image: service-registry:0.1
     ports:
       - "8761:8761"
-  api-gateway:
-    image: api-gateway:0.1
-    ports:
-      - "8762:8762"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
   zipkin-server:
     image: zipkin-server:0.1
     ports:
       - "9411:9411"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
+  api-gateway:
+    image: api-gateway:0.1
+    ports:
+      - "8762:8762"
     depends_on:
       - service-registry
     links:
