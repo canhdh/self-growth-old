@@ -5,13 +5,14 @@
     <parent>
         <groupId>com.selfgrowth.microservices</groupId>
         <artifactId>microservices</artifactId>
-        <version>1.0</version>
+        <version>0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.selfgrowth.microservices.support</groupId>
     <artifactId>support</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>

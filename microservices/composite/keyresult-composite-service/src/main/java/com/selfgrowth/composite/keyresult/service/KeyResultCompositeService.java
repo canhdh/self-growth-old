@@ -4,10 +4,13 @@ import com.selfgrowth.model.keyResult.KeyResultDto;
 import com.selfgrowth.model.util.DebugLog;
 import com.selfgrowth.model.util.ServiceUtils;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import java.util.List;
@@ -19,14 +22,13 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RestController
-
 public class KeyResultCompositeService {
-    private final Logger LOG = (Logger) LoggerFactory.getLogger(KeyResultCompositeService.class);
+    //private final Logger LOG = (Logger) LoggerFactory.getLogger(KeyResultCompositeService.class);
 
     private final KeyResultCompositeIntegration integration;
     private final ServiceUtils util;
 
-    @Inject
+    @Autowired
     public KeyResultCompositeService(KeyResultCompositeIntegration integration, ServiceUtils util) {
         this.integration = integration;
         this.util = util;
@@ -63,7 +65,7 @@ public class KeyResultCompositeService {
         return util.createOkResponse(okr);
     }
     private KeyResultDto createBasicKeyReusult(@RequestBody KeyResultDto KeyResultDto) {
-        ResponseEntity<KeyResultDto> responseEntity = integration.createKeyResultDto(KeyResultDto);
+        ResponseEntity<KeyResultDto> responseEntity = integration.createKeyResult(KeyResultDto);
         KeyResultDto okr = null;
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
             DebugLog.logMessage("Call to CreateBasicOKR failed: " + responseEntity.getStatusCode());

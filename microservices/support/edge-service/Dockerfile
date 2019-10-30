@@ -2,10 +2,7 @@
 FROM openjdk:11
 
 # copy zuul application
-COPY /target/demo-0.0.1-SNAPSHOT.jar /home/app.jar
-
-# copy libs
-COPY /target/libs /home/libs
+COPY /target/edge-service-0.1-SNAPSHOT.jar /home/app.jar
 
 # expose zuul port
 EXPOSE 8762
