@@ -21,7 +21,7 @@ public class KeyResultController {
         this.keyResultServiceIml = keyResultServiceIml;
     }
 
-    @PostMapping(path = "/create", produces = "application/json")
+    @PostMapping(produces = "application/json")
     public ResponseEntity<?> create(@RequestBody KeyResultDto keyResultDto){
         KeyResultDto saved = keyResultServiceIml.create(keyResultDto);
         if (saved != null){
@@ -31,7 +31,7 @@ public class KeyResultController {
         }
     }
 
-    @PutMapping(path = "/update", produces = "application/json")
+    @PutMapping(produces = "application/json")
     public ResponseEntity<?> update(@RequestBody KeyResultDto keyResultDto){
         keyResultDto = keyResultServiceIml.update(keyResultDto);
         if (keyResultDto == null){
@@ -41,8 +41,8 @@ public class KeyResultController {
         }
     }
 
-    @DeleteMapping(path = "/delete",produces = "application/json")
-    public ResponseEntity<?>  delete(@RequestParam("KeyResult_ID") int keyResultID){
+    @DeleteMapping(value = "/{id}",produces = "application/json")
+    public ResponseEntity<?>  delete(@PathVariable("id") int keyResultID){
         KeyResultDto keyResultDto = keyResultServiceIml.delete(keyResultID);
         if (keyResultDto !=null) {
             return new ResponseEntity<>(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK);
@@ -50,8 +50,8 @@ public class KeyResultController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(path = "/findByID",produces = "application/json")
-    public ResponseEntity<?> findByKeyResultID(@RequestParam("KeyResult_ID") int keyResultID){
+    @GetMapping(path = "/{id}",produces = "application/json")
+    public ResponseEntity<?> findByKeyResultID(@PathVariable("id") int keyResultID){
         KeyResult keyResults = keyResultServiceIml.findByKeyResultID(keyResultID);
         if (keyResults != null){
             return new ResponseEntity<>(keyResults,HttpStatus.OK);
@@ -60,7 +60,7 @@ public class KeyResultController {
         }
     }
 
-    @GetMapping(path = "/all", produces = "application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<KeyResultDto> keyResultDtoList = keyResultServiceIml.findAll();
         List<Integer> integers = new ArrayList<>();
