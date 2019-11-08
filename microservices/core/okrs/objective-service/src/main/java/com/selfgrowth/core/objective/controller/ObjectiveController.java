@@ -21,7 +21,7 @@ public class ObjectiveController {
         this.objectiveServiceIml = objectiveServiceIml;
     }
 
-    @PostMapping(path = "/create", produces = "application/json")
+    @PostMapping(produces = "application/json")
     public ResponseEntity<?> create(@RequestBody ObjectiveDto objectiveDto){
         ObjectiveDto saved = objectiveServiceIml.create(objectiveDto);
         if (saved != null){
@@ -31,7 +31,7 @@ public class ObjectiveController {
         }
     }
 
-    @PutMapping(path = "/update", produces = "application/json")
+    @PutMapping(produces = "application/json")
     public ResponseEntity<?> update(@RequestBody ObjectiveDto ObjectiveDto){
         ObjectiveDto = objectiveServiceIml.update(ObjectiveDto);
         if (ObjectiveDto == null){
@@ -41,8 +41,8 @@ public class ObjectiveController {
         }
     }
 
-    @DeleteMapping(path = "/delete",produces = "application/json")
-    public ResponseEntity<?>  delete(@RequestParam("Objective_ID") int ObjectiveID){
+    @DeleteMapping(value = "/{id}",produces = "application/json")
+    public ResponseEntity<?>  delete(@PathVariable("id") int ObjectiveID){
         ObjectiveDto objectiveDto = objectiveServiceIml.delete(ObjectiveID);
         if (objectiveDto !=null) {
             return new ResponseEntity<>(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK);
@@ -50,8 +50,8 @@ public class ObjectiveController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(path = "/findByID",produces = "application/json")
-    public ResponseEntity<?> findByObjectiveID(@RequestParam("Objective_ID") int ObjectiveID){
+    @GetMapping(path = "/{id}",produces = "application/json")
+    public ResponseEntity<?> findByObjectiveID(@PathVariable("id") int ObjectiveID){
         Objective objectives = objectiveServiceIml.findByObjectiveID(ObjectiveID);
         if (objectives != null){
             return new ResponseEntity<>(objectives,HttpStatus.OK);
@@ -60,7 +60,7 @@ public class ObjectiveController {
         }
     }
 
-    @GetMapping(path = "/all", produces = "application/json")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<ObjectiveDto> objectiveDtoList = objectiveServiceIml.findAll();
         List<Integer> integers = new ArrayList<>();
