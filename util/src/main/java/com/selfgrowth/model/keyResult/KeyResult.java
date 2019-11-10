@@ -2,6 +2,7 @@ package com.selfgrowth.model.keyResult;
 
 import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.step.Step;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "keyresult")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class KeyResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
