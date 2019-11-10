@@ -2,9 +2,12 @@ package com.selfgrowth.model.keyResult;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.sql.Date;
 import java.util.Objects;
 
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class KeyResultDto {
     private int id;
     @JsonProperty("keyresult_id")
