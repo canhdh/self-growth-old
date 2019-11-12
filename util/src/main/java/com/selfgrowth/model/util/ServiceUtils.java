@@ -29,11 +29,6 @@ public class ServiceUtils {
     public <T> ResponseEntity<T> createOkResponse(T body) {
         return createResponse(body, HttpStatus.OK);
     }
-
-    public <T> ResponseEntity<T> createMoneyResponse() {
-        return createResponse(null, HttpStatus.PAYMENT_REQUIRED);
-    }
-
     /**
      * Clone an existing result as a new one, filtering out http headers that not should be moved on and so on...
      *

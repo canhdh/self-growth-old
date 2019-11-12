@@ -6,6 +6,7 @@ import com.selfgrowth.model.keyResult.KeyResultDto;
 import com.selfgrowth.model.util.ServiceUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
@@ -22,7 +23,7 @@ public class KeyResultCompositeIntegration {
     private final ServiceUtils util;
     private final RestOperations restTemplate;
 
-    @Inject
+    @Autowired
     public KeyResultCompositeIntegration(ServiceUtils util, RestOperations restTemplate) {
         this.util = util;
         this.restTemplate = restTemplate;
@@ -31,28 +32,21 @@ public class KeyResultCompositeIntegration {
     // ----------------------- //
     // CREATE A KEYRÉULT       //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultKeyResult", commandProperties = {
+    @HystrixCommand(fallbackMethod = "defaultCreateKeyResult", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<KeyResultDto> createKeyResult(KeyResultDto keyResultDto) {
         LOG.info("Will call createKeyResult with hystrix protection");
-        //DebugLog.logMessage("Will call createKeyResult with hystrix protection");
 
         String url = "http://keyresult-service";
         LOG.debug("createKeyResult from URL:  " + url);
-        //DebugLog.logMessage("createKeyResult from URL " + url);
 
         ResponseEntity<KeyResultDto> resultstr = restTemplate.postForEntity(url, keyResultDto, KeyResultDto.class);
 
         LOG.debug("createKeyResult http-status: " + resultstr.getStatusCode());
-        //DebugLog.logMessage("createKeyResult http-status: " + resultstr.getStatusCode());
-
         LOG.debug("createKeyResult body: " + resultstr.getBody());
-        //DebugLog.logMessage("createKeyResult body: " + resultstr.getBody());
 
         KeyResultDto keyResultDtoResult = resultstr.getBody();
         LOG.debug("createKeyResult.cnt " + keyResultDtoResult.toString());
-        //DebugLog.logMessage("createKeyResult.cnt " + keyResultDtoResult.toString());
-
         return util.createOkResponse(keyResultDtoResult);
     }
 
@@ -61,9 +55,8 @@ public class KeyResultCompositeIntegration {
      *
      * @return
      */
-    public ResponseEntity<KeyResultDto> defaultKeyResult(KeyResultDto keyResultDto) {
+    public ResponseEntity<KeyResultDto> defaultCreateKeyResult(KeyResultDto keyResultDto) {
         LOG.debug("Using fallback method for keyresult-service with id = " + keyResultDto.getTitle());
-        //DebugLog.logMessage("Using fallback method for keyresult-service with id = " + keyResultDto.getTitle());
         return util.createResponse(
                 keyResultDto,
                 HttpStatus.OK);
@@ -72,26 +65,21 @@ public class KeyResultCompositeIntegration {
     // ---------------- //
     // GET A KEYRESULT  //
     // ---------------- //
-    @HystrixCommand(fallbackMethod = "defaultKeyResult", commandProperties = {
+    @HystrixCommand(fallbackMethod = "defaultGetKeyResult", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<KeyResultDto> getKeyResult (int id) {
         LOG.info("Will call createKeyResult with Hystrix protection ");
-        //DebugLog.logMessage("Will call createKeyResult with Hystrix protection ");
 
         String url = "http://keyresult-service/" + id;
         LOG.debug("get KeyResult from URL: " + url);
-        //DebugLog.logMessage("get KeyResult from URL: " + url);
 
         ResponseEntity<KeyResultDto> resultStr = restTemplate.getForEntity(url, KeyResultDto.class);
 
         LOG.debug("getKeyResult http-status: " + resultStr.getStatusCode());
-        //DebugLog.logMessage("getKeyResult http-status: " + resultStr.getStatusCode());
         LOG.debug("getKeyResult body: " + resultStr.getBody());
-        //DebugLog.logMessage("getKeyResult body: " + resultStr.getBody());
 
         KeyResultDto keyResultDtoResult = resultStr.getBody();
         LOG.debug("get KeyResult.cnt: " + resultStr.toString());
-        //DebugLog.logMessage("get KeyResult.cnt: " + resultStr.toString());
 
         return util.createOkResponse(keyResultDtoResult);
     }
@@ -100,11 +88,10 @@ public class KeyResultCompositeIntegration {
      *
      * @return
      */
-    public ResponseEntity<KeyResultDto> defaultKeyResult(int id) {
+    public ResponseEntity<KeyResultDto> defaultGetKeyResult(int id) {
         LOG.debug("Using fallback method for KeyResult-service with id = " + id);
-        //DebugLog.logMessage("Using fallback method for KeyResult-service with id = " + id);
         KeyResultDto keyResultDto = new KeyResultDto();
-        keyResultDto.setTitle("ERROR");
+        //keyResultDto.setTitle("ERROR");
         return util.createResponse(
                 keyResultDto,
                 HttpStatus.OK);
@@ -117,11 +104,9 @@ public class KeyResultCompositeIntegration {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<List<KeyResultDto>> getAllKeyResult(int keyResultId, int page) {
         LOG.info("Will call getAllKeyResult with Hystrix protection");
-        //DebugLog.logMessage("Will call getAllKeyResult with Hystrix protection");
 
         String url = "http://keyresult-service";
         LOG.debug("getAllKeyResult from URL: " + url);
-        //DebugLog.logMessage("getAllKeyResult from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -138,13 +123,10 @@ public class KeyResultCompositeIntegration {
                 entity,
                 String.class);
         LOG.debug("getAllKeyResult http-status: " + resultStr.getStatusCode());
-        //DebugLog.logMessage("getAllKeyResult http-status: " + resultStr.getStatusCode());
         LOG.debug("getAllKeyResult body: " + resultStr.getBody());
-        //DebugLog.logMessage("getAllKeyResult body: " + resultStr.getBody());
 
         List<KeyResultDto> keyResultDtoResult = response2KeyResult(resultStr);
         LOG.debug("getAllKeyResult.cnt: " + keyResultDtoResult.toString());
-        //DebugLog.logMessage("getAllKeyResult.cnt: " + keyResultDtoResult.toString());
 
         return util.createOkResponse(keyResultDtoResult);
     }
@@ -156,7 +138,7 @@ public class KeyResultCompositeIntegration {
      */
     public ResponseEntity<List<KeyResultDto>> defaultAllKeyResult(int keyResultId, int page) {
         LOG.debug("Using fallback method for KeyResultDto-service with keyResultId = " + keyResultId);
-        //DebugLog.logMessage("Using fallback method for KeyResultDto-service with keyResultId = " + keyResultId);
+
         return util.createResponse(
                 null,
                 HttpStatus.OK);
@@ -171,7 +153,6 @@ public class KeyResultCompositeIntegration {
             return locals;
         } catch (IOException e) {
             LOG.debug("IO-err. Failed to read JSON" + e);
-            //DebugLog.logMessage("IO-err. Failed to read JSON" + e);
             throw new RuntimeException(e);
         } catch (RuntimeException re) {
             LOG.debug("RTE-err. Failed to read JSON" + re);
@@ -188,11 +169,9 @@ public class KeyResultCompositeIntegration {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<KeyResultDto> updateKeyResult(KeyResultDto keyResultDto) {
         LOG.info("Will call updateKeyResultDto with Hystrix protection");
-        //DebugLog.logMessage("Will call updateKeyResultDto with Hystrix protection");
 
         String url = "http://keyresult-service";
         LOG.debug("updateKeyResult from URL: " + url);
-        //DebugLog.logMessage("updateKeyResult from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -215,7 +194,6 @@ public class KeyResultCompositeIntegration {
      */
     public ResponseEntity<KeyResultDto> defaultUpdateKeyResult(KeyResultDto keyResultDto) {
         LOG.debug("Using fallback method for KeyResultDto-service with id = " + keyResultDto.getKeyResultID());
-        //DebugLog.logMessage("Using fallback method for KeyResultDto-service with id = " + keyResultDto.getKeyResultID());
         KeyResultDto dto = new KeyResultDto();
         dto.setTitle("ERROR");
         return util.createResponse(
@@ -230,11 +208,9 @@ public class KeyResultCompositeIntegration {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<String> deleteKeyResult(int id) {
         LOG.info("Will call deleteKeyResult with Hystrix protection");
-        //DebugLog.logMessage("Will call deleteKeyResult with Hystrix protection");
 
         String url = "http://keyresult-service/" + id;
         LOG.debug("deleteKeyResultDto from URL: " + url);
-        //DebugLog.logMessage("deleteKeyResultDto from URL: " + url);
 
         restTemplate.delete(url);
 
@@ -248,7 +224,6 @@ public class KeyResultCompositeIntegration {
      */
     public ResponseEntity<String> defaultDeleteKeyResult(int id) {
         LOG.debug("Using fallback method for KeyResultDto-service with id = " + id);
-        //DebugLog.logMessage("Using fallback method for KeyResultDto-service with id = " + id);
         return util.createResponse(
                 "ERROR",
                 HttpStatus.OK);

@@ -17,6 +17,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RestController
+
 public class KeyResultCompositeService {
 
     private final KeyResultCompositeIntegration integration;
@@ -62,7 +63,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> responseEntity = integration.createKeyResult(KeyResultDto);
         KeyResultDto okr = null;
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to CreateBasicOKR failed: " + responseEntity.getStatusCode());
+            DebugLog.logMessage("Call to CreateBasicKeyResult failed: " + responseEntity.getStatusCode());
         } else {
             okr = responseEntity.getBody();
         }
@@ -73,7 +74,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> okrResult = integration.getKeyResult(id);
         KeyResultDto KeyResultDto = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to getBasicKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDto = okrResult.getBody();
         }
@@ -84,7 +85,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> keyResult = integration.updateKeyResult(KeyResultDto);
         KeyResultDto KeyResultDtoResult = null;
         if (!keyResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + keyResult.getStatusCode());
+            DebugLog.logMessage("Call to updateKeyResult failed: " + keyResult.getStatusCode());
         } else {
             KeyResultDtoResult = keyResult.getBody();
         }
@@ -96,7 +97,7 @@ public class KeyResultCompositeService {
         ResponseEntity<List<KeyResultDto>> okrResult = integration.getAllKeyResult(keyResultId, page);
         List<KeyResultDto> KeyResultDtoList = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to getAllKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDtoList = okrResult.getBody();
         }
@@ -107,7 +108,7 @@ public class KeyResultCompositeService {
         ResponseEntity<String> okrResult = integration.deleteKeyResult(id);
         String KeyResultDtoResult = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to deleteKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDtoResult = okrResult.getBody();
         }
