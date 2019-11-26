@@ -4,6 +4,10 @@ import com.selfgrowth.core.keyresult.repository.KeyResultRepository;
 import com.selfgrowth.model.keyResult.KeyResult;
 import com.selfgrowth.model.keyResult.KeyResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +27,10 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
+    @Caching(
+            put = {@CachePut(value = "keyResultCache", key = "#keyResultID")},
+            evict = {@CacheEvict(value = "allKeyResultCache", allEntries = true)}
+    )
     public KeyResultDto create(KeyResultDto keyResultDto) {
         KeyResult keyResults = findByKeyResultID(keyResultDto.getKeyResultID());
         if (keyResults == null){
@@ -41,6 +49,10 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
+    @Caching(
+            put = {@CachePut(value = "keyResultCache", key = "#user.keyResultID")},
+            evict = {@CacheEvict(value = "allKeyResultCache", allEntries = true)}
+    )
     public KeyResultDto update(KeyResultDto user) {
         KeyResult updated = findByKeyResultID(user.getKeyResultID());
         if (updated != null) {
@@ -55,6 +67,12 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "keyResultCache", key = "#keyResultID"),
+                    @CacheEvict(value = "allKeyResultCache", allEntries = true)
+            }
+    )
     public KeyResultDto delete(int keyResultID) {
         KeyResult deleted = findByKeyResultID(keyResultID);
         if (deleted != null) {
@@ -64,12 +82,14 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
+    @Cacheable(value = "keyResultCache", key = "#keyResultID")
     public KeyResult findByKeyResultID(int keyResultID) {
         KeyResult result = repository.findByKeyResultID(keyResultID).orElse(null);
         return result;
     }
 
     @Override
+    @Cacheable(value = "allKeyResultCache", unless = "#result.size() == 0")
     public List<KeyResultDto> findAll() {
         List<KeyResult> keyResults = repository.findAll();
         return convertToDTOs(keyResults);

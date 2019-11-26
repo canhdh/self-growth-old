@@ -3,18 +3,13 @@ package com.selfgrowth.composite.keyresult.service;
 import com.selfgrowth.model.keyResult.KeyResultDto;
 import com.selfgrowth.model.util.DebugLog;
 import com.selfgrowth.model.util.ServiceUtils;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import java.util.List;
-import java.util.logging.Logger;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -22,8 +17,8 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RestController
+
 public class KeyResultCompositeService {
-    //private final Logger LOG = (Logger) LoggerFactory.getLogger(KeyResultCompositeService.class);
 
     private final KeyResultCompositeIntegration integration;
     private final ServiceUtils util;
@@ -47,20 +42,20 @@ public class KeyResultCompositeService {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<KeyResultDto>> getAllOKR(@RequestParam("okr_id") int id,
-                                                        @RequestParam("page") int page) {
-        ResponseEntity<List<KeyResultDto>> okr = getAllOKR(id, page);
-        return util.createResponse(okr);
+    public ResponseEntity<List<KeyResultDto>> getAllKeyRessult(@RequestParam("okr_id") int id,
+                                                               @RequestParam("page") int page) {
+        List<KeyResultDto> keyResult = getAllBasicKeyResult(id, page);
+        return util.createOkResponse(keyResult);
     }
 
     @PutMapping(produces = "application/json")
-    public ResponseEntity<KeyResultDto> updateOKR(@RequestBody KeyResultDto KeyResultDto) {
+    public ResponseEntity<KeyResultDto> updateKeyRessult(@RequestBody KeyResultDto KeyResultDto) {
         KeyResultDto okr = updateBasicKeyResult(KeyResultDto);
         return util.createOkResponse(okr);
     }
 
     @DeleteMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<String> deteteOKR(@PathVariable  int id) {
+    public ResponseEntity<String> deteteKeyResult(@PathVariable  int id) {
         String okr = deteteBasicKeyResult(id);
         return util.createOkResponse(okr);
     }
@@ -68,7 +63,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> responseEntity = integration.createKeyResult(KeyResultDto);
         KeyResultDto okr = null;
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to CreateBasicOKR failed: " + responseEntity.getStatusCode());
+            DebugLog.logMessage("Call to CreateBasicKeyResult failed: " + responseEntity.getStatusCode());
         } else {
             okr = responseEntity.getBody();
         }
@@ -79,7 +74,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> okrResult = integration.getKeyResult(id);
         KeyResultDto KeyResultDto = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to getBasicKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDto = okrResult.getBody();
         }
@@ -90,7 +85,7 @@ public class KeyResultCompositeService {
         ResponseEntity<KeyResultDto> keyResult = integration.updateKeyResult(KeyResultDto);
         KeyResultDto KeyResultDtoResult = null;
         if (!keyResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + keyResult.getStatusCode());
+            DebugLog.logMessage("Call to updateKeyResult failed: " + keyResult.getStatusCode());
         } else {
             KeyResultDtoResult = keyResult.getBody();
         }
@@ -98,11 +93,11 @@ public class KeyResultCompositeService {
     }
 
     private List<KeyResultDto> getAllBasicKeyResult(@RequestParam("okr_id") int keyResultId,
-                                        @RequestParam("page") int page) {
+                                                    @RequestParam("page") int page) {
         ResponseEntity<List<KeyResultDto>> okrResult = integration.getAllKeyResult(keyResultId, page);
         List<KeyResultDto> KeyResultDtoList = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to getAllKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDtoList = okrResult.getBody();
         }
@@ -113,11 +108,10 @@ public class KeyResultCompositeService {
         ResponseEntity<String> okrResult = integration.deleteKeyResult(id);
         String KeyResultDtoResult = null;
         if (!okrResult.getStatusCode().is2xxSuccessful()) {
-            DebugLog.logMessage("Call to OKR result failed: " + okrResult.getStatusCode());
+            DebugLog.logMessage("Call to deleteKeyResult failed: " + okrResult.getStatusCode());
         } else {
             KeyResultDtoResult = okrResult.getBody();
         }
         return KeyResultDtoResult;
     }
-
 }

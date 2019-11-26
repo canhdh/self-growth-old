@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,10 +22,11 @@ public class KeyResultController {
 
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> create(@RequestBody KeyResultDto keyResultDto){
-        KeyResultDto saved = keyResultServiceIml.create(keyResultDto);
-        if (saved != null){
+        try {
+            KeyResultDto saved = keyResultServiceIml.create(keyResultDto);
             return new ResponseEntity<>(saved, HttpStatus.OK);
-        } else  {
+        } catch (NullPointerException e){
+            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.SEE_OTHER.getReasonPhrase(),HttpStatus.SEE_OTHER);
         }
     }
@@ -63,10 +63,6 @@ public class KeyResultController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<KeyResultDto> keyResultDtoList = keyResultServiceIml.findAll();
-        List<Integer> integers = new ArrayList<>();
-        for(KeyResultDto keyResultDto : keyResultDtoList){
-            integers.add(keyResultDto.getKeyResultID());
-        }
         return new ResponseEntity<>(keyResultDtoList,HttpStatus.OK);
     }
 
