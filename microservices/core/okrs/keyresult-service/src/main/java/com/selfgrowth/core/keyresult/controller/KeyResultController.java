@@ -50,7 +50,7 @@ public class KeyResultController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(path = "/{id}",produces = "application/json")
+    @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<?> findByKeyResultID(@PathVariable("id") int keyResultID){
         KeyResult keyResults = keyResultServiceIml.findByKeyResultID(keyResultID);
         if (keyResults != null){
