@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "objective")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Objective {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

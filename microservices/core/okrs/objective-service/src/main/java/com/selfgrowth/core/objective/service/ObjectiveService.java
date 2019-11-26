@@ -6,9 +6,14 @@ import com.selfgrowth.model.objective.ObjectiveDto;
 import java.util.List;
 
 public interface ObjectiveService {
-    ObjectiveDto create(ObjectiveDto ObjectiveDto);
+
+    ObjectiveDto create(ObjectiveDto objectiveDto);
+
     Objective findByObjectiveID(int objectiveID);
+
     List<ObjectiveDto> findAll();
+
     ObjectiveDto update(ObjectiveDto user);
+
     ObjectiveDto delete(int objectiveID);
 }

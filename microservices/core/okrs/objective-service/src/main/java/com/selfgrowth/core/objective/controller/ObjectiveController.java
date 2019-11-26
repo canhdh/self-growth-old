@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -63,10 +62,6 @@ public class ObjectiveController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<ObjectiveDto> objectiveDtoList = objectiveServiceIml.findAll();
-        List<Integer> integers = new ArrayList<>();
-        for(ObjectiveDto ObjectiveDto : objectiveDtoList){
-            integers.add(ObjectiveDto.getObjectiveID());
-        }
         return new ResponseEntity<>(objectiveDtoList,HttpStatus.OK);
     }
 }

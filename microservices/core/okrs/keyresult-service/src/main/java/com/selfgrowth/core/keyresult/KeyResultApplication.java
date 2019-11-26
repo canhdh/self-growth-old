@@ -2,6 +2,7 @@ package com.selfgrowth.core.keyresult;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -21,6 +22,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EntityScan("com.selfgrowth.model.keyResult")
 @ComponentScan("com.selfgrowth.core.keyresult")
 @EnableEurekaClient
+@EnableCaching
 public class KeyResultApplication {
     public static void main(String[] args) {
         SpringApplication.run(KeyResultApplication.class,args);
