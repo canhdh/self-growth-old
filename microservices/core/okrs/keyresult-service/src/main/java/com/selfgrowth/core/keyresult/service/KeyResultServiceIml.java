@@ -89,6 +89,12 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
+    public KeyResultDto findByKeyResultIDConvertToDto(int keyResultID) {
+        KeyResult result = repository.findByKeyResultID(keyResultID).orElse(null);
+        return convertToDTO(result);
+    }
+
+    @Override
     @Cacheable(value = "allKeyResultCache", unless = "#result.size() == 0")
     public List<KeyResultDto> findAll() {
         List<KeyResult> keyResults = repository.findAll();

@@ -11,6 +11,8 @@ public interface ObjectiveService {
 
     Objective findByObjectiveID(int objectiveID);
 
+    ObjectiveDto findByObjectiveIDConvertToDto(int objectiveID);
+
     List<ObjectiveDto> findAll();
 
     ObjectiveDto update(ObjectiveDto user);

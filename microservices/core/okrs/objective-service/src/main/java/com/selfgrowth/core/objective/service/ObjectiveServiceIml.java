@@ -49,6 +49,12 @@ public class ObjectiveServiceIml implements ObjectiveService {
     }
 
     @Override
+    public ObjectiveDto findByObjectiveIDConvertToDto(int objectiveID) {
+        Objective objective = objectiveRepository.findByObjectiveID(objectiveID).orElse(null);
+        return convertToDTO(objective);
+    }
+
+    @Override
     @Cacheable(value = "allObjectiveCache", unless = "#result.size() == 0")
     public List<ObjectiveDto> findAll() {
         List<Objective> objectives = objectiveRepository.findAll();

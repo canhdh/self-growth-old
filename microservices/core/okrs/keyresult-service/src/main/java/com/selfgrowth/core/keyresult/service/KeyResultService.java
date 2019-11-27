@@ -10,6 +10,8 @@ public interface KeyResultService {
 
     KeyResult findByKeyResultID(int keyResultID);
 
+    KeyResultDto findByKeyResultIDConvertToDto(int keyResultID);
+
     List<KeyResultDto> findAll();
 
     KeyResultDto update(KeyResultDto user);
