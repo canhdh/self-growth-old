@@ -51,9 +51,9 @@ public class ObjectiveController {
 
     @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<?> findByObjectiveID(@PathVariable("id") int ObjectiveID){
-        Objective objectives = objectiveServiceIml.findByObjectiveID(ObjectiveID);
-        if (objectives != null){
-            return new ResponseEntity<>(objectives,HttpStatus.OK);
+        ObjectiveDto objectiveDto = objectiveServiceIml.findByObjectiveIDConvertToDto(ObjectiveID);
+        if (objectiveDto != null){
+            return new ResponseEntity<>(objectiveDto,HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
         }

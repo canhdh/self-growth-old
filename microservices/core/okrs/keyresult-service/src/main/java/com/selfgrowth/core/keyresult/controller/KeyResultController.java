@@ -52,9 +52,9 @@ public class KeyResultController {
 
     @GetMapping(value = "/{id}",produces = "application/json")
     public ResponseEntity<?> findByKeyResultID(@PathVariable("id") int keyResultID){
-        KeyResult keyResults = keyResultServiceIml.findByKeyResultID(keyResultID);
-        if (keyResults != null){
-            return new ResponseEntity<>(keyResults,HttpStatus.OK);
+        KeyResultDto keyResultDto = keyResultServiceIml.findByKeyResultIDConvertToDto(keyResultID);
+        if (keyResultDto != null){
+            return new ResponseEntity<>(keyResultDto,HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
         }

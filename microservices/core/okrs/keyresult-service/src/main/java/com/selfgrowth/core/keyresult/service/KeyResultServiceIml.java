@@ -82,13 +82,13 @@ public class KeyResultServiceIml implements KeyResultService {
     }
 
     @Override
-    @Cacheable(value = "keyResultCache", key = "#keyResultID")
     public KeyResult findByKeyResultID(int keyResultID) {
         KeyResult result = repository.findByKeyResultID(keyResultID).orElse(null);
         return result;
     }
 
     @Override
+    @Cacheable(value = "keyResultCache", key = "#keyResultID")
     public KeyResultDto findByKeyResultIDConvertToDto(int keyResultID) {
         KeyResult result = repository.findByKeyResultID(keyResultID).orElse(null);
         return convertToDTO(result);
