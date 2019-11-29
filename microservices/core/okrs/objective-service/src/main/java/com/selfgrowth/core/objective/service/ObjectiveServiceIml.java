@@ -42,13 +42,13 @@ public class ObjectiveServiceIml implements ObjectiveService {
     }
 
     @Override
-    @Cacheable(value = "objectiveCache", key = "#objectiveID")
     public Objective findByObjectiveID(int objectiveID) {
         Objective objective = objectiveRepository.findByObjectiveID(objectiveID).orElse(null);
         return objective;
     }
 
     @Override
+    @Cacheable(value = "objectiveCache", key = "#objectiveID")
     public ObjectiveDto findByObjectiveIDConvertToDto(int objectiveID) {
         Objective objective = objectiveRepository.findByObjectiveID(objectiveID).orElse(null);
         return convertToDTO(objective);
