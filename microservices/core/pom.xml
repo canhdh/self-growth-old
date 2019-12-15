@@ -20,6 +20,7 @@
 
     <modules>
         <module>okrs</module>
+        <module>diary</module>
     </modules>
 
 
