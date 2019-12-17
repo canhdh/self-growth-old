@@ -75,7 +75,7 @@ public class DiaryServiceIml implements DiaryService {
             }
     )
     public DiaryDto delete(int diaryID) {
-        Diary deleted = findByKeyResultID(diaryID);
+        Diary deleted = findByDiaryID(diaryID);
         if (deleted != null) {
             repository.deleteByDiaryID(deleted.getDiaryID());
             return convertToDTO(deleted);
@@ -90,15 +90,15 @@ public class DiaryServiceIml implements DiaryService {
 
     @Override
     @Cacheable(value = "diaryCache", key = "#diaryID")
-    public DiaryDto findByKeyResultIDConvertToDto(int diaryID) {
+    public DiaryDto findByDiaryIDConvertToDto(int diaryID) {
         Diary result = repository.findByDiaryID(diaryID).orElse(null);
         return convertToDTO(result);
     }
 
     @Override
-    @Cacheable(value = "allKeyResultCache", unless = "#result.size() == 0")
+    @Cacheable(value = "allDiaryCache", unless = "#result.size() == 0")
     public List<DiaryDto> findAll() {
-        List<Diary> keyResults = repository.findAll();
+        List<Diary> diary = repository.findAll();
         return convertToDTOs(diary);
     }
 

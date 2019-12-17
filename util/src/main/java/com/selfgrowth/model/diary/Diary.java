@@ -1,7 +1,5 @@
 package com.selfgrowth.model.diary;
 
-import com.selfgrowth.model.keyResult.KeyResult;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
