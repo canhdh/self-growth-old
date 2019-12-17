@@ -16,10 +16,10 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Bean
     public CacheManager cacheManager(){
         SimpleCacheManager cacheManager = new SimpleCacheManager();
-        Cache listKeyResults = new ConcurrentMapCache("diaryCache");
-        Cache keyResult = new ConcurrentMapCache("alldiaryCache");
+        Cache listDiary = new ConcurrentMapCache("diaryCache");
+        Cache diary = new ConcurrentMapCache("alldiaryCache");
 
-        cacheManager.setCaches(Arrays.asList(listKeyResults,keyResult));
+        cacheManager.setCaches(Arrays.asList(listDiary,diary));
         return cacheManager;
     }
 }
