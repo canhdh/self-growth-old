@@ -9,7 +9,7 @@ import java.util.List;
 public interface DiaryService {
     DiaryDto create(DiaryDto diaryDto);
 
-    Diary findByDiaryID(int diary);
+    Diary findByDiaryId(int diary);
 
     DiaryDto findByDiaryIDConvertToDto(int diary);
 
@@ -17,5 +17,5 @@ public interface DiaryService {
 
     DiaryDto update(DiaryDto user);
 
-    DiaryDto delete(int diaryID);
+    DiaryDto delete(int diaryId);
 }

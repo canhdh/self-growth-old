@@ -8,7 +8,7 @@ import java.util.Objects;
 public class DiaryDto {
     private int id;
     @JsonProperty("diary_id")
-    private int diaryID;
+    private int diaryId;
     @JsonProperty("title")
     private String title;
     @JsonProperty("due_date")
@@ -22,7 +22,7 @@ public class DiaryDto {
     }
 
     public DiaryDto(DiaryDto.Builder builder){
-        this.diaryID = builder.keyResultID;
+        this.diaryId = builder.diaryId;
         this.title = builder.title;
         this.dueDate = builder.dueDate;
         this.comletionPoint = builder.comletionPoint;
@@ -30,12 +30,12 @@ public class DiaryDto {
     }
     public static DiaryDto.Builder getBuilder(){return new Builder();}
 
-    public int getKeyResultID() {
-        return diaryID;
+    public int getDiaryId() {
+        return diaryId;
     }
 
-    public void setKeyResultID(int keyResultID) {
-        this.diaryID = keyResultID;
+    public void setDiaryId(int diaryId) {
+        this.diaryId = diaryId;
     }
 
     public String getTitle() {
@@ -71,7 +71,7 @@ public class DiaryDto {
     }
 
     public static class Builder{
-        private int keyResultID;
+        private int diaryId;
         private String title;
         private Date dueDate;
         private double comletionPoint;
@@ -80,17 +80,17 @@ public class DiaryDto {
         public Builder() {
         }
 
-        public DiaryDto.Builder KeyResultID(int keyResultID){
-            this.keyResultID = keyResultID;
+        public DiaryDto.Builder DiaryId(int diaryId){
+            this.diaryId = diaryId;
             return  this;
         }
 
-        public DiaryDto.Builder Title(String title){
+        public DiaryDto.Builder title(String title){
             this.title = title;
             return this;
         }
 
-        public DiaryDto.Builder Duedate(Date dueDate){
+        public DiaryDto.Builder duedate(Date dueDate){
             this.dueDate = dueDate;
             return  this;
         }
@@ -100,7 +100,7 @@ public class DiaryDto {
             return this;
         }
 
-        public DiaryDto.Builder Steps(String steps){
+        public DiaryDto.Builder steps(String steps){
             this.steps = steps;
             return this;
         }
@@ -118,7 +118,7 @@ public class DiaryDto {
         if (!(o instanceof DiaryDto)) return false;
         DiaryDto diaryDto = (DiaryDto) o;
         return id == diaryDto.id &&
-                diaryID == diaryDto.diaryID &&
+                diaryId == diaryDto.diaryId &&
                 Double.compare(diaryDto.comletionPoint, comletionPoint) == 0 &&
                 Objects.equals(title, diaryDto.title) &&
                 Objects.equals(dueDate, diaryDto.dueDate) &&
@@ -127,12 +127,12 @@ public class DiaryDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, diaryID, title, dueDate, comletionPoint, steps);
+        return Objects.hash(id, diaryId, title, dueDate, comletionPoint, steps);
     }
 
-    public DiaryDto(int id, int keyResultID, String title, Date dueDate, double comletionPoint, String steps) {
+    public DiaryDto(int id, int diaryId, String title, Date dueDate, double comletionPoint, String steps) {
         this.id = id;
-        this.diaryID = keyResultID;
+        this.diaryId = diaryId;
         this.title = title;
         this.dueDate = dueDate;
         this.comletionPoint = comletionPoint;
@@ -143,7 +143,7 @@ public class DiaryDto {
     public String toString() {
         return "DiaryDto{" +
                 "id=" + id +
-                ", diaryID=" + diaryID +
+                ", diaryId=" + diaryId +
                 ", title='" + title + '\'' +
                 ", dueDate=" + dueDate +
                 ", comletionPoint=" + comletionPoint +

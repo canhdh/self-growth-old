@@ -33,14 +33,14 @@ public class DiaryServiceIml implements DiaryService {
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
     public DiaryDto create(DiaryDto diaryDto) {
-        Diary diary = findByDiaryID(diaryDto.getDiaryID());
-        if (diary == null){
+        Diary create = findByDiaryId(diaryDto.getDiaryId());
+        if (create == null){
             Diary persisted = Diary.getBuilder()
-                    .DiaryID(diarytDto.getDiaryID())
-                    .CompletionPoint(diaryDto.getComletionPoint())
-                    .Duedate(diaryDto.getDueDate())
-                    .Steps(diaryDto.getSteps())
-                    .Title(diaryDto.getTitle())
+                    .DiaryId(diaryDto.getDiaryId())
+                    .completionPoint(diaryDto.getComletionPoint())
+                    .duedate(diaryDto.getDueDate())
+                    .steps(diaryDto.getSteps())
+                    .title(diaryDto.getTitle())
                     .build();
             persisted = repository.save(persisted);
             return convertToDTO(persisted);
@@ -51,13 +51,13 @@ public class DiaryServiceIml implements DiaryService {
 
     @Override
     @Caching(
-            put = {@CachePut(value = "DiaryCache", key = "#diaryID")},
+            put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
     public DiaryDto update(DiaryDto user) {
-        DiaryDto updated = findByDairyID(user.getDiaryID());
+        Diary updated = findByDiaryId(user.getDiaryId());
         if (updated != null) {
-            updated.setDiaryID(user.getDiaryID());
+            updated.setDiaryId(user.getDiaryId());
             updated.setComletionPoint(user.getComletionPoint());
             updated.setDueDate(user.getDueDate());
             updated.setSteps(user.getSteps());
@@ -74,24 +74,24 @@ public class DiaryServiceIml implements DiaryService {
                     @CacheEvict(value = "allDiaryCache", allEntries = true)
             }
     )
-    public DiaryDto delete(int diaryID) {
-        Diary deleted = findByDiaryID(diaryID);
+    public DiaryDto delete(int diaryId) {
+        Diary deleted = findByDiaryId(diaryId);
         if (deleted != null) {
-            repository.deleteByDiaryID(deleted.getDiaryID());
+            repository.deleteByDiaryID(deleted.getdiaryId());
             return convertToDTO(deleted);
         } else return null;
     }
 
     @Override
-    public Diary findByDiaryID(int diaryID) {
-        Diary result = repository.findByDiaryID(DiaryID).orElse(null);
+    public Diary findByDiaryId(int diaryId) {
+        Diary result = repository.findByDiaryID(diaryId).orElse(null);
         return result;
     }
 
     @Override
     @Cacheable(value = "diaryCache", key = "#diaryID")
-    public DiaryDto findByDiaryIDConvertToDto(int diaryID) {
-        Diary result = repository.findByDiaryID(diaryID).orElse(null);
+    public DiaryDto findByDiaryIDConvertToDto(int diaryId) {
+        Diary result = repository.findByDiaryID(diaryId).orElse(null);
         return convertToDTO(result);
     }
 
@@ -111,7 +111,7 @@ public class DiaryServiceIml implements DiaryService {
     private DiaryDto convertToDTO(Diary model) {
         DiaryDto dto = new DiaryDto();
         if (model != null) {
-            dto.setDiaryID(model.getDiaryID());
+            dto.setDiaryId(model.getdiaryId());
             dto.setComletionPoint(model.getComletionPoint());
             dto.setDueDate(model.getDueDate());
             dto.setSteps(model.getSteps());
