@@ -2,7 +2,7 @@ package com.selfgrowth.composite.keyresult.service;
 
 import com.selfgrowth.model.keyResult.KeyResultDto;
 import com.selfgrowth.model.util.DebugLog;
-import com.selfgrowth.model.util.ServiceUtils;
+import com.selfgrowth.model.util.KeyResultServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +21,10 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class KeyResultCompositeService {
 
     private final KeyResultCompositeIntegration integration;
-    private final ServiceUtils util;
+    private final KeyResultServiceUtils util;
 
     @Autowired
-    public KeyResultCompositeService(KeyResultCompositeIntegration integration, ServiceUtils util) {
+    public KeyResultCompositeService(KeyResultCompositeIntegration integration, KeyResultServiceUtils util) {
         this.integration = integration;
         this.util = util;
     }

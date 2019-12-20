@@ -3,7 +3,7 @@ package com.selfgrowth.composite.keyresult.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.selfgrowth.model.keyResult.KeyResultDto;
-import com.selfgrowth.model.util.ServiceUtils;
+import com.selfgrowth.model.util.KeyResultServiceUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -20,11 +19,11 @@ import java.util.List;
 @Component
 public class KeyResultCompositeIntegration {
     private static final Logger LOG =Logger.getLogger(KeyResultCompositeIntegration.class);
-    private final ServiceUtils util;
+    private final KeyResultServiceUtils util;
     private final RestOperations restTemplate;
 
     @Autowired
-    public KeyResultCompositeIntegration(ServiceUtils util, RestOperations restTemplate) {
+    public KeyResultCompositeIntegration(KeyResultServiceUtils util, RestOperations restTemplate) {
         this.util = util;
         this.restTemplate = restTemplate;
     }

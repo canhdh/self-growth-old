@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>diary</artifactId>
-
     <groupId>com.selfgrowth.microservices.core.okrs.diary-service</groupId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>

@@ -30,7 +30,7 @@ public class DiaryDto {
     }
     public static DiaryDto.Builder getBuilder(){return new Builder();}
 
-    public int getKeyResultID() {
+    public int getID() {
         return diaryID;
     }
 

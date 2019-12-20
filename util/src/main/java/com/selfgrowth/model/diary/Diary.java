@@ -28,6 +28,8 @@ public class Diary {
     public Diary() {
     }
 
+
+
     public Diary(Diary.Builder builder){
         this.diaryID = builder.diaryID;
         this.title = builder.title;
