@@ -29,14 +29,14 @@ public class DiaryServiceIml implements DiaryService {
 
     @Override
     @Caching(
-            put = {@CachePut(value = "DiaryCache", key = "#diaryID")},
+            put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
     public DiaryDto create(DiaryDto diaryDto) {
         Diary create = findByDiaryId(diaryDto.getDiaryId());
         if (create == null){
             Diary persisted = Diary.getBuilder()
-                    .DiaryId(diaryDto.getDiaryId())
+                    .diaryId(diaryDto.getDiaryId())
                     .completionPoint(diaryDto.getComletionPoint())
                     .duedate(diaryDto.getDueDate())
                     .steps(diaryDto.getSteps())
@@ -70,28 +70,28 @@ public class DiaryServiceIml implements DiaryService {
     @Override
     @Caching(
             evict = {
-                    @CacheEvict(value = "diaryCache", key = "#diaryID"),
+                    @CacheEvict(value = "diaryCache", key = "#diaryId"),
                     @CacheEvict(value = "allDiaryCache", allEntries = true)
             }
     )
     public DiaryDto delete(int diaryId) {
         Diary deleted = findByDiaryId(diaryId);
         if (deleted != null) {
-            repository.deleteByDiaryID(deleted.getdiaryId());
+            repository.deleteByDiaryId(deleted.getDiaryId());
             return convertToDTO(deleted);
         } else return null;
     }
 
     @Override
     public Diary findByDiaryId(int diaryId) {
-        Diary result = repository.findByDiaryID(diaryId).orElse(null);
+        Diary result = repository.findByDiaryId(diaryId).orElse(null);
         return result;
     }
 
     @Override
-    @Cacheable(value = "diaryCache", key = "#diaryID")
-    public DiaryDto findByDiaryIDConvertToDto(int diaryId) {
-        Diary result = repository.findByDiaryID(diaryId).orElse(null);
+    @Cacheable(value = "diaryCache", key = "#diaryId")
+    public DiaryDto findByDiaryIdConvertToDto(int diaryId) {
+        Diary result = repository.findByDiaryId(diaryId).orElse(null);
         return convertToDTO(result);
     }
 
@@ -111,7 +111,7 @@ public class DiaryServiceIml implements DiaryService {
     private DiaryDto convertToDTO(Diary model) {
         DiaryDto dto = new DiaryDto();
         if (model != null) {
-            dto.setDiaryId(model.getdiaryId());
+            dto.setDiaryId(model.getDiaryId());
             dto.setComletionPoint(model.getComletionPoint());
             dto.setDueDate(model.getDueDate());
             dto.setSteps(model.getSteps());

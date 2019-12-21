@@ -41,8 +41,8 @@ public class DiaryController {
     }
 
     @DeleteMapping(value = "/{id}",produces = "application/json")
-    public ResponseEntity<?>  delete(@PathVariable("id") int diaryID){
-        DiaryDto diaryDto = diaryServiceIml.delete(diaryID);
+    public ResponseEntity<?>  delete(@PathVariable("id") int diaryId){
+        DiaryDto diaryDto = diaryServiceIml.delete(diaryId);
         if (diaryDto !=null) {
             return new ResponseEntity<>(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK);
         }
@@ -50,8 +50,8 @@ public class DiaryController {
     }
 
     @GetMapping(value = "/{id}",produces = "application/json")
-    public ResponseEntity<?> findByDiaryID(@PathVariable("id") int diaryID){
-        DiaryDto diaryDto = diaryServiceIml.findByDiaryIDConvertToDto(diaryID);
+    public ResponseEntity<?> findByDiaryId(@PathVariable("id") int diaryId){
+        DiaryDto diaryDto = diaryServiceIml.findByDiaryIdConvertToDto(diaryId);
         if (diaryDto != null){
             return new ResponseEntity<>(diaryDto,HttpStatus.OK);
         } else {

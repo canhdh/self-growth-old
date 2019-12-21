@@ -45,7 +45,7 @@ public class Diary {
         this.id = id;
     }
 
-    public int getdiaryId() {
+    public int getDiaryId() {
         return diaryId;
     }
 
@@ -95,7 +95,7 @@ public class Diary {
         public Builder() {
         }
 
-        public Diary.Builder DiaryId(int diaryId){
+        public Diary.Builder diaryId(int diaryId){
             this.diaryId = diaryId;
             return  this;
         }
@@ -132,7 +132,7 @@ public class Diary {
         if (!(o instanceof Diary)) return false;
         Diary diary = (Diary) o;
         return getId() == diary.getId() &&
-                getdiaryId() == diary.getdiaryId() &&
+                getDiaryId() == diary.getDiaryId() &&
                 Double.compare(diary.getComletionPoint(), getComletionPoint()) == 0 &&
                 Objects.equals(getTitle(), diary.getTitle()) &&
                 Objects.equals(getDueDate(), diary.getDueDate()) &&
@@ -141,7 +141,7 @@ public class Diary {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getdiaryId(), getTitle(), getDueDate(), getComletionPoint(), getSteps());
+        return Objects.hash(getId(), getDiaryId(), getTitle(), getDueDate(), getComletionPoint(), getSteps());
     }
 
     @Override

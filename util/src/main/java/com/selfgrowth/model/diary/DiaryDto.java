@@ -80,7 +80,7 @@ public class DiaryDto {
         public Builder() {
         }
 
-        public DiaryDto.Builder DiaryId(int diaryId){
+        public DiaryDto.Builder diaryId(int diaryId){
             this.diaryId = diaryId;
             return  this;
         }
@@ -95,7 +95,7 @@ public class DiaryDto {
             return  this;
         }
 
-        public DiaryDto.Builder CompletionPoint(double comletionPoint){
+        public DiaryDto.Builder completionPoint(double comletionPoint){
             this.comletionPoint = comletionPoint;
             return this;
         }

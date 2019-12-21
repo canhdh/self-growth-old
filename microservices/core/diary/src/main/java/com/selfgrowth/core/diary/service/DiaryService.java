@@ -11,7 +11,7 @@ public interface DiaryService {
 
     Diary findByDiaryId(int diary);
 
-    DiaryDto findByDiaryIDConvertToDto(int diary);
+    DiaryDto findByDiaryIdConvertToDto(int diary);
 
     List<DiaryDto> findAll();
 
