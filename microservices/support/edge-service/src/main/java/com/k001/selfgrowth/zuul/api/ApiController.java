@@ -21,6 +21,7 @@ public class ApiController implements SwaggerResourcesProvider {
             List<SwaggerResource> resources =  new ArrayList<>();
             resources.add(swaggerResource("keyresult-service", "/api/keyresult-service/v2/api-docs","2.0"));
             resources.add(swaggerResource("objective-service", "/api/objective-service/v2/api-docs","2.0"));
+            resources.add(swaggerResource("diary-service", "/api/diary-service/v2/api-docs","2.0"));
             return resources;
         }
         private SwaggerResource swaggerResource(String name, String location, String version) {
