@@ -17,8 +17,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableSwagger2
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-@EnableAsync
+//@EnableAspectJAutoProxy(proxyTargetClass = true)
+//@EnableAsync
 @EntityScan("com.selfgrowth.model.keyResult")
 @ComponentScan("com.selfgrowth.core.keyresult")
 @EnableEurekaClient

@@ -8,18 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ServiceUtils {
+public class DiaryServiceUtils {
     private LoadBalancerClient loadBalancer;
     private String port;
 
     private String serviceAddress = null;
 
-    public ServiceUtils(){
+    public DiaryServiceUtils(){
     }
 
     @Autowired
-    public ServiceUtils(
-            @Value("server.port=8088") String port,
+    public DiaryServiceUtils(
+            @Value("server.port=8090") String port,
             LoadBalancerClient loadBalancer) {
 
         this.port = port;

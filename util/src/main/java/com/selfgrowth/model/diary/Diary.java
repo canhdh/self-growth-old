@@ -39,6 +39,8 @@ public class Diary {
 
     public static Diary.Builder getBuilder(){return new Diary.Builder();}
 
+
+
     public Diary(Diary.Builder builder){
         this.diaryId = builder.diaryId;
         this.title = builder.title;
