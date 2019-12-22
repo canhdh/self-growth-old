@@ -30,17 +30,19 @@ public class DiaryServiceIml implements DiaryService {
     @Override
     @Caching(
             put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
-            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
-    )
+            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)})
     public DiaryDto create(DiaryDto diaryDto) {
         Diary create = findByDiaryId(diaryDto.getDiaryId());
         if (create == null){
             Diary persisted = Diary.getBuilder()
                     .diaryId(diaryDto.getDiaryId())
-                    .completionPoint(diaryDto.getComletionPoint())
-                    .duedate(diaryDto.getDueDate())
-                    .steps(diaryDto.getSteps())
                     .title(diaryDto.getTitle())
+                    .category(diaryDto.getCategory())
+                    .severity(diaryDto.getSeverity())
+                    .priority(diaryDto.getPriority())
+                    .mood(diaryDto.getMood())
+                    .location(diaryDto.getLocation())
+                    .picture(diaryDto.getPicture())
                     .build();
             persisted = repository.save(persisted);
             return convertToDTO(persisted);
@@ -52,28 +54,26 @@ public class DiaryServiceIml implements DiaryService {
     @Override
     @Caching(
             put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
-            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
-    )
+            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)})
     public DiaryDto update(DiaryDto user) {
         Diary updated = findByDiaryId(user.getDiaryId());
         if (updated != null) {
             updated.setDiaryId(user.getDiaryId());
-            updated.setComletionPoint(user.getComletionPoint());
-            updated.setDueDate(user.getDueDate());
-            updated.setSteps(user.getSteps());
             updated.setTitle(user.getTitle());
+            updated.setCategory(user.getCategory());
+            updated.setSeverity(user.getSeverity());
+            updated.setPriority(user.getPriority());
+            updated.setMood(user.getMood());
+            updated.setLocation(user.getLocation());
+            updated.setPicture(user.getPicture());
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);
     }
 
     @Override
-    @Caching(
-            evict = {
-                    @CacheEvict(value = "diaryCache", key = "#diaryId"),
-                    @CacheEvict(value = "allDiaryCache", allEntries = true)
-            }
-    )
+    @Caching(evict = {@CacheEvict(value = "diaryCache", key = "#diaryId"),
+                      @CacheEvict(value = "allDiaryCache", allEntries = true)})
     public DiaryDto delete(int diaryId) {
         Diary deleted = findByDiaryId(diaryId);
         if (deleted != null) {
@@ -84,15 +84,15 @@ public class DiaryServiceIml implements DiaryService {
 
     @Override
     public Diary findByDiaryId(int diaryId) {
-        Diary result = repository.findByDiaryId(diaryId).orElse(null);
-        return result;
+        Diary diary = repository.findByDiaryId(diaryId).orElse(null);
+        return diary;
     }
 
     @Override
     @Cacheable(value = "diaryCache", key = "#diaryId")
     public DiaryDto findByDiaryIdConvertToDto(int diaryId) {
-        Diary result = repository.findByDiaryId(diaryId).orElse(null);
-        return convertToDTO(result);
+        Diary diary = repository.findByDiaryId(diaryId).orElse(null);
+        return convertToDTO(diary);
     }
 
     @Override
@@ -112,10 +112,13 @@ public class DiaryServiceIml implements DiaryService {
         DiaryDto dto = new DiaryDto();
         if (model != null) {
             dto.setDiaryId(model.getDiaryId());
-            dto.setComletionPoint(model.getComletionPoint());
-            dto.setDueDate(model.getDueDate());
-            dto.setSteps(model.getSteps());
             dto.setTitle(model.getTitle());
+            dto.setCategory(model.getCategory());
+            dto.setSeverity(model.getSeverity());
+            dto.setPriority(model.getPriority());
+            dto.setMood(model.getMood());
+            dto.setLocation(model.getLocation());
+            dto.setPicture(model.getPicture());
             return dto;
         } else return null;
     }

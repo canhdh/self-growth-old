@@ -137,7 +137,7 @@ public class KeyResultCompositeIntegration {
      * @return
      */
     public ResponseEntity<List<KeyResultDto>> defaultAllKeyResult(int keyResultId, int page) {
-        LOG.debug("Using fallback method for KeyResultDto-service with keyResultId = " + keyResultId);
+        LOG.debug("Using fallback method for DiaryDto-service with keyResultId = " + keyResultId);
 
         return util.createResponse(
                 null,
@@ -193,7 +193,7 @@ public class KeyResultCompositeIntegration {
      * @return
      */
     public ResponseEntity<KeyResultDto> defaultUpdateKeyResult(KeyResultDto keyResultDto) {
-        LOG.debug("Using fallback method for KeyResultDto-service with id = " + keyResultDto.getKeyResultID());
+        LOG.debug("Using fallback method for DiaryDto-service with id = " + keyResultDto.getKeyResultID());
         KeyResultDto dto = new KeyResultDto();
         dto.setTitle("ERROR");
         return util.createResponse(
@@ -223,7 +223,7 @@ public class KeyResultCompositeIntegration {
      * @return
      */
     public ResponseEntity<String> defaultDeleteKeyResult(int id) {
-        LOG.debug("Using fallback method for KeyResultDto-service with id = " + id);
+        LOG.debug("Using fallback method for DiaryDto-service with id = " + id);
         return util.createResponse(
                 "ERROR",
                 HttpStatus.OK);
