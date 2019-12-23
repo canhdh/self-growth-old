@@ -36,7 +36,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .idea
-*.iml
 
 # Eclipse artifacts, including WTP generated manifests
 .classpath
