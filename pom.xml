@@ -22,7 +22,6 @@
     <modules>
         <module>microservices</module>
         <module>util</module>
-        <module>api</module>
     </modules>
     
 </project>

@@ -7,8 +7,6 @@ import javax.persistence.Table;
 import java.sql.Date;
 import java.util.Objects;
 
-@Entity
-@Table(name = "diarydto")
 public class DiaryDto {
 
     private int id;
