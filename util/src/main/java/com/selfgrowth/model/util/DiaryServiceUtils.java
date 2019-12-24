@@ -19,7 +19,7 @@ public class DiaryServiceUtils {
 
     @Autowired
     public DiaryServiceUtils(
-            @Value("server.port=8090") String port,
+            @Value("server.port=8089") String port,
             LoadBalancerClient loadBalancer) {
 
         this.port = port;

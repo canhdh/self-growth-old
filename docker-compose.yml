@@ -4,6 +4,15 @@ services:
     image: service-registry:0.1
     ports:
       - "8761:8761"
+  diary-composite-service:
+    image: diary-composite-service:0.1
+    ports:
+    - "8089:8089"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
+
 #  zipkin-server:
 #    image: zipkin-server:0.1
 #    ports:
@@ -12,23 +21,23 @@ services:
 #      - service-registry
 #    links:
 #      - service-registry:service-registry
-  api-gateway:
-    image: api-gateway:0.1
-    ports:
-      - "8762:8762"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-  keyresult-service:
-    image: keyresult-service:0.1
-    ports:
-      - "8082:8082"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-      - redis:redis-server
+#  api-gateway:
+#    image: api-gateway:0.1
+#    ports:
+#      - "8762:8762"
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry:service-registry
+#  keyresult-service:
+#    image: keyresult-service:0.1
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry:service-registry
+#      - redis:redis-server
 #  objective-service:
 #    image: objective-service:0.1
 #    ports:
@@ -38,8 +47,8 @@ services:
 #    links:
 #      - service-registry:service-registry
 #      - redis:redis-server
-  redis:
-    image: redis:alpine
-    hostname: redis-server
-    ports:
-      - "6379:6379"
+#  redis:
+#    image: redis:alpine
+#    hostname: redis-server
+#    ports:
+#      - "6379:6379"

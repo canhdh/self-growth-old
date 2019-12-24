@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
@@ -23,10 +24,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableEurekaClient
+@EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 @ComponentScan({"com.selfgrowth.model.util","com.selfgrowth.composite.diary.service"})
-@EnableCaching
 public class DiaryServiceCompositeApplication {
 
     @Bean
@@ -49,6 +50,6 @@ public class DiaryServiceCompositeApplication {
                 .apis(RequestHandlerSelectors.basePackage("com.selfgrowth.composite.diary.service"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(new ApiInfoBuilder().version("0.1").title("Diary Composite Service").description("Documentation Diary API v0.1").build());
+                .apiInfo(new ApiInfoBuilder().version("1.0").title("Diary Composite Service").description("Documentation Diary API v1.0").build());
     }
 }
