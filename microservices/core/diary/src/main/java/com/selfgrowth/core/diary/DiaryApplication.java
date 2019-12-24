@@ -19,8 +19,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@EnableAspectJAutoProxy(proxyTargetClass = true)
-@EnableAsync
 @EntityScan("com.selfgrowth.model.diary")
 @ComponentScan("com.selfgrowth.core.diary")
 @EnableEurekaClient
