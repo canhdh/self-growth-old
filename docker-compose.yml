@@ -1,9 +1,9 @@
 version: '3.7'
 services:
-  service-registry:
-    image: service-registry:0.1
-    ports:
-      - "8761:8761"
+#  service-registry:
+#    image: service-registry:0.1
+#    ports:
+#      - "8761:8761"
 #  zipkin-server:
 #    image: zipkin-server:0.1
 #    ports:
@@ -12,23 +12,23 @@ services:
 #      - service-registry
 #    links:
 #      - service-registry:service-registry
-  api-gateway:
-    image: api-gateway:0.1
-    ports:
-      - "8762:8762"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-  keyresult-service:
-    image: keyresult-service:0.1
-    ports:
-      - "8082:8082"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-      - redis:redis-server
+#  api-gateway:
+#    image: api-gateway:0.1
+#    ports:
+#      - "8762:8762"
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry:service-registry
+#  keyresult-service:
+#    image: keyresult-service:0.1
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry:service-registry
+#      - redis:redis-server
 #  objective-service:
 #    image: objective-service:0.1
 #    ports:
@@ -38,6 +38,45 @@ services:
 #    links:
 #      - service-registry:service-registry
 #      - redis:redis-server
+#  redis:
+#    image: redis:alpine
+#    hostname: redis-server
+#    ports:
+#      - "6379:6379"
+  discovery-services:
+    image: discovery-services:0.1
+    ports:
+    - "8761:8761"
+
+  zipkin-server:
+    image: zipkin-server:0.1
+    ports:
+        - "9411:9411"
+    depends_on:
+        - discovery-services
+    links:
+        - discovery-services:discovery-services
+
+  api-gateway:
+    image: api-gateway:0.1
+    ports:
+      - "8762:8762"
+    depends_on:
+      - discovery-services
+    links:
+      - discovery-services:discovery-services
+
+
+  diary:
+    image: diary:0.1
+    ports:
+      - "8008"
+    depends_on:
+      - discovery-services
+    links:
+      - discovery-services:discovery-services
+
+
   redis:
     image: redis:alpine
     hostname: redis-server
