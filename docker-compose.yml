@@ -1,9 +1,25 @@
 version: '3.7'
 services:
+<<<<<<< HEAD
 #  service-registry:
 #    image: service-registry:0.1
 #    ports:
 #      - "8761:8761"
+=======
+  service-registry:
+    image: service-registry:0.1
+    ports:
+      - "8761:8761"
+  diary-composite-service:
+    image: diary-composite-service:0.1
+    ports:
+    - "8089:8089"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
+
+>>>>>>> f1b0d1e71a8795e36af57a74a73653e62e145466
 #  zipkin-server:
 #    image: zipkin-server:0.1
 #    ports:
@@ -42,6 +58,7 @@ services:
 #    image: redis:alpine
 #    hostname: redis-server
 #    ports:
+<<<<<<< HEAD
 #      - "6379:6379"
   discovery-services:
     image: discovery-services:0.1
@@ -82,3 +99,6 @@ services:
     hostname: redis-server
     ports:
       - "6379:6379"
+=======
+#      - "6379:6379"
+>>>>>>> f1b0d1e71a8795e36af57a74a73653e62e145466

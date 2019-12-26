@@ -2,7 +2,7 @@ package com.selfgrowth.model.util;
 
 import com.selfgrowth.model.keyResult.KeyResult;
 
-public class Utils {
+public class OkrUtils {
     public static int[][] chunkArray(int[] array, int chunkSize) {
         int numOfChunks = (int) Math.ceil((double) array.length / chunkSize);
         int[][] output = new int[numOfChunks][];

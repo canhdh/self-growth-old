@@ -17,6 +17,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RestController
+@RequestMapping("/api/v1/diaryComposite")
 public class DiaryCompositeService {
 
     private DiaryCompositeIntegration integration;
