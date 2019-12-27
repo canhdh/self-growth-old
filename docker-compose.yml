@@ -20,10 +20,10 @@ services:
       - discovery-services
     links:
       - discovery-services:discovery-services
-  diary:
-    image: diary:0.1
+  diary-service:
+    image: diary-service:0.1
     ports:
-      - "8008"
+      - "8008:8008"
     depends_on:
       - discovery-services
     links:
@@ -33,9 +33,9 @@ services:
     ports:
       - "8089:8089"
     depends_on:
-      - service-registry
+      - discovery-services
     links:
-      - service-registry:service-registry
+      - discovery-services:discovery-service
   redis:
     image: redis:alpine
     hostname: redis-server

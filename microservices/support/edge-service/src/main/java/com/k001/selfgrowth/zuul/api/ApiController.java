@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 @Primary
 @EnableAutoConfiguration
-
 public class ApiController implements SwaggerResourcesProvider {
 
         @Override
