@@ -1,79 +1,17 @@
 version: '3.7'
 services:
-<<<<<<< HEAD
-#  service-registry:
-#    image: service-registry:0.1
-#    ports:
-#      - "8761:8761"
-=======
-  service-registry:
-    image: service-registry:0.1
-    ports:
-      - "8761:8761"
-  diary-composite-service:
-    image: diary-composite-service:0.1
-    ports:
-    - "8089:8089"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-
->>>>>>> f1b0d1e71a8795e36af57a74a73653e62e145466
-#  zipkin-server:
-#    image: zipkin-server:0.1
-#    ports:
-#      - "9411:9411"
-#    depends_on:
-#      - service-registry
-#    links:
-#      - service-registry:service-registry
-#  api-gateway:
-#    image: api-gateway:0.1
-#    ports:
-#      - "8762:8762"
-#    depends_on:
-#      - service-registry
-#    links:
-#      - service-registry:service-registry
-#  keyresult-service:
-#    image: keyresult-service:0.1
-#    ports:
-#      - "8082:8082"
-#    depends_on:
-#      - service-registry
-#    links:
-#      - service-registry:service-registry
-#      - redis:redis-server
-#  objective-service:
-#    image: objective-service:0.1
-#    ports:
-#      - "8083:8083"
-#    depends_on:
-#      - service-registry
-#    links:
-#      - service-registry:service-registry
-#      - redis:redis-server
-#  redis:
-#    image: redis:alpine
-#    hostname: redis-server
-#    ports:
-<<<<<<< HEAD
-#      - "6379:6379"
   discovery-services:
     image: discovery-services:0.1
     ports:
     - "8761:8761"
-
-  zipkin-server:
-    image: zipkin-server:0.1
+  zipkin-service:
+    image: zipkin-service:0.1
     ports:
         - "9411:9411"
     depends_on:
         - discovery-services
     links:
         - discovery-services:discovery-services
-
   api-gateway:
     image: api-gateway:0.1
     ports:
@@ -82,8 +20,6 @@ services:
       - discovery-services
     links:
       - discovery-services:discovery-services
-
-
   diary:
     image: diary:0.1
     ports:
@@ -92,13 +28,16 @@ services:
       - discovery-services
     links:
       - discovery-services:discovery-services
-
-
+  diary-composite-service:
+    image: diary-composite-service:0.1
+    ports:
+      - "8089:8089"
+    depends_on:
+      - service-registry
+    links:
+      - service-registry:service-registry
   redis:
     image: redis:alpine
     hostname: redis-server
     ports:
       - "6379:6379"
-=======
-#      - "6379:6379"
->>>>>>> f1b0d1e71a8795e36af57a74a73653e62e145466
