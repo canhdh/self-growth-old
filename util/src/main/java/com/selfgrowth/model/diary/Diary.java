@@ -1,6 +1,7 @@
 package com.selfgrowth.model.diary;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -8,107 +9,33 @@ import java.util.Objects;
 public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id",nullable = false)
     private int id;
-
     @Column(name = "diaryid", nullable = false)
     private int diaryId;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "category", nullable = false)
-    private String category;
+    @Column(name = "duedate", nullable = false)
+    private Date dueDate;
 
-    @Column(name = "severity", nullable = false)
-    private int severity;
+    @Column(name = "completionPoint", nullable = false)
+    private double completionPoint;
+    @Column(name = "step",nullable = false)
+    private String steps;
 
-    @Column(name = "priority", nullable = false)
-    private int priority;
-
-    @Column(name = "mood", nullable = false)
-    private String mood;
-
-    @Column(name = "location", nullable = false)
-    private String location;
-
-    @Column(name = "picture", nullable = false)
-    private byte picture;
-
-    public Diary() {}
-
-    public static Diary.Builder getBuilder(){return new Diary.Builder();}
-
-
+    public Diary() {
+    }
 
     public Diary(Diary.Builder builder){
         this.diaryId = builder.diaryId;
         this.title = builder.title;
-        this.category = builder.category;
-        this.severity = builder.severity;
-        this.priority = builder.priority;
-        this.mood = builder.mood;
-        this.location = builder.location;
-        this.picture = builder.picture;
+        this.dueDate = builder.dueDate;
+        this.completionPoint = builder.completionPoint;
+        this.steps = builder.steps;
     }
-    public static class Builder{
-        private int diaryId;
-        private String title;
-        private String category;
-        private int  severity;
-        private int priority;
-        private String mood;
-        private String location;
-        private byte picture;
-
-        public Builder() {
-        }
-
-        public Diary.Builder diaryId(int diaryId){
-            this.diaryId = diaryId;
-            return  this;
-        }
-
-        public Diary.Builder title(String title){
-            this.title = title;
-            return this;
-        }
-        public Diary.Builder category(String cagetory){
-            this.category = cagetory;
-            return this;
-        }
-
-        public Diary.Builder severity(int severity){
-            this.severity = severity;
-            return  this;
-        }
-
-        public Diary.Builder priority(int priority){
-            this.priority = priority;
-            return this;
-        }
-
-        public Diary.Builder mood(String mood){
-            this.mood = mood;
-            return this;
-        }
-
-        public Diary.Builder location(String location){
-            this.location = location;
-            return this;
-        }
-
-        public Diary.Builder picture(byte picture){
-            this.picture = picture;
-            return this;
-        }
-
-        public Diary build(){
-            Diary build = new Diary(this);
-            return build;
-
-        }
-    }
+    public static Diary.Builder getBuilder(){return new Builder();}
 
     public int getId() {
         return id;
@@ -134,52 +61,69 @@ public class Diary {
         this.title = title;
     }
 
-    public int getSeverity() {
-        return severity;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void setSeverity(int severity) {
-        this.severity = severity;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public String getCategory() {
-        return category;
+    public double getCompletionPoint() {
+        return completionPoint;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCompletionPoint(double completionPoint) {
+        this.completionPoint = completionPoint;
     }
 
-    public int getPriority() {
-        return priority;
+    public String getSteps() {
+        return steps;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 
-    public String getMood() {
-        return mood;
-    }
+    public static class Builder{
+        private int diaryId;
+        private String title;
+        private Date dueDate;
+        private double completionPoint;
+        private String steps;
 
-    public void setMood(String mood) {
-        this.mood = mood;
-    }
+        public Builder() {
+        }
 
-    public String getLocation() {
-        return location;
-    }
+        public Diary.Builder diaryId(int diaryId){
+            this.diaryId = diaryId;
+            return  this;
+        }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+        public Diary.Builder title(String title){
+            this.title = title;
+            return this;
+        }
 
-    public byte getPicture() {
-        return picture;
-    }
+        public Diary.Builder duedate(Date dueDate){
+            this.dueDate = dueDate;
+            return  this;
+        }
 
-    public void setPicture(byte picture) {
-        this.picture = picture;
+        public Diary.Builder completionPoint(double completionPoint){
+            this.completionPoint = completionPoint;
+            return this;
+        }
+
+        public Diary.Builder steps(String steps){
+            this.steps = steps;
+            return this;
+        }
+
+        public Diary build(){
+            Diary build = new Diary(this);
+            return build;
+        }
     }
 
     @Override
@@ -189,32 +133,25 @@ public class Diary {
         Diary diary = (Diary) o;
         return getId() == diary.getId() &&
                 getDiaryId() == diary.getDiaryId() &&
-                getSeverity() == diary.getSeverity() &&
-                getPriority() == diary.getPriority() &&
-                getPicture() == diary.getPicture() &&
-                getTitle().equals(diary.getTitle()) &&
-                getCategory().equals(diary.getCategory()) &&
-                getMood().equals(diary.getMood()) &&
-                getLocation().equals(diary.getLocation());
+                Double.compare(diary.getCompletionPoint(), getCompletionPoint()) == 0 &&
+                Objects.equals(getTitle(), diary.getTitle()) &&
+                Objects.equals(getDueDate(), diary.getDueDate()) &&
+                Objects.equals(getSteps(), diary.getSteps());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDiaryId(), getTitle(), getCategory(), getSeverity(), getPriority(), getMood(), getLocation(), getPicture());
+        return Objects.hash(getId(), getDiaryId(), getTitle(), getDueDate(), getCompletionPoint(), getSteps());
     }
 
     @Override
     public String toString() {
         return "Diary{" +
-                "id=" + id +
                 ", diaryId=" + diaryId +
                 ", title='" + title + '\'' +
-                ", category='" + category + '\'' +
-                ", severity=" + severity +
-                ", priority=" + priority +
-                ", mood='" + mood + '\'' +
-                ", location='" + location + '\'' +
-                ", picture=" + picture +
+                ", dueDate=" + dueDate +
+                ", completionPoint=" + completionPoint +
+                ", steps='" + steps + '\'' +
                 '}';
     }
 }

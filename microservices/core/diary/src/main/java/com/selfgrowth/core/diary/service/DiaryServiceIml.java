@@ -30,19 +30,17 @@ public class DiaryServiceIml implements DiaryService {
     @Override
     @Caching(
             put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
-            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)})
+            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
+    )
     public DiaryDto create(DiaryDto diaryDto) {
         Diary create = findByDiaryId(diaryDto.getDiaryId());
         if (create == null){
             Diary persisted = Diary.getBuilder()
                     .diaryId(diaryDto.getDiaryId())
+                    .completionPoint(diaryDto.getCompletionPoint())
+                    .duedate(diaryDto.getDueDate())
+                    .steps(diaryDto.getSteps())
                     .title(diaryDto.getTitle())
-                    .category(diaryDto.getCategory())
-                    .severity(diaryDto.getSeverity())
-                    .priority(diaryDto.getPriority())
-                    .mood(diaryDto.getMood())
-                    .location(diaryDto.getLocation())
-                    .picture(diaryDto.getPicture())
                     .build();
             persisted = repository.save(persisted);
             return convertToDTO(persisted);
@@ -54,26 +52,28 @@ public class DiaryServiceIml implements DiaryService {
     @Override
     @Caching(
             put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
-            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)})
-    public DiaryDto update(DiaryDto user) {
-        Diary updated = findByDiaryId(user.getDiaryId());
+            evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
+    )
+    public DiaryDto update(DiaryDto diaryDto) {
+        Diary updated = findByDiaryId(diaryDto.getDiaryId());
         if (updated != null) {
-            updated.setDiaryId(user.getDiaryId());
-            updated.setTitle(user.getTitle());
-            updated.setCategory(user.getCategory());
-            updated.setSeverity(user.getSeverity());
-            updated.setPriority(user.getPriority());
-            updated.setMood(user.getMood());
-            updated.setLocation(user.getLocation());
-            updated.setPicture(user.getPicture());
+            updated.setDiaryId(diaryDto.getDiaryId());
+            updated.setCompletionPoint(diaryDto.getCompletionPoint());
+            updated.setDueDate(diaryDto.getDueDate());
+            updated.setSteps(diaryDto.getSteps());
+            updated.setTitle(diaryDto.getTitle());
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);
     }
 
     @Override
-    @Caching(evict = {@CacheEvict(value = "diaryCache", key = "#diaryId"),
-                      @CacheEvict(value = "allDiaryCache", allEntries = true)})
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "diaryCache", key = "#diaryId"),
+                    @CacheEvict(value = "allDiaryCache", allEntries = true)
+            }
+    )
     public DiaryDto delete(int diaryId) {
         Diary deleted = findByDiaryId(diaryId);
         if (deleted != null) {
@@ -109,17 +109,14 @@ public class DiaryServiceIml implements DiaryService {
     }
 
     private DiaryDto convertToDTO(Diary model) {
-        DiaryDto dto = new DiaryDto();
+        DiaryDto diaryDto = new DiaryDto();
         if (model != null) {
-            dto.setDiaryId(model.getDiaryId());
-            dto.setTitle(model.getTitle());
-            dto.setCategory(model.getCategory());
-            dto.setSeverity(model.getSeverity());
-            dto.setPriority(model.getPriority());
-            dto.setMood(model.getMood());
-            dto.setLocation(model.getLocation());
-            dto.setPicture(model.getPicture());
-            return dto;
+            diaryDto.setDiaryId(model.getDiaryId());
+            diaryDto.setCompletionPoint(model.getCompletionPoint());
+            diaryDto.setDueDate(model.getDueDate());
+            diaryDto.setSteps(model.getSteps());
+            diaryDto.setTitle(model.getTitle());
+            return diaryDto;
         } else return null;
     }
 }
