@@ -18,6 +18,7 @@ public class DiaryDto {
     @JsonProperty("steps")
     private String steps;
 
+
     public DiaryDto() {
     }
 
@@ -95,8 +96,8 @@ public class DiaryDto {
             return  this;
         }
 
-        public DiaryDto.Builder completionPoint(double comletionPoint){
-            this.completionPoint = comletionPoint;
+        public DiaryDto.Builder completionPoint(double completionPoint){
+            this.completionPoint = completionPoint;
             return this;
         }
 

@@ -54,14 +54,14 @@ public class DiaryServiceIml implements DiaryService {
             put = {@CachePut(value = "DiaryCache", key = "#diaryId")},
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
-    public DiaryDto update(DiaryDto diaryDto) {
-        Diary updated = findByDiaryId(diaryDto.getDiaryId());
+    public DiaryDto update(DiaryDto user) {
+        Diary updated = findByDiaryId(user.getDiaryId());
         if (updated != null) {
-            updated.setDiaryId(diaryDto.getDiaryId());
-            updated.setCompletionPoint(diaryDto.getCompletionPoint());
-            updated.setDueDate(diaryDto.getDueDate());
-            updated.setSteps(diaryDto.getSteps());
-            updated.setTitle(diaryDto.getTitle());
+            updated.setDiaryId(user.getDiaryId());
+            updated.setCompletionPoint(user.getCompletionPoint());
+            updated.setDueDate(user.getDueDate());
+            updated.setSteps(user.getSteps());
+            updated.setTitle(user.getTitle());
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);
@@ -84,15 +84,15 @@ public class DiaryServiceIml implements DiaryService {
 
     @Override
     public Diary findByDiaryId(int diaryId) {
-        Diary diary = repository.findByDiaryId(diaryId).orElse(null);
-        return diary;
+        Diary result = repository.findByDiaryId(diaryId).orElse(null);
+        return result;
     }
 
     @Override
     @Cacheable(value = "diaryCache", key = "#diaryId")
     public DiaryDto findByDiaryIdConvertToDto(int diaryId) {
-        Diary diary = repository.findByDiaryId(diaryId).orElse(null);
-        return convertToDTO(diary);
+        Diary result = repository.findByDiaryId(diaryId).orElse(null);
+        return convertToDTO(result);
     }
 
     @Override
@@ -109,14 +109,14 @@ public class DiaryServiceIml implements DiaryService {
     }
 
     private DiaryDto convertToDTO(Diary model) {
-        DiaryDto diaryDto = new DiaryDto();
+        DiaryDto dto = new DiaryDto();
         if (model != null) {
-            diaryDto.setDiaryId(model.getDiaryId());
-            diaryDto.setCompletionPoint(model.getCompletionPoint());
-            diaryDto.setDueDate(model.getDueDate());
-            diaryDto.setSteps(model.getSteps());
-            diaryDto.setTitle(model.getTitle());
-            return diaryDto;
+            dto.setDiaryId(model.getDiaryId());
+            dto.setCompletionPoint(model.getCompletionPoint());
+            dto.setDueDate(model.getDueDate());
+            dto.setSteps(model.getSteps());
+            dto.setTitle(model.getTitle());
+            return dto;
         } else return null;
     }
 }
