@@ -9,13 +9,13 @@ import java.util.List;
 public interface DiaryService {
     DiaryDto create(DiaryDto diaryDto);
 
-    Diary findByDiaryId(int diary);
+    Diary findByDiaryId(int diaryId);
 
-    DiaryDto findByDiaryIdConvertToDto(int diary);
+    DiaryDto findByDiaryIdConvertToDto(int diaryId);
 
     List<DiaryDto> findAll();
 
-    DiaryDto update(DiaryDto user);
+    DiaryDto update(DiaryDto diaryDto);
 
     DiaryDto delete(int diaryId);
 }

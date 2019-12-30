@@ -24,8 +24,8 @@ public class DiaryController {
         try {
             DiaryDto saved = diaryServiceIml.create(diaryDto);
             return new ResponseEntity<>(saved, HttpStatus.OK);
-        } catch (NullPointerException e){
-            System.out.println(e);
+        } catch (NullPointerException exception){
+            System.out.println(exception);
             return new ResponseEntity<>(HttpStatus.SEE_OTHER.getReasonPhrase(),HttpStatus.SEE_OTHER);
         }
     }
