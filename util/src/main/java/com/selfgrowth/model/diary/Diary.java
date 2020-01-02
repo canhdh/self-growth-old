@@ -15,6 +15,9 @@ public class Diary {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "category", nullable = false)
+    private String category;
+
     @Column(name = "severity", nullable = false)
     private int severity;
 
@@ -35,6 +38,7 @@ public class Diary {
 
     public Diary(Builder builder) {
         this.title = builder.title;
+        this.category = builder.category;
         this.severity = builder.severity;
         this.priority = builder.priority;
         this.mood = builder.mood;
@@ -54,6 +58,14 @@ public class Diary {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getSeverity() {
@@ -98,6 +110,7 @@ public class Diary {
 
     public static class Builder{
         private String title;
+        private String category;
         private int severity;
         private int priority;
         private String mood;
@@ -109,6 +122,11 @@ public class Diary {
 
         public Diary.Builder title(String title){
             this.title = title;
+            return this;
+        }
+
+        public Diary.Builder category(String category){
+            this.category = category;
             return this;
         }
 
@@ -148,18 +166,19 @@ public class Diary {
         if (this == o) return true;
         if (!(o instanceof Diary)) return false;
         Diary diary = (Diary) o;
-        return  getDiaryId() == diary.getDiaryId() &&
-                Objects.equals(getTitle(), diary.getTitle()) &&
-                getSeverity() == diary.getSeverity() &&
-                getPriority() == diary.getPriority() &&
-                Objects.equals(getMood(), diary.getMood()) &&
-                Objects.equals(getLocation(), diary.getLocation()) &&
-                Objects.equals(getPicture(), diary.getPicture());
+        return  diaryId == diary.getDiaryId() &&
+                Objects.equals(title, diary.getTitle()) &&
+                Objects.equals(category, diary.getCategory()) &&
+                severity == diary.getSeverity() &&
+                priority == diary.getPriority() &&
+                Objects.equals(mood, diary.getMood()) &&
+                Objects.equals(location, diary.getLocation()) &&
+                Objects.equals(picture, diary.getPicture());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDiaryId(), getTitle(), getSeverity(), getPriority(), getMood(), getLocation(), getPicture());
+        return Objects.hash(diaryId, title, severity, priority, mood, location, picture);
     }
 
     @Override
@@ -167,6 +186,7 @@ public class Diary {
         return "Diary{" +
                 ", diaryId=" + diaryId +
                 ", title='" + title + '\'' +
+                ", category='" + category + "\'" +
                 ", severity=" + severity +
                 ", priority=" + priority +
                 ", mood='" + mood + "\'" +

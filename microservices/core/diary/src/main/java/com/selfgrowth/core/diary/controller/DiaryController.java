@@ -1,6 +1,7 @@
 package com.selfgrowth.core.diary.controller;
 
 import com.selfgrowth.core.diary.service.DiaryServiceIml;
+import com.selfgrowth.model.diary.Diary;
 import com.selfgrowth.model.diary.DiaryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/api/v1/diary")
@@ -20,9 +23,9 @@ public class DiaryController {
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> create(@RequestBody DiaryDto diaryDto){
+    public ResponseEntity<?> create(@RequestBody Diary diary){
         try {
-            DiaryDto saved = diaryServiceIml.create(diaryDto);
+            DiaryDto saved = convertToDTO(diaryServiceIml.create(diary));
             return new ResponseEntity<>(saved, HttpStatus.OK);
         } catch (NullPointerException exception){
             System.out.println(exception);
@@ -31,8 +34,8 @@ public class DiaryController {
     }
 
     @PutMapping(produces = "application/json")
-    public ResponseEntity<?> update(@RequestBody DiaryDto diaryDto){
-        diaryDto = diaryServiceIml.update(diaryDto);
+    public ResponseEntity<?> update(@RequestBody Diary diary){
+        DiaryDto diaryDto = convertToDTO(diaryServiceIml.update(diary));
         if (diaryDto == null){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE.getReasonPhrase(),HttpStatus.NOT_ACCEPTABLE);
         } else {
@@ -40,18 +43,18 @@ public class DiaryController {
         }
     }
 
-    @DeleteMapping(value = "/{id}",produces = "application/json")
-    public ResponseEntity<?>  delete(@PathVariable("id") int diaryId){
-        DiaryDto diaryDto = diaryServiceIml.delete(diaryId);
+    @DeleteMapping(value = "/{diary_id}",produces = "application/json")
+    public ResponseEntity<?>  delete(@PathVariable("diary_id") int diaryId){
+        DiaryDto diaryDto = convertToDTO(diaryServiceIml.delete(diaryId));
         if (diaryDto !=null) {
             return new ResponseEntity<>(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK);
         }
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/{id}",produces = "application/json")
-    public ResponseEntity<?> findByDiaryId(@PathVariable("id") int diaryId){
-        DiaryDto diaryDto = diaryServiceIml.findByDiaryIdConvertToDto(diaryId);
+    @GetMapping(value = "/{diary_id}",produces = "application/json")
+    public ResponseEntity<?> findByDiaryId(@PathVariable("diary_id") int diaryId){
+        DiaryDto diaryDto = convertToDTO(diaryServiceIml.findByDiaryId(diaryId));
         if (diaryDto != null){
             return new ResponseEntity<>(diaryDto,HttpStatus.OK);
         } else {
@@ -61,8 +64,28 @@ public class DiaryController {
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
-        List<DiaryDto> diaryDtoList = diaryServiceIml.findAll();
+        List<DiaryDto> diaryDtoList = convertToDTOs(diaryServiceIml.findAll());
         return new ResponseEntity<>(diaryDtoList,HttpStatus.OK);
+    }
+
+    private List<DiaryDto> convertToDTOs(List<Diary> models) {
+        if (models != null)
+            return models.stream().map(this::convertToDTO).collect(toList());
+        else return null;
+    }
+
+    private DiaryDto convertToDTO(Diary model) {
+        DiaryDto dto = new DiaryDto();
+        if (model != null) {
+            dto.setTitle(model.getTitle());
+            dto.setCategory(model.getCategory());
+            dto.setSeverity((model.getSeverity()));
+            dto.setPriority(model.getPriority());
+            dto.setMood(model.getMood());
+            dto.setLocation(model.getLocation());
+            dto.setPicture(model.getPicture());
+            return dto;
+        } else return null;
     }
 
 }

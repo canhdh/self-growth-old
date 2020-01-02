@@ -7,15 +7,13 @@ import com.selfgrowth.model.diary.DiaryDto;
 import java.util.List;
 
 public interface DiaryService {
-    DiaryDto create(DiaryDto diaryDto);
+    Diary create(Diary diary);
 
     Diary findByDiaryId(int diaryId);
 
-    DiaryDto findByDiaryIdConvertToDto(int diaryId);
+    List<Diary> findAll();
 
-    List<DiaryDto> findAll();
+    Diary update(Diary diary);
 
-    DiaryDto update(DiaryDto diaryDto);
-
-    DiaryDto delete(int diaryId);
+    Diary delete(int diaryId);
 }

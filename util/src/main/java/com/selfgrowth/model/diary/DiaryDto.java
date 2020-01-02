@@ -6,9 +6,10 @@ import java.util.Objects;
 
 public class DiaryDto {
 
-    private int diaryId;
     @JsonProperty("title")
     private String title;
+    @JsonProperty("category")
+    private String category;
     @JsonProperty("severity")
     private int severity;
     @JsonProperty("priority")
@@ -26,6 +27,7 @@ public class DiaryDto {
 
     public DiaryDto(Builder builder){
         this.title = builder.title;
+        this.category = builder.category;
         this.severity = builder.severity;
         this.priority = builder.priority;
         this.mood = builder.mood;
@@ -35,12 +37,16 @@ public class DiaryDto {
 
     public static DiaryDto.Builder getBuilder(){return new Builder();}
 
-    public int getDiaryId() {
-        return diaryId;
-    }
-
     public String getTitle() {
         return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setTitle(String title) {
@@ -89,6 +95,7 @@ public class DiaryDto {
 
     public static class Builder{
         private String title;
+        private String category;
         private int severity;
         private int priority;
         private String mood;
@@ -100,6 +107,11 @@ public class DiaryDto {
 
         public DiaryDto.Builder title(String title){
             this.title = title;
+            return this;
+        }
+
+        public DiaryDto.Builder category(String category){
+            this.category = category;
             return this;
         }
 
@@ -140,8 +152,8 @@ public class DiaryDto {
         if (this == o) return true;
         if (!(o instanceof DiaryDto)) return false;
         DiaryDto diaryDto = (DiaryDto) o;
-        return diaryId == diaryDto.diaryId &&
-                Objects.equals(title, diaryDto.title) &&
+        return Objects.equals(title, diaryDto.title) &&
+                Objects.equals(category, diaryDto.category) &&
                 severity == diaryDto.severity &&
                 priority == diaryDto.priority &&
                 Objects.equals(mood, diaryDto.mood) &&
@@ -151,14 +163,14 @@ public class DiaryDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(diaryId, title, severity, priority, mood, location, picture);
+        return Objects.hash(title, category, severity, priority, mood, location, picture);
     }
 
     @Override
     public String toString() {
         return "Diary{" +
-                ", diaryId=" + diaryId +
                 ", title='" + title + '\'' +
+                ", category'" + category + "\'" +
                 ", severity=" + severity +
                 ", priority=" + priority +
                 ", mood='" + mood + "\'" +

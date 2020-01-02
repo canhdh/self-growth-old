@@ -35,6 +35,6 @@ public class DiaryApplication {
                 .apis(RequestHandlerSelectors.basePackage("com.selfgrowth.core.diary.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(new ApiInfoBuilder().version("1.0").title("User Service API").description("Documentation User API v1.0").build());
+                .apiInfo(new ApiInfoBuilder().version("1.0").title("Diary Service API").description("Documentation Diary API v1.0").build());
     }
 }
