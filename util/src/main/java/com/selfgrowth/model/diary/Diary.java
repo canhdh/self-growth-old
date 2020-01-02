@@ -1,7 +1,6 @@
 package com.selfgrowth.model.diary;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Objects;
 
 @Entity

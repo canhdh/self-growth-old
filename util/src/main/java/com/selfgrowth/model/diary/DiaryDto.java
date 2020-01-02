@@ -2,8 +2,6 @@ package com.selfgrowth.model.diary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import java.sql.Date;
 import java.util.Objects;
 
 public class DiaryDto {
@@ -39,10 +37,6 @@ public class DiaryDto {
 
     public int getDiaryId() {
         return diaryId;
-    }
-
-    public void setDiaryId(int diaryId) {
-        this.diaryId = diaryId;
     }
 
     public String getTitle() {
