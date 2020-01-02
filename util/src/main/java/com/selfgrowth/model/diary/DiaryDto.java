@@ -2,33 +2,39 @@ package com.selfgrowth.model.diary;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Column;
 import java.sql.Date;
 import java.util.Objects;
 
 public class DiaryDto {
-    private int id;
-    @JsonProperty("diary_id")
+
     private int diaryId;
     @JsonProperty("title")
     private String title;
-    @JsonProperty("due_date")
-    private Date dueDate;
-    @JsonProperty("completion_point")
-    private double completionPoint;
-    @JsonProperty("steps")
-    private String steps;
+    @JsonProperty("severity")
+    private int severity;
+    @JsonProperty("priority")
+    private int priority;
+    @JsonProperty("mood")
+    private String mood;
+    @JsonProperty("location")
+    private String location;
+    @JsonProperty("picture")
+    private String picture;
 
 
     public DiaryDto() {
     }
 
-    public DiaryDto(DiaryDto.Builder builder){
-        this.diaryId = builder.diaryId;
+    public DiaryDto(Builder builder){
         this.title = builder.title;
-        this.dueDate = builder.dueDate;
-        this.completionPoint = builder.completionPoint;
-        this.steps = builder.steps;
+        this.severity = builder.severity;
+        this.priority = builder.priority;
+        this.mood = builder.mood;
+        this.location = builder.location;
+        this.picture = builder.picture;
     }
+
     public static DiaryDto.Builder getBuilder(){return new Builder();}
 
     public int getDiaryId() {
@@ -47,43 +53,55 @@ public class DiaryDto {
         this.title = title;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public int getSeverity() {
+        return severity;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    public void setSeverity(int severity) {
+        this.severity = severity;
     }
 
-    public double getCompletionPoint() {
-        return completionPoint;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setCompletionPoint(double completionPoint) {
-        this.completionPoint = completionPoint;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
-    public String getSteps() {
-        return steps;
+    public String getMood() {
+        return mood;
     }
 
-    public void setSteps(String steps) {
-        this.steps = steps;
+    public void setMood(String mood) {
+        this.mood = mood;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public static class Builder{
-        private int diaryId;
         private String title;
-        private Date dueDate;
-        private double completionPoint;
-        private String steps;
+        private int severity;
+        private int priority;
+        private String mood;
+        private String location;
+        private String picture;
 
         public Builder() {
-        }
-
-        public DiaryDto.Builder diaryId(int diaryId){
-            this.diaryId = diaryId;
-            return  this;
         }
 
         public DiaryDto.Builder title(String title){
@@ -91,18 +109,28 @@ public class DiaryDto {
             return this;
         }
 
-        public DiaryDto.Builder duedate(Date dueDate){
-            this.dueDate = dueDate;
-            return  this;
-        }
-
-        public DiaryDto.Builder completionPoint(double completionPoint){
-            this.completionPoint = completionPoint;
+        public DiaryDto.Builder severity(int severity){
+            this.severity = severity;
             return this;
         }
 
-        public DiaryDto.Builder steps(String steps){
-            this.steps = steps;
+        public DiaryDto.Builder priority(int priority){
+            this.priority = priority;
+            return this;
+        }
+
+        public DiaryDto.Builder mood(String mood){
+            this.mood = mood;
+            return this;
+        }
+
+        public DiaryDto.Builder location(String location){
+            this.location = location;
+            return this;
+        }
+
+        public DiaryDto.Builder picture(String picture){
+            this.picture = picture;
             return this;
         }
 
@@ -118,36 +146,30 @@ public class DiaryDto {
         if (this == o) return true;
         if (!(o instanceof DiaryDto)) return false;
         DiaryDto diaryDto = (DiaryDto) o;
-        return id == diaryDto.id &&
-                diaryId == diaryDto.diaryId &&
-                Double.compare(diaryDto.completionPoint, completionPoint) == 0 &&
+        return diaryId == diaryDto.diaryId &&
                 Objects.equals(title, diaryDto.title) &&
-                Objects.equals(dueDate, diaryDto.dueDate) &&
-                Objects.equals(steps, diaryDto.steps);
+                severity == diaryDto.severity &&
+                priority == diaryDto.priority &&
+                Objects.equals(mood, diaryDto.mood) &&
+                Objects.equals(location, diaryDto.location) &&
+                Objects.equals(picture, diaryDto.picture);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, diaryId, title, dueDate, completionPoint, steps);
-    }
-
-    public DiaryDto(int id, int diaryId, String title, Date dueDate, double completionPoint, String steps) {
-        this.id = id;
-        this.diaryId = diaryId;
-        this.title = title;
-        this.dueDate = dueDate;
-        this.completionPoint = completionPoint;
-        this.steps = steps;
+        return Objects.hash(diaryId, title, severity, priority, mood, location, picture);
     }
 
     @Override
     public String toString() {
-        return "DiaryDto{" +
+        return "Diary{" +
                 ", diaryId=" + diaryId +
                 ", title='" + title + '\'' +
-                ", dueDate=" + dueDate +
-                ", comletionPoint=" + completionPoint +
-                ", steps='" + steps + '\'' +
+                ", severity=" + severity +
+                ", priority=" + priority +
+                ", mood='" + mood + "\'" +
+                ", location='" + location + "\'" +
+                ", picture='" + picture + "\'" +
                 '}';
     }
 }
