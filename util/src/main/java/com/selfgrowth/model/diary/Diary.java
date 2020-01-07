@@ -1,5 +1,7 @@
 package com.selfgrowth.model.diary;
 
+import com.google.common.base.MoreObjects;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -37,6 +39,7 @@ public class Diary {
     }
 
     public Diary(Builder builder) {
+        this.diaryId = builder.diaryId;
         this.title = builder.title;
         this.category = builder.category;
         this.severity = builder.severity;
@@ -50,6 +53,10 @@ public class Diary {
 
     public int getDiaryId() {
         return diaryId;
+    }
+
+    public void setDiaryId(int diaryId) {
+        this.diaryId = diaryId;
     }
 
     public String getTitle() {
@@ -109,6 +116,7 @@ public class Diary {
     }
 
     public static class Builder{
+        private int diaryId;
         private String title;
         private String category;
         private int severity;
@@ -118,6 +126,11 @@ public class Diary {
         private String picture;
 
         public Builder() {
+        }
+
+        public Diary.Builder diaryId(int diaryId){
+            this.diaryId = diaryId;
+            return this;
         }
 
         public Diary.Builder title(String title){
@@ -178,20 +191,20 @@ public class Diary {
 
     @Override
     public int hashCode() {
-        return Objects.hash(diaryId, title, severity, priority, mood, location, picture);
+        return Objects.hash(diaryId, title, category, severity, priority, mood, location, picture);
     }
 
     @Override
     public String toString() {
-        return "Diary{" +
-                ", diaryId=" + diaryId +
-                ", title='" + title + '\'' +
-                ", category='" + category + "\'" +
-                ", severity=" + severity +
-                ", priority=" + priority +
-                ", mood='" + mood + "\'" +
-                ", location='" + location + "\'" +
-                ", picture='" + picture + "\'" +
-                '}';
+        return MoreObjects.toStringHelper(this)
+                .add("diary id", diaryId)
+                .add("title", title)
+                .add("category", category)
+                .add("severity", severity)
+                .add("priority", priority)
+                .add("mood", mood)
+                .add("location", location)
+                .add("picture", picture)
+                .toString();
     }
 }
