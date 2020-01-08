@@ -24,7 +24,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableEurekaClient
-@EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 @ComponentScan({"com.selfgrowth.model.util","com.selfgrowth.composite.diary.service"})
