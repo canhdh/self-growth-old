@@ -1,43 +1,58 @@
 version: '3.7'
 services:
-  discovery-services:
-    image: discovery-services:0.1
+  service-registry:
+    image: service-registry:0.1
+    container_name: service-registry
+    restart: always
     ports:
     - "8761:8761"
-  zipkin-service:
-    image: zipkin-service:0.1
-    ports:
-        - "9411:9411"
-    depends_on:
-        - discovery-services
-    links:
-        - discovery-services:discovery-services
+    networks:
+      - self-growth1
   api-gateway:
     image: api-gateway:0.1
+    container_name: api-gateway
+    restart: always
     ports:
       - "8762:8762"
     depends_on:
-      - discovery-services
+      - service-registry
     links:
-      - discovery-services:discovery-services
+      - service-registry:service-registry
+    networks:
+      - self-growth1
   diary-service:
     image: diary-service:0.1
+    container_name: diary-service
+    restart: always
     ports:
       - "8008:8008"
     depends_on:
-      - discovery-services
+      - service-registry
     links:
-      - discovery-services:discovery-services
+      - service-registry:service-registry
+    networks:
+      - self-growth1
   diary-composite-service:
     image: diary-composite-service:0.1
+    container_name: diary-composite-service
+    restart: always
     ports:
-      - "8089:8089"
+      - "8009:8009"
     depends_on:
-      - discovery-services
+      - service-registry
     links:
-      - discovery-services:discovery-service
+      - service-registry:service-registry
+    networks:
+      - self-growth1
   redis:
     image: redis:alpine
+    container_name: redis-server
     hostname: redis-server
+    restart: always
     ports:
       - "6379:6379"
+    networks:
+      - self-growth1
+networks:
+  self-growth1:
+    name: self-growth

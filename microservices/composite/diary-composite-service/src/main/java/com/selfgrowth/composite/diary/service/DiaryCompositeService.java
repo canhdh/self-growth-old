@@ -3,6 +3,8 @@ package com.selfgrowth.composite.diary.service;
 import com.selfgrowth.model.diary.DiaryDto;
 import com.selfgrowth.model.util.DebugLog;
 import com.selfgrowth.model.util.DiaryServiceUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,49 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RestController
-@RequestMapping("/api/v1/diaryComposite")
 public class DiaryCompositeService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DiaryCompositeService.class);
 
     private DiaryCompositeIntegration integration;
     private DiaryServiceUtils utils;
+
+    @Autowired
+    public DiaryCompositeService(DiaryCompositeIntegration integration, DiaryServiceUtils utils) {
+        this.integration = integration;
+        this.utils = utils;
+    }
+
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<DiaryDto> createDiary(@RequestBody DiaryDto diaryDto){
+        DiaryDto createDiaryDtoResult = createBasicDiary(diaryDto);
+        return utils.createOkResponse(createDiaryDtoResult);
+    }
+
+    @GetMapping(value = "/{diaryId}", produces = "application/json")
+    public ResponseEntity<DiaryDto> getDiary(@PathVariable int diaryId){
+        DiaryDto getDiaryDtoResult = getBasicDiary(diaryId);
+        return utils.createOkResponse(getDiaryDtoResult);
+    }
+
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<List<DiaryDto>> getAllDiary(){
+        List<DiaryDto> getDiaryDtoListResult = getAllBasicDiary();
+        return utils.createOkResponse(getDiaryDtoListResult);
+    }
+
+    @PutMapping(produces = "application/json")
+    public ResponseEntity<DiaryDto> updateDiary(@RequestBody DiaryDto diaryDto){
+        DiaryDto UpdateDiaryDtoResult = updateBasicDiary(diaryDto);
+        return utils.createOkResponse(UpdateDiaryDtoResult);
+    }
+
+    @DeleteMapping(value = "/{diaryId}", produces = "application/json")
+    public ResponseEntity<String> deleteDiary(@PathVariable int diaryId){
+        String DeleteDiaryDtoResult = deleteBasicDiary(diaryId);
+        return utils.createOkResponse(DeleteDiaryDtoResult);
+    }
+
 
     private DiaryDto createBasicDiary(DiaryDto diaryDto){
         ResponseEntity<DiaryDto> responseEntity = integration.createDiary(diaryDto);
@@ -77,40 +117,4 @@ public class DiaryCompositeService {
         }
         return deleteDiaryResult;
     }
-
-    @Autowired
-    public DiaryCompositeService(DiaryCompositeIntegration integration) {
-        this.integration = integration;
-    }
-
-    @PostMapping(produces = "application/json")
-    public ResponseEntity<DiaryDto> createDiary(@RequestBody DiaryDto diaryDto){
-        DiaryDto createDiaryDtoResult = createBasicDiary(diaryDto);
-        return utils.createOkResponse(createDiaryDtoResult);
-    }
-
-    @GetMapping(value = "/{diaryId}", produces = "application/json")
-    public ResponseEntity<DiaryDto> getDiary(@PathVariable int diaryId){
-        DiaryDto getDiaryDtoResult = getBasicDiary(diaryId);
-        return utils.createOkResponse(getDiaryDtoResult);
-    }
-
-    @GetMapping(produces = "application/json")
-    public ResponseEntity<List<DiaryDto>> getAllDiary(){
-        List<DiaryDto> getDiaryDtoListResult = getAllBasicDiary();
-        return utils.createOkResponse(getDiaryDtoListResult);
-    }
-
-    @PutMapping(produces = "application/json")
-    public ResponseEntity<DiaryDto> updateDiary(@RequestBody DiaryDto diaryDto){
-        DiaryDto UpdateDiaryDtoResult = updateBasicDiary(diaryDto);
-        return utils.createOkResponse(UpdateDiaryDtoResult);
-    }
-
-    @DeleteMapping(value = "/{diaryId}", produces = "application/json")
-    public ResponseEntity<String> deleteDiary(@PathVariable int diaryId){
-        String DeleteDiaryDtoResult = deleteBasicDiary(diaryId);
-        return utils.createOkResponse(DeleteDiaryDtoResult);
-    }
-
 }

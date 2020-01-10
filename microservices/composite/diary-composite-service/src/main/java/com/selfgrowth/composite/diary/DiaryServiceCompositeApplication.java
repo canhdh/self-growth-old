@@ -1,14 +1,11 @@
 package com.selfgrowth.composite.diary;
 
-import com.selfgrowth.model.util.DebugLog;
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@EnableEurekaClient
+@EnableDiscoveryClient
 @EnableCircuitBreaker
 @EnableHystrixDashboard
 @ComponentScan({"com.selfgrowth.model.util","com.selfgrowth.composite.diary.service"})
@@ -38,8 +35,6 @@ public class DiaryServiceCompositeApplication {
     public static void main(String[] args) {
         BasicConfigurator.configure();
         ConfigurableApplicationContext context = SpringApplication.run(DiaryServiceCompositeApplication.class, args);
-
-        DebugLog.logMessage("DiaryCompositeService connected to RabbitMQ at: " + context.getEnvironment().getProperty("spring.rabbitmq.host"));
     }
 
     @Bean

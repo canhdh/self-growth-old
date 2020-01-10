@@ -14,7 +14,6 @@
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>keyresult-composite-service</module>
         <module>diary-composite-service</module>
     </modules>
 

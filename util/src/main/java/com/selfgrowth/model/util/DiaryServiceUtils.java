@@ -1,5 +1,7 @@
 package com.selfgrowth.model.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -9,22 +11,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DiaryServiceUtils {
-    private LoadBalancerClient loadBalancer;
-    private String port;
+    private static final Logger LOG = LoggerFactory.getLogger(DiaryServiceUtils.class);
+
+    private final LoadBalancerClient loadBalancer;
+    private final String port;
 
     private String serviceAddress = null;
 
-    public DiaryServiceUtils(){
-    }
-
     @Autowired
-    public DiaryServiceUtils(
-            @Value("server.port=8089") String port,
-            LoadBalancerClient loadBalancer) {
+    public DiaryServiceUtils(@Value("${server.port}") String port, LoadBalancerClient loadBalancer) {
 
         this.port = port;
         this.loadBalancer = loadBalancer;
     }
+
 
     public <T> ResponseEntity<T> createOkResponse(T body) {
         return createResponse(body, HttpStatus.OK);

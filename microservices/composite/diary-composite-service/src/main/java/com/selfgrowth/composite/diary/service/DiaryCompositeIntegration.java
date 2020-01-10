@@ -22,7 +22,13 @@ public class DiaryCompositeIntegration {
     private final DiaryServiceUtils util;
     private final RestOperations restOperations;
 
-    private List<DiaryDto> response2Diary(ResponseEntity<String> responseEntity){
+    @Autowired
+    public DiaryCompositeIntegration(DiaryServiceUtils util, RestOperations restOperations) {
+        this.util = util;
+        this.restOperations = restOperations;
+    }
+
+    private List<DiaryDto> response2Diaries(ResponseEntity<String> responseEntity){
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<DiaryDto> locals = Arrays.asList(mapper.readValue(responseEntity.getBody(), DiaryDto[].class));
@@ -36,29 +42,23 @@ public class DiaryCompositeIntegration {
         }
     }
 
-    @Autowired
-    public DiaryCompositeIntegration(DiaryServiceUtils util, RestOperations restOperations) {
-        this.util = util;
-        this.restOperations = restOperations;
-    }
-
     // ----------------------- //
     //     CREATE A DIARY      //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultCreateDiary",
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000"))
+    @HystrixCommand(fallbackMethod = "defaultCreateDiary", commandProperties =
+            {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<DiaryDto> createDiary(DiaryDto diaryDto){
         LOG.info("Will call createDiary with hystrix protection");
 
-        String url = "http://diary-service/";
+        String url = "http://diary-service";
         LOG.debug("createDiary from URL: " + url);
 
-        ResponseEntity<DiaryDto> resultstr = restOperations.postForEntity(url, diaryDto, DiaryDto.class);
+        ResponseEntity<DiaryDto> result = restOperations.postForEntity(url, diaryDto, DiaryDto.class);
 
-        LOG.debug("createDiary http-status: " + resultstr.getStatusCode());
-        LOG.debug("createDiary body: " + resultstr.getBody());
+        LOG.debug("createDiary http-status: " + result.getStatusCode());
+        LOG.debug("createDiary body: " + result.getBody());
 
-        DiaryDto diaryDtoResult = resultstr.getBody();
+        DiaryDto diaryDtoResult = result.getBody();
         LOG.debug("createDiary.cnt " + diaryDtoResult.toString());
         return util.createOkResponse(diaryDtoResult);
     }
@@ -69,27 +69,27 @@ public class DiaryCompositeIntegration {
      * @return
      */
     public ResponseEntity<DiaryDto> defaultCreateDiary(DiaryDto diaryDto){
-        LOG.debug("Using fallback method for createDiary with id = " + diaryDto.getDiaryId());
+        LOG.debug("Using fallback method for createDiary with title = " + diaryDto.getTitle());
         return util.createResponse(diaryDto, HttpStatus.OK);
     }
 
     // ----------------------- //
     //       GET A DIARY       //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultGetDiary",
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000"))
+    @HystrixCommand(fallbackMethod = "defaultGetDiary", commandProperties =
+            {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<DiaryDto> getDiary(int id){
         LOG.info("Will call getDiary with hystrix protection");
 
-        String url = "http://diary-service/";
+        String url = "http://diary-service/" + id;
         LOG.debug("getDiary from URL: " + url);
 
-        ResponseEntity<DiaryDto> resultstr = restOperations.getForEntity(url, DiaryDto.class);
+        ResponseEntity<DiaryDto> result = restOperations.getForEntity(url, DiaryDto.class);
 
-        LOG.debug("getDiary http-status: " + resultstr.getStatusCode());
-        LOG.debug("getDiary body: " + resultstr.getBody());
+        LOG.debug("getDiary http-status: " + result.getStatusCode());
+        LOG.debug("getDiary body: " + result.getBody());
 
-        DiaryDto diaryDtoResult = resultstr.getBody();
+        DiaryDto diaryDtoResult = result.getBody();
         LOG.debug("getDiary.cnt " + diaryDtoResult.toString());
 
         return util.createOkResponse(diaryDtoResult);
@@ -103,18 +103,19 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<DiaryDto> defaultGetDiary(int id){
         LOG.debug("Using fallback method for getDiary with id = " + id);
         DiaryDto diaryDto = new DiaryDto();
+        diaryDto.setTitle("ERROR");
         return util.createResponse(diaryDto, HttpStatus.OK);
     }
 
     // ----------------------- //
     //      GET ALL DIARY      //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultGetAllDiary",
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000"))
+    @HystrixCommand(fallbackMethod = "defaultGetAllDiary", commandProperties =
+            {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<List<DiaryDto>> getAllDiary(){
         LOG.info("Will call getAllDiary with Hystrix protection");
 
-        String url = "http://diary-service/";
+        String url = "http://diary-service";
         LOG.debug("getAllDiary from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
@@ -123,19 +124,19 @@ public class DiaryCompositeIntegration {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<String> resultstr = restOperations.exchange(
+        ResponseEntity<String> resultStr = restOperations.exchange(
                 builder.build().encode().toUri(),
                 HttpMethod.GET,
                 entity,
                 String.class);
 
-        LOG.debug("getAllDiary http-status: " + resultstr.getStatusCode());
-        LOG.debug("getAllDiary body: " + resultstr.getBody());
+        LOG.debug("getAllDiary http-status: " + resultStr.getStatusCode());
+        LOG.debug("getAllDiary body: " + resultStr.getBody());
 
-        List<DiaryDto> diaryDtosResult = response2Diary(resultstr);
-        LOG.debug("getAllDiary.cnt " + diaryDtosResult.toString());
+        List<DiaryDto> diaryDtoResult = response2Diaries(resultStr);
+        LOG.debug("getAllDiary.cnt " + diaryDtoResult.toString());
 
-        return util.createOkResponse(diaryDtosResult);
+        return util.createOkResponse(diaryDtoResult);
     }
 
     /**
@@ -151,12 +152,12 @@ public class DiaryCompositeIntegration {
     // ----------------------- //
     //     UPDATE A DIARY      //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultUpdateDiary",
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000"))
+    @HystrixCommand(fallbackMethod = "defaultUpdateDiary", commandProperties =
+            {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<DiaryDto> updateDiary(DiaryDto diaryDto){
         LOG.info("Will call updateDiary with Hystrix protection");
 
-        String url = "http://diary-service/";
+        String url = "http://diary-service";
         LOG.debug("updateDiary from UR: " + url);
 
         HttpHeaders headers = new HttpHeaders();
@@ -188,13 +189,13 @@ public class DiaryCompositeIntegration {
     // ----------------------- //
     //     DELETE A DIARY      //
     // ----------------------- //
-    @HystrixCommand(fallbackMethod = "defaultDeleteDiary",
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000"))
+    @HystrixCommand(fallbackMethod = "defaultDeleteDiary", commandProperties =
+            {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
     public ResponseEntity<String> deleteDiary(int id){
         LOG.info("Will call deleteDiary with Hystrix protection");
 
-        String url = "http://diary-service/";
-        LOG.debug("deleteDiary from URL: " + url);
+        String url = "http://diary-service/" + id;
+        LOG.debug("deleteDiary from URL: " + url)   ;
 
         restOperations.delete(url);
 
