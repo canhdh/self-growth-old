@@ -13,6 +13,7 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @RestController
+@RequestMapping("/api/v1/diaryService")
 public class DiaryController {
     private final DiaryServiceIml diaryServiceIml;
 
