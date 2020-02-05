@@ -15,7 +15,6 @@ import java.util.List;
 public class ApiController implements SwaggerResourcesProvider {
 
         @Override
-
         public List<SwaggerResource> get() {
             List<SwaggerResource> resources =  new ArrayList<>();
             resources.add(swaggerResource("diary-service","/api/diary-service/v2/api-docs","2.0"));

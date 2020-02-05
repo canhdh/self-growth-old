@@ -1,7 +1,6 @@
 package com.selfgrowth.core.diary.controller;
 
 import com.selfgrowth.core.diary.service.DiaryServiceIml;
-import com.selfgrowth.model.diary.Diary;
 import com.selfgrowth.model.diary.DiaryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @RestController
+@RequestMapping("/api/v1/diary")
 public class DiaryController {
     private final DiaryServiceIml diaryServiceIml;
 
@@ -64,6 +62,7 @@ public class DiaryController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<DiaryDto> diaryDtoList = diaryServiceIml.findAll();
+//        producer.sendMessage(diaryDtoList);
         return new ResponseEntity<>(diaryDtoList,HttpStatus.OK);
     }
 

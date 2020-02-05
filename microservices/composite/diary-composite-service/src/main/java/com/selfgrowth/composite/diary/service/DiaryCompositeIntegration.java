@@ -23,7 +23,10 @@ public class DiaryCompositeIntegration {
     private final RestOperations restOperations;
 
     @Autowired
-    public DiaryCompositeIntegration(DiaryServiceUtils util, RestOperations restOperations) {
+    public DiaryCompositeIntegration(
+            DiaryServiceUtils util,
+            RestOperations restOperations
+    ) {
         this.util = util;
         this.restOperations = restOperations;
     }
@@ -50,7 +53,7 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<DiaryDto> createDiary(DiaryDto diaryDto){
         LOG.info("Will call createDiary with hystrix protection");
 
-        String url = "http://diary-service";
+        String url = "http://diary-service/api/v1/diary";
         LOG.debug("createDiary from URL: " + url);
 
         ResponseEntity<DiaryDto> result = restOperations.postForEntity(url, diaryDto, DiaryDto.class);
@@ -81,7 +84,7 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<DiaryDto> getDiary(int id){
         LOG.info("Will call getDiary with hystrix protection");
 
-        String url = "http://diary-service/" + id;
+        String url = "http://diary-service/api/v1/diary/" + id;
         LOG.debug("getDiary from URL: " + url);
 
         ResponseEntity<DiaryDto> result = restOperations.getForEntity(url, DiaryDto.class);
@@ -115,7 +118,7 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<List<DiaryDto>> getAllDiary(){
         LOG.info("Will call getAllDiary with Hystrix protection");
 
-        String url = "http://diary-service";
+        String url = "http://diary-service/api/v1/diary";
         LOG.debug("getAllDiary from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
@@ -135,6 +138,8 @@ public class DiaryCompositeIntegration {
 
         List<DiaryDto> diaryDtoResult = response2Diaries(resultStr);
         LOG.debug("getAllDiary.cnt " + diaryDtoResult.toString());
+//        List<DiaryDto> diaryDtoResult = (List<DiaryDto>) consumer.receiveMessageFromTopic1();
+        LOG.debug(diaryDtoResult.toString());
 
         return util.createOkResponse(diaryDtoResult);
     }
@@ -157,7 +162,7 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<DiaryDto> updateDiary(DiaryDto diaryDto){
         LOG.info("Will call updateDiary with Hystrix protection");
 
-        String url = "http://diary-service";
+        String url = "http://diary-service/api/v1/diary";
         LOG.debug("updateDiary from UR: " + url);
 
         HttpHeaders headers = new HttpHeaders();
@@ -194,7 +199,7 @@ public class DiaryCompositeIntegration {
     public ResponseEntity<String> deleteDiary(int id){
         LOG.info("Will call deleteDiary with Hystrix protection");
 
-        String url = "http://diary-service/" + id;
+        String url = "http://diary-service/api/v1/diary/" + id;
         LOG.debug("deleteDiary from URL: " + url)   ;
 
         restOperations.delete(url);
