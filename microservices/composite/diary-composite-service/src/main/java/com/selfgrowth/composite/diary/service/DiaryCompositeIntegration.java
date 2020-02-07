@@ -163,7 +163,7 @@ public class DiaryCompositeIntegration {
         LOG.info("Will call updateDiary with Hystrix protection");
 
         String url = "http://diary-service/api/v1/diary";
-        LOG.debug("updateDiary from UR: " + url);
+        LOG.debug("updateDiary from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

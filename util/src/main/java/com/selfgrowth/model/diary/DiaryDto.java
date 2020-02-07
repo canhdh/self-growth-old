@@ -1,11 +1,15 @@
 package com.selfgrowth.model.diary;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import com.selfgrowth.model.audit.DateAudit;
 
+import java.time.Instant;
 import java.util.Objects;
 
-public class DiaryDto {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class DiaryDto extends DateAudit {
 
     private int diaryId;
     @JsonProperty("title")
@@ -28,6 +32,7 @@ public class DiaryDto {
     }
 
     public DiaryDto(Builder builder){
+        super(builder.createAt, builder.updateAt);
         this.diaryId = builder.diaryId;
         this.title = builder.title;
         this.category = builder.category;
@@ -36,6 +41,8 @@ public class DiaryDto {
         this.mood = builder.mood;
         this.location = builder.location;
         this.picture = builder.picture;
+//        this.setCreateAt(builder.createAt);
+//        this.setUpdateAt(builder.updateAt);
     }
 
     public static DiaryDto.Builder getBuilder(){return new Builder();}
@@ -113,6 +120,8 @@ public class DiaryDto {
         private String mood;
         private String location;
         private String picture;
+        private Instant createAt;
+        private Instant updateAt;
 
         public Builder() {
         }
@@ -157,6 +166,16 @@ public class DiaryDto {
             return this;
         }
 
+        public DiaryDto.Builder createAt(Instant createAt){
+            this.createAt = createAt;
+            return this;
+        }
+
+        public DiaryDto.Builder updateAt(Instant updateAt){
+            this.updateAt = updateAt;
+            return this;
+        }
+
         public DiaryDto build(){
             DiaryDto build = new DiaryDto(this);
             return build;
@@ -167,21 +186,14 @@ public class DiaryDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DiaryDto)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         DiaryDto diaryDto = (DiaryDto) o;
-        return diaryId == diaryDto.diaryId &&
-                Objects.equals(title, diaryDto.title) &&
-                Objects.equals(category, diaryDto.category) &&
-                severity == diaryDto.severity &&
-                priority == diaryDto.priority &&
-                Objects.equals(mood, diaryDto.mood) &&
-                Objects.equals(location, diaryDto.location) &&
-                Objects.equals(picture, diaryDto.picture);
+        return diaryId == diaryDto.diaryId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(diaryId, title, category, severity, priority, mood, location, picture);
+        return Objects.hash(diaryId);
     }
 
     @Override
@@ -195,6 +207,8 @@ public class DiaryDto {
                 .add("mood", mood)
                 .add("location", location)
                 .add("picture", picture)
+                .add("createAt", getCreateAt())
+                .add("updateAt", getUpdateAt())
                 .toString();
     }
 }

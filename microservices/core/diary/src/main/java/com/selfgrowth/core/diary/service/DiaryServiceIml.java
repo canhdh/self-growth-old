@@ -12,6 +12,8 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -33,6 +35,8 @@ public class DiaryServiceIml implements DiaryService {
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
     public DiaryDto create(DiaryDto diaryDto) {
+        Date now = new Date();
+        now.getTime();
         Diary persisted = Diary.getBuilder()
                 .diaryId(diaryDto.getDiaryId())
                 .title(diaryDto.getTitle())
@@ -42,6 +46,8 @@ public class DiaryServiceIml implements DiaryService {
                 .mood(diaryDto.getMood())
                 .location(diaryDto.getLocation())
                 .picture(diaryDto.getPicture())
+                .createAt(now.toInstant())
+                .updateAt(now.toInstant())
                 .build();
         persisted = repository.save(persisted);
         return convertToDTO(persisted);
@@ -53,6 +59,8 @@ public class DiaryServiceIml implements DiaryService {
             evict = {@CacheEvict(value = "allDiaryCache", allEntries = true)}
     )
     public DiaryDto update(DiaryDto diaryDto) {
+        Date now = new Date();
+        now.getTime();
         Diary updated = findByDiaryId(diaryDto.getDiaryId());
         if (updated != null) {
             updated.setDiaryId(diaryDto.getDiaryId());
@@ -63,6 +71,7 @@ public class DiaryServiceIml implements DiaryService {
             updated.setMood(diaryDto.getMood());
             updated.setLocation(diaryDto.getLocation());
             updated.setPicture(diaryDto.getPicture());
+            updated.setUpdateAt(now.toInstant());
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);
@@ -122,6 +131,8 @@ public class DiaryServiceIml implements DiaryService {
             dto.setMood(model.getMood());
             dto.setLocation(model.getLocation());
             dto.setPicture(model.getPicture());
+            dto.setCreateAt(model.getCreateAt());
+            dto.setUpdateAt(model.getUpdateAt());
             return dto;
         } else return null;
     }

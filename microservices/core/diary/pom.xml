@@ -12,7 +12,7 @@
     <artifactId>diary</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>diary</name>
-    <description>Diray Service</description>
+    <description>Diary Service</description>
 
     <properties>
         <java.version>11</java.version>
@@ -69,15 +69,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
-        <dependency>
-            <artifactId>oauth-server</artifactId>
-            <groupId>com.selfgrowth.microservices.support</groupId>
-            <version>0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <artifactId>oauth-server</artifactId>-->
+<!--            <groupId>com.selfgrowth.microservices.support</groupId>-->
+<!--            <version>0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-oauth2</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.h2database</groupId>

@@ -5,7 +5,7 @@ import com.selfgrowth.model.diary.DiaryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,8 +60,8 @@ public class DiaryController {
         }
     }
 
-    @PreAuthorize("#oauth2.hasScope('read')")
-    @GetMapping(produces = "application/json", value = "/")
+//    @PreAuthorize("#oauth2.hasScope('read')")
+    @GetMapping(produces = "application/json")
     public ResponseEntity<?> findAll(){
         List<DiaryDto> diaryDtoList = diaryServiceIml.findAll();
 //        producer.sendMessage(diaryDtoList);

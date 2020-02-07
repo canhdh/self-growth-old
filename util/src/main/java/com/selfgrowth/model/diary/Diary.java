@@ -1,17 +1,19 @@
 package com.selfgrowth.model.diary;
 
 import com.google.common.base.MoreObjects;
+import com.selfgrowth.model.audit.DateAudit;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Objects;
 
 @Entity
 @Table(name = "diary")
-public class Diary {
+public class Diary extends DateAudit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "diary_id", nullable = false)
+    @Column(name = "diaryId", nullable = false)
     private int diaryId;
 
     @Column(name = "title", nullable = false)
@@ -39,6 +41,7 @@ public class Diary {
     }
 
     public Diary(Builder builder) {
+        super(builder.createAt, builder.updateAt);
         this.diaryId = builder.diaryId;
         this.title = builder.title;
         this.category = builder.category;
@@ -47,6 +50,8 @@ public class Diary {
         this.mood = builder.mood;
         this.location = builder.location;
         this.picture = builder.picture;
+//        this.setCreateAt(builder.createAt);
+//        this.setUpdateAt(builder.updateAt);
     }
 
     public static Diary.Builder getBuilder(){return new Builder();}
@@ -124,6 +129,8 @@ public class Diary {
         private String mood;
         private String location;
         private String picture;
+        private Instant createAt;
+        private Instant updateAt;
 
         public Builder() {
         }
@@ -168,6 +175,16 @@ public class Diary {
             return this;
         }
 
+        public Diary.Builder createAt(Instant createAt){
+            this.createAt = createAt;
+            return this;
+        }
+
+        public Diary.Builder updateAt(Instant updateAt){
+            this.updateAt = updateAt;
+            return this;
+        }
+
         public Diary build(){
             Diary build = new Diary(this);
             return build;
@@ -177,21 +194,14 @@ public class Diary {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Diary)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Diary diary = (Diary) o;
-        return  diaryId == diary.getDiaryId() &&
-                Objects.equals(title, diary.getTitle()) &&
-                Objects.equals(category, diary.getCategory()) &&
-                severity == diary.getSeverity() &&
-                priority == diary.getPriority() &&
-                Objects.equals(mood, diary.getMood()) &&
-                Objects.equals(location, diary.getLocation()) &&
-                Objects.equals(picture, diary.getPicture());
+        return diaryId == diary.diaryId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(diaryId, title, category, severity, priority, mood, location, picture);
+        return Objects.hash(diaryId);
     }
 
     @Override
@@ -205,6 +215,8 @@ public class Diary {
                 .add("mood", mood)
                 .add("location", location)
                 .add("picture", picture)
+                .add("createAt", getCreateAt())
+                .add("updateAt", getUpdateAt())
                 .toString();
     }
 }
