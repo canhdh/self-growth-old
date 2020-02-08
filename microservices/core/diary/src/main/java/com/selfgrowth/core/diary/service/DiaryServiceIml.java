@@ -46,8 +46,8 @@ public class DiaryServiceIml implements DiaryService {
                 .mood(diaryDto.getMood())
                 .location(diaryDto.getLocation())
                 .picture(diaryDto.getPicture())
-                .createAt(now.toInstant())
-                .updateAt(now.toInstant())
+                .createAt(now)
+                .updateAt(now)
                 .build();
         persisted = repository.save(persisted);
         return convertToDTO(persisted);
@@ -71,7 +71,8 @@ public class DiaryServiceIml implements DiaryService {
             updated.setMood(diaryDto.getMood());
             updated.setLocation(diaryDto.getLocation());
             updated.setPicture(diaryDto.getPicture());
-            updated.setUpdateAt(now.toInstant());
+            updated.setCreateAt(diaryDto.getCreateAt());
+            updated.setUpdateAt(now);
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);

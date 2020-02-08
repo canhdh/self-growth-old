@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.audit.DateAudit;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -120,8 +120,8 @@ public class DiaryDto extends DateAudit {
         private String mood;
         private String location;
         private String picture;
-        private Instant createAt;
-        private Instant updateAt;
+        private Date createAt;
+        private Date updateAt;
 
         public Builder() {
         }
@@ -166,12 +166,12 @@ public class DiaryDto extends DateAudit {
             return this;
         }
 
-        public DiaryDto.Builder createAt(Instant createAt){
+        public DiaryDto.Builder createAt(Date createAt){
             this.createAt = createAt;
             return this;
         }
 
-        public DiaryDto.Builder updateAt(Instant updateAt){
+        public DiaryDto.Builder updateAt(Date updateAt){
             this.updateAt = updateAt;
             return this;
         }

@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.selfgrowth.model.audit.DateAudit;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -129,8 +129,8 @@ public class Diary extends DateAudit {
         private String mood;
         private String location;
         private String picture;
-        private Instant createAt;
-        private Instant updateAt;
+        private Date createAt;
+        private Date updateAt;
 
         public Builder() {
         }
@@ -175,12 +175,12 @@ public class Diary extends DateAudit {
             return this;
         }
 
-        public Diary.Builder createAt(Instant createAt){
+        public Diary.Builder createAt(Date createAt){
             this.createAt = createAt;
             return this;
         }
 
-        public Diary.Builder updateAt(Instant updateAt){
+        public Diary.Builder updateAt(Date updateAt){
             this.updateAt = updateAt;
             return this;
         }
