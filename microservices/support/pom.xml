@@ -21,8 +21,6 @@
     <modules>
         <module>discovery-services</module>
         <module>edge-service</module>
-        <module>zipkin-server-final</module>
-        <module>oauth-server</module>
     </modules>
 
 

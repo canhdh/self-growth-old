@@ -9,7 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestOperations;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
@@ -20,12 +20,12 @@ import java.util.List;
 public class DiaryCompositeIntegration {
     private static final Logger LOG = Logger.getLogger(DiaryCompositeIntegration.class);
     private final DiaryServiceUtils util;
-    private final RestOperations restOperations;
+    private final RestTemplate restOperations;
 
     @Autowired
     public DiaryCompositeIntegration(
             DiaryServiceUtils util,
-            RestOperations restOperations
+            RestTemplate restOperations
     ) {
         this.util = util;
         this.restOperations = restOperations;

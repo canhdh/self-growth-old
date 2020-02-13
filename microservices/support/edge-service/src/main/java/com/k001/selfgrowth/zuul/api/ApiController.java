@@ -21,6 +21,7 @@ public class ApiController implements SwaggerResourcesProvider {
             resources.add(swaggerResource("diary-composite-service","/api/diary-composite-service/v2/api-docs","2.0"));
             return resources;
         }
+
         private SwaggerResource swaggerResource(String name, String location, String version) {
             SwaggerResource swaggerResource = new SwaggerResource();
             swaggerResource.setName(name);
