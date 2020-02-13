@@ -1,25 +1,25 @@
 version: '3.7'
 services:
-  service-registry:
-    image: service-registry:0.1
-    container_name: service-registry
-    restart: always
-    ports:
-    - "8761:8761"
-    networks:
-      - self-growth1
-  api-gateway:
-    image: api-gateway:0.1
-    container_name: api-gateway
-    restart: always
-    ports:
-      - "8762:8762"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
-    networks:
-      - self-growth1
+#  service-registry:
+#    image: service-registry:0.1
+#    container_name: service-registry
+#    restart: always
+#    ports:
+#    - "8761:8761"
+#    networks:
+#      - self-growth1
+#  api-gateway:
+#    image: api-gateway:0.1
+#    container_name: api-gateway
+#    restart: always
+#    ports:
+#      - "8762:8762"
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry:service-registry
+#    networks:
+#      - self-growth1
   diary-service:
     image: diary-service:0.1
     container_name: diary-service
