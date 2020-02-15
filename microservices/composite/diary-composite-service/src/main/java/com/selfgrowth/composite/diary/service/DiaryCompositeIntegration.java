@@ -8,11 +8,13 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +34,7 @@ public class DiaryCompositeIntegration {
     }
 
     private List<DiaryDto> response2Diaries(ResponseEntity<String> responseEntity){
+        restOperations.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
         try {
             ObjectMapper mapper = new ObjectMapper();
             List<DiaryDto> locals = Arrays.asList(mapper.readValue(responseEntity.getBody(), DiaryDto[].class));
@@ -122,7 +125,7 @@ public class DiaryCompositeIntegration {
         LOG.debug("getAllDiary from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         HttpEntity<?> entity = new HttpEntity<>(headers);
@@ -138,7 +141,6 @@ public class DiaryCompositeIntegration {
 
         List<DiaryDto> diaryDtoResult = response2Diaries(resultStr);
         LOG.debug("getAllDiary.cnt " + diaryDtoResult.toString());
-//        List<DiaryDto> diaryDtoResult = (List<DiaryDto>) consumer.receiveMessageFromTopic1();
         LOG.debug(diaryDtoResult.toString());
 
         return util.createOkResponse(diaryDtoResult);
