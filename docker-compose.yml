@@ -26,10 +26,10 @@ services:
     restart: always
     ports:
       - "8008:8008"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry
     networks:
       - self-growth1
   diary-composite-service:
@@ -38,21 +38,21 @@ services:
     restart: always
     ports:
       - "8009:8009"
-    depends_on:
-      - service-registry
-    links:
-      - service-registry:service-registry
+#    depends_on:
+#      - service-registry
+#    links:
+#      - service-registry
     networks:
       - self-growth1
-  redis:
-    image: redis:alpine
-    container_name: redis-server
-    hostname: redis-server
-    restart: always
-    ports:
-      - "6379:6379"
-    networks:
-      - self-growth1
+#  redis:
+#    image: redis:alpine
+#    container_name: redis-server
+#    hostname: redis-server
+#    restart: always
+#    ports:
+#      - "6379:6379"
+#    networks:
+#      - self-growth1
 networks:
   self-growth1:
     name: self-growth

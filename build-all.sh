@@ -9,11 +9,11 @@ cd ../../core/diary
 docker build -t diary-service:0.1 .
 
 # change to discovery-service directory
-cd ../../support/discovery-services
+#cd ../../support/discovery-services
 # build discovery-service:0.1 image
-docker build -t service-registry:0.1 .
+#docker build -t service-registry:0.1 .
 
 # change to edge-service directory
-cd ../edge-service
+#cd ../edge-service
 # build api-gateway:0.1 image
-docker build -t api-gateway:0.1 .
+#docker build -t api-gateway:0.1 .
