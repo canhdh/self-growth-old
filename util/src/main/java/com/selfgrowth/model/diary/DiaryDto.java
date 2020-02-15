@@ -1,5 +1,6 @@
 package com.selfgrowth.model.diary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
@@ -17,9 +18,9 @@ public class DiaryDto extends DateAudit {
     @JsonProperty("category")
     private String category;
     @JsonProperty("severity")
-    private int severity;
+    private String severity;
     @JsonProperty("priority")
-    private int priority;
+    private String priority;
     @JsonProperty("mood")
     private String mood;
     @JsonProperty("location")
@@ -71,19 +72,19 @@ public class DiaryDto extends DateAudit {
         this.title = title;
     }
 
-    public int getSeverity() {
+    public String getSeverity() {
         return severity;
     }
 
-    public void setSeverity(int severity) {
+    public void setSeverity(String severity) {
         this.severity = severity;
     }
 
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
@@ -115,8 +116,8 @@ public class DiaryDto extends DateAudit {
         private int diaryId;
         private String title;
         private String category;
-        private int severity;
-        private int priority;
+        private String severity;
+        private String priority;
         private String mood;
         private String location;
         private String picture;
@@ -141,12 +142,12 @@ public class DiaryDto extends DateAudit {
             return this;
         }
 
-        public DiaryDto.Builder severity(int severity){
+        public DiaryDto.Builder severity(String severity){
             this.severity = severity;
             return this;
         }
 
-        public DiaryDto.Builder priority(int priority){
+        public DiaryDto.Builder priority(String priority){
             this.priority = priority;
             return this;
         }

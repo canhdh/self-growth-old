@@ -23,10 +23,10 @@ public class Diary extends DateAudit {
     private String category;
 
     @Column(name = "severity", nullable = false)
-    private int severity;
+    private String  severity;
 
     @Column(name = "priority", nullable = false)
-    private int priority;
+    private String priority;
 
     @Column(name = "mood",nullable = false)
     private String mood;
@@ -80,19 +80,19 @@ public class Diary extends DateAudit {
         this.category = category;
     }
 
-    public int getSeverity() {
+    public String getSeverity() {
         return severity;
     }
 
-    public void setSeverity(int severity) {
+    public void setSeverity(String severity) {
         this.severity = severity;
     }
 
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
@@ -124,8 +124,8 @@ public class Diary extends DateAudit {
         private int diaryId;
         private String title;
         private String category;
-        private int severity;
-        private int priority;
+        private String severity;
+        private String priority;
         private String mood;
         private String location;
         private String picture;
@@ -150,12 +150,12 @@ public class Diary extends DateAudit {
             return this;
         }
 
-        public Diary.Builder severity(int severity){
+        public Diary.Builder severity(String severity){
             this.severity = severity;
             return this;
         }
 
-        public Diary.Builder priority(int priority){
+        public Diary.Builder priority(String priority){
             this.priority = priority;
             return this;
         }
