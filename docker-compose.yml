@@ -16,14 +16,14 @@ services:
 #      - "8762:8762"
 #    networks:
 #      - self-growth1
-  diary-service:
-    image: diary-service:0.1
-    container_name: diary-service
-    restart: always
-    ports:
-      - "8008:8008"
-    networks:
-      - self-growth1
+#  diary-service:
+#    image: diary-service:0.1
+#    container_name: diary-service
+#    restart: always
+#    ports:
+#      - "8008:8008"
+#    networks:
+#      - self-growth1
   diary-composite-service:
     image: diary-composite-service:0.1
     container_name: diary-composite-service

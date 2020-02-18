@@ -3,10 +3,10 @@ cd microservices/composite/diary-composite-service
 # build diary-composite-service:0.1 image
 docker build -t diary-composite-service:0.1 .
 
-# change to diary-service directory
-cd ../../core/diary
-# build diary-service:0.1 image
-docker build -t diary-service:0.1 .
+## change to diary-service directory
+#cd ../../core/diary
+## build diary-service:0.1 image
+#docker build -t diary-service:0.1 .
 
 ## change to discovery-service directory
 #cd ../../support/discovery-services
