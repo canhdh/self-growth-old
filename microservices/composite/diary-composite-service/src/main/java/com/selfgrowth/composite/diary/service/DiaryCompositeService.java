@@ -45,8 +45,8 @@ public class DiaryCompositeService {
     }
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<DiaryDto>> getAllDiary(){
-        List<DiaryDto> getDiaryDtoListResult = getAllBasicDiary();
+    public ResponseEntity<List<DiaryDto>> getAllDiary(@RequestParam("userId") Long userId){
+        List<DiaryDto> getDiaryDtoListResult = getAllBasicDiary(userId);
         return utils.createOkResponse(getDiaryDtoListResult);
     }
 
@@ -85,8 +85,8 @@ public class DiaryCompositeService {
         return getDiaryResult;
     }
 
-    private List<DiaryDto> getAllBasicDiary(){
-        ResponseEntity<List<DiaryDto>> responseEntity = integration.getAllDiary();
+    private List<DiaryDto> getAllBasicDiary(Long userId){
+        ResponseEntity<List<DiaryDto>> responseEntity = integration.getAllDiary(userId);
         List<DiaryDto> getAllDiaryResult = null;
         if (!responseEntity.getStatusCode().is2xxSuccessful()){
             DebugLog.logMessage("Call to getAllBasicDiary failed: " + responseEntity.getStatusCode());

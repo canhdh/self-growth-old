@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -118,10 +119,10 @@ public class DiaryCompositeIntegration {
     // ----------------------- //
     @HystrixCommand(fallbackMethod = "defaultGetAllDiary", commandProperties =
             {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "60000")})
-    public ResponseEntity<List<DiaryDto>> getAllDiary(){
+    public ResponseEntity<List<DiaryDto>> getAllDiary(Long userId){
         LOG.info("Will call getAllDiary with Hystrix protection");
 
-        String url = "http://diary-service/api/v1/diary";
+        String url = "http://diary-service/api/v1/diary?userId=" + userId;
         LOG.debug("getAllDiary from URL: " + url);
 
         HttpHeaders headers = new HttpHeaders();
@@ -151,7 +152,7 @@ public class DiaryCompositeIntegration {
      *
      * @return
      */
-    public ResponseEntity<List<DiaryDto>> defaultGetAllDiary(){
+    public ResponseEntity<List<DiaryDto>> defaultGetAllDiary(Long userId){
         LOG.debug("Using fallback method for getAllDiary");
         return util.createResponse(null, HttpStatus.OK);
     }
