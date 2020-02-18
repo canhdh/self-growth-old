@@ -12,9 +12,7 @@ import java.util.Optional;
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
     void delete(Diary deleter);
 
-    void deleteByDiaryId(int diaryId);
-
-     List<Diary> findAll();
+     List<Diary> findAllByUserId(Long userId);
 
     Optional<Diary> findByDiaryId(int diaryId);
 

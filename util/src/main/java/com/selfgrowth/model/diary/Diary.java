@@ -37,6 +37,9 @@ public class Diary extends DateAudit {
     @Column(name = "picture", nullable = false)
     private String picture;
 
+    @Column(name = "userId", nullable = false)
+    private Long userId;
+
     public Diary() {
     }
 
@@ -50,6 +53,7 @@ public class Diary extends DateAudit {
         this.mood = builder.mood;
         this.location = builder.location;
         this.picture = builder.picture;
+        this.userId = builder.userId;
 //        this.setCreateAt(builder.createAt);
 //        this.setUpdateAt(builder.updateAt);
     }
@@ -120,6 +124,14 @@ public class Diary extends DateAudit {
         this.picture = picture;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public static class Builder{
         private int diaryId;
         private String title;
@@ -131,6 +143,7 @@ public class Diary extends DateAudit {
         private String picture;
         private Date createAt;
         private Date updateAt;
+        private Long userId;
 
         public Builder() {
         }
@@ -185,6 +198,11 @@ public class Diary extends DateAudit {
             return this;
         }
 
+        public Diary.Builder userId(Long userId){
+            this.userId = userId;
+            return this;
+        }
+
         public Diary build(){
             Diary build = new Diary(this);
             return build;
@@ -217,6 +235,7 @@ public class Diary extends DateAudit {
                 .add("picture", picture)
                 .add("createAt", getCreateAt())
                 .add("updateAt", getUpdateAt())
+                .add("userId", userId)
                 .toString();
     }
 }

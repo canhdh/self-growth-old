@@ -13,7 +13,7 @@ public interface DiaryService {
 
     DiaryDto findByDiaryIdConvertToDto(int diaryId);
 
-    List<DiaryDto> findAll();
+    List<DiaryDto> findAll(Long userId);
 
     DiaryDto update(DiaryDto diaryDto);
 

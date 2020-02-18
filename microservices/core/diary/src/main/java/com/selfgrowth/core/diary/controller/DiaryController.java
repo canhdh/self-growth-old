@@ -41,7 +41,7 @@ public class DiaryController {
         }
     }
 
-    @DeleteMapping(value = "/{diary_id}",produces = "application/json")
+    @DeleteMapping(path = "/{diary_id}",produces = "application/json")
     public ResponseEntity<?>  delete(@PathVariable("diary_id") int diaryId){
         DiaryDto diaryDto = diaryServiceIml.delete(diaryId);
         if (diaryDto !=null) {
@@ -50,7 +50,7 @@ public class DiaryController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND.getReasonPhrase(),HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/{diary_id}",produces = "application/json")
+    @GetMapping(path = "/{diary_id}",produces = "application/json")
     public ResponseEntity<?> findByDiaryId(@PathVariable("diary_id") int diaryId){
         DiaryDto diaryDto = diaryServiceIml.findByDiaryIdConvertToDto(diaryId);
         if (diaryDto != null){
@@ -60,11 +60,9 @@ public class DiaryController {
         }
     }
 
-//    @PreAuthorize("#oauth2.hasScope('read')")
     @GetMapping(produces = "application/json")
-    public ResponseEntity<?> findAll(){
-        List<DiaryDto> diaryDtoList = diaryServiceIml.findAll();
-//        producer.sendMessage(diaryDtoList);
+    public ResponseEntity<?> findAll(@RequestParam("userId") Long userId){
+        List<DiaryDto> diaryDtoList = diaryServiceIml.findAll(userId);
         return new ResponseEntity<>(diaryDtoList,HttpStatus.OK);
     }
 

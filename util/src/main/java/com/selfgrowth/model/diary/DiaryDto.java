@@ -1,6 +1,5 @@
 package com.selfgrowth.model.diary;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
@@ -27,7 +26,8 @@ public class DiaryDto extends DateAudit {
     private String location;
     @JsonProperty("picture")
     private String picture;
-
+    @JsonProperty("userId")
+    private Long userId;
 
     public DiaryDto() {
     }
@@ -42,6 +42,7 @@ public class DiaryDto extends DateAudit {
         this.mood = builder.mood;
         this.location = builder.location;
         this.picture = builder.picture;
+        this.userId = builder.userId;
 //        this.setCreateAt(builder.createAt);
 //        this.setUpdateAt(builder.updateAt);
     }
@@ -112,6 +113,14 @@ public class DiaryDto extends DateAudit {
         this.picture = picture;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public static class Builder{
         private int diaryId;
         private String title;
@@ -123,6 +132,7 @@ public class DiaryDto extends DateAudit {
         private String picture;
         private Date createAt;
         private Date updateAt;
+        private Long userId;
 
         public Builder() {
         }
@@ -177,6 +187,11 @@ public class DiaryDto extends DateAudit {
             return this;
         }
 
+        public DiaryDto.Builder userId(Long userId){
+            this.userId = userId;
+            return this;
+        }
+
         public DiaryDto build(){
             DiaryDto build = new DiaryDto(this);
             return build;
@@ -210,6 +225,7 @@ public class DiaryDto extends DateAudit {
                 .add("picture", picture)
                 .add("createAt", getCreateAt())
                 .add("updateAt", getUpdateAt())
+                .add("userId", userId)
                 .toString();
     }
 }

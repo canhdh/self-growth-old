@@ -12,7 +12,6 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +47,7 @@ public class DiaryServiceIml implements DiaryService {
                 .picture(diaryDto.getPicture())
                 .createAt(now)
                 .updateAt(now)
+                .userId(diaryDto.getUserId())
                 .build();
         persisted = repository.save(persisted);
         return convertToDTO(persisted);
@@ -73,6 +73,7 @@ public class DiaryServiceIml implements DiaryService {
             updated.setPicture(diaryDto.getPicture());
             updated.setCreateAt(diaryDto.getCreateAt());
             updated.setUpdateAt(now);
+            updated.setUserId(diaryDto.getUserId());
             repository.saveAndFlush(updated);
         }
         return convertToDTO(updated);
@@ -86,11 +87,11 @@ public class DiaryServiceIml implements DiaryService {
             }
     )
     public DiaryDto delete(int diaryId) {
-        Diary deleted = findByDiaryId(diaryId);
-        if (deleted != null) {
-            repository.deleteByDiaryId(deleted.getDiaryId());
-            return convertToDTO(deleted);
-//            return deleted;
+        Diary deleter = findByDiaryId(diaryId);
+        if (deleter != null) {
+            repository.delete(deleter);
+            return convertToDTO(deleter);
+//            return deleter;
         } else return null;
     }
 
@@ -108,11 +109,10 @@ public class DiaryServiceIml implements DiaryService {
     }
 
     @Override
-    @Cacheable(value = "allDiaryCache", unless = "#result.size() == 0")
-    public List<DiaryDto> findAll() {
-        List<Diary> diaryList = repository.findAll();
+    @Cacheable(value = "allDiaryCache", key = "#userId",unless = "#result.size() == 0")
+    public List<DiaryDto> findAll(Long userId) {
+        List<Diary> diaryList = repository.findAllByUserId(userId);
         return convertToDTOs(diaryList);
-//        return diaryList;
     }
 
     private List<DiaryDto> convertToDTOs(List<Diary> models) {
@@ -134,6 +134,7 @@ public class DiaryServiceIml implements DiaryService {
             dto.setPicture(model.getPicture());
             dto.setCreateAt(model.getCreateAt());
             dto.setUpdateAt(model.getUpdateAt());
+            dto.setUserId(model.getUserId());
             return dto;
         } else return null;
     }
