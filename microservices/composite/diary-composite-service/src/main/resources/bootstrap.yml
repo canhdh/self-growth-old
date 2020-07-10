@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: diary-composite-service
+server:
+  port: 8009

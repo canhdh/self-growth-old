@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+#  service-registry:
+#    image: service-registry:0.1
+#    container_name: service-registry
+#    restart: always
+#    ports:
+#    - "8761:8761"
+#    networks:
+#      - self-growth1
+#  api-gateway:
+#    image: api-gateway:0.1
+#    container_name: api-gateway
+#    restart: always
+#    ports:
+#      - "8762:8762"
+#    networks:
+#      - self-growth1
+#  diary-service:
+#    image: diary-service:0.1
+#    container_name: diary-service
+#    restart: always
+#    ports:
+#      - "8008:8008"
+#    networks:
+#      - self-growth1
+  diary-composite-service:
+    image: diary-composite-service:0.1
+    container_name: diary-composite-service
+    restart: always
+    ports:
+      - "8009:8009"
+    networks:
+      - self-growth1
+#  redis:
+#    image: redis:alpine
+#    container_name: redis-server
+#    hostname: redis-server
+#    restart: always
+#    ports:
+#      - "6379:6379"
+#    networks:
+#      - self-growth1
+networks:
+  self-growth1:
+    name: self-growth
